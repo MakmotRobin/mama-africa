@@ -1,0 +1,70 @@
+import { RESTAURANT_CONFIG } from '../config/restaurant'
+import { useLanguage } from '../context/useLanguage'
+
+export function Footer() {
+  const { lang, t } = useLanguage()
+
+  return (
+    <footer className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] text-[var(--color-surface)]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <div className="flex items-center gap-3">
+            <img
+              src="/images/logo.jpg"
+              alt="Mama Africa Restaurant & Bar"
+              loading="lazy"
+              width={52}
+              height={52}
+              className="h-13 w-13 rounded-md border border-[var(--color-border-dark)] object-cover"
+            />
+            <span className="font-[var(--font-display)] text-lg font-bold text-[var(--color-white)]">
+              {RESTAURANT_CONFIG.name}
+            </span>
+          </div>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-[var(--color-surface)]">
+            {t.footer.tagline}
+          </p>
+        </div>
+
+        <div className="md:col-span-4">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">
+            {t.location.hoursTitle}
+          </p>
+          <dl className="mt-3 space-y-1.5 text-sm">
+            {RESTAURANT_CONFIG.hours[lang].map((row) => (
+              <div key={row.days} className="flex justify-between gap-4">
+                <dt className="font-semibold text-[var(--color-white)]">{row.days}</dt>
+                <dd className="text-[var(--color-surface)] tabular-nums">{row.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="space-y-2 text-sm md:col-span-3 md:text-right">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">
+            {t.location.addressTitle}
+          </p>
+          <p className="font-semibold text-[var(--color-white)]">
+            {RESTAURANT_CONFIG.addressLine}, Cosenza
+          </p>
+          <p className="font-bold text-[var(--color-gold)] tabular-nums">
+            WhatsApp: {RESTAURANT_CONFIG.whatsappDisplay}
+          </p>
+          <p className="font-semibold text-[var(--color-surface)] tabular-nums">
+            Tel: {RESTAURANT_CONFIG.phoneDisplay}
+          </p>
+          <p>
+            <a
+              href={RESTAURANT_CONFIG.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold uppercase tracking-wider text-[var(--color-gold)] underline hover:text-[var(--color-white)]"
+            >
+              Facebook
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}

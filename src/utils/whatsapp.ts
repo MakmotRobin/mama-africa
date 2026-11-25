@@ -1,7 +1,11 @@
-import { RESTAURANT_CONFIG } from '../config/restaurant'
-import type { CartItem, Language, ReservationInput, TakeawayInput } from '../types'
+import { OPENING_SCHEDULE, RESTAURANT_CONFIG } from '../config/restaurant'
+import type { CartItem, Language, ReservationInput, TakeawayInput, Weekday } from '../types'
+import { parseLocalIsoDate, toLocalIsoDate } from './dates'
+import { isClosedOn, isWithinOpeningHours } from './openingHours'
 
 const MAX_TEXT_LENGTH = 240
+export const MIN_PARTY_SIZE = 1
+export const MAX_PARTY_SIZE = 20
 
 export function sanitizeText(value: string): string {
   return value.replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, MAX_TEXT_LENGTH)
@@ -20,39 +24,65 @@ export interface ValidationResult {
   errors: Record<string, string>
 }
 
-export function validateReservation(input: ReservationInput): ValidationResult {
-  const errors: Record<string, string> = {}
-
-  if (!sanitizeText(input.guestName)) {
-    errors.guestName = 'nameRequired'
-  }
-  if (!input.date.trim()) {
-    errors.date = 'dateRequired'
-  }
-  if (!input.time.trim()) {
-    errors.time = 'timeRequired'
-  }
-  if (!Number.isFinite(input.partySize) || input.partySize < 1 || input.partySize > 20) {
-    errors.partySize = 'partyInvalid'
-  }
-
-  return { valid: Object.keys(errors).length === 0, errors }
+function weekdayOf(date: Date): Weekday {
+  return date.getDay() as Weekday
 }
 
-export function validateTakeaway(input: TakeawayInput, items: CartItem[]): ValidationResult {
-  const errors: Record<string, string> = {}
+function reservationDateError(isoDate: string, now: Date): string | null {
+  if (!isoDate.trim()) return 'dateRequired'
+  if (isoDate < toLocalIsoDate(now)) return 'datePast'
+  if (isClosedOn(OPENING_SCHEDULE, weekdayOf(parseLocalIsoDate(isoDate)))) return 'dayClosed'
+  return null
+}
 
-  if (items.length === 0) {
-    errors.cart = 'emptyCart'
-  }
-  if (!sanitizeText(input.customerName)) {
-    errors.customerName = 'nameRequired'
-  }
-  if (!input.pickupTime.trim()) {
-    errors.pickupTime = 'pickupRequired'
-  }
+function reservationTimeError(isoDate: string, time: string): string | null {
+  if (!time.trim()) return 'timeRequired'
+  const weekday = weekdayOf(parseLocalIsoDate(isoDate))
+  if (!isWithinOpeningHours(OPENING_SCHEDULE, weekday, time)) return 'timeOutsideHours'
+  return null
+}
 
-  return { valid: Object.keys(errors).length === 0, errors }
+function pickupTimeError(pickupTime: string, now: Date): string | null {
+  if (!pickupTime.trim()) return 'pickupRequired'
+  if (!isWithinOpeningHours(OPENING_SCHEDULE, weekdayOf(now), pickupTime)) {
+    return 'pickupOutsideHours'
+  }
+  return null
+}
+
+function toValidationResult(errors: Record<string, string | null>): ValidationResult {
+  const presentErrors: Record<string, string> = {}
+  for (const [field, error] of Object.entries(errors)) {
+    if (error) presentErrors[field] = error
+  }
+  return { valid: Object.keys(presentErrors).length === 0, errors: presentErrors }
+}
+
+function isValidPartySize(partySize: number): boolean {
+  return Number.isFinite(partySize) && partySize >= MIN_PARTY_SIZE && partySize <= MAX_PARTY_SIZE
+}
+
+export function validateReservation(input: ReservationInput, now = new Date()): ValidationResult {
+  const dateError = reservationDateError(input.date, now)
+
+  return toValidationResult({
+    guestName: sanitizeText(input.guestName) ? null : 'nameRequired',
+    date: dateError,
+    time: dateError ? null : reservationTimeError(input.date, input.time),
+    partySize: isValidPartySize(input.partySize) ? null : 'partyInvalid',
+  })
+}
+
+export function validateTakeaway(
+  input: TakeawayInput,
+  items: CartItem[],
+  now = new Date(),
+): ValidationResult {
+  return toValidationResult({
+    cart: items.length === 0 ? 'emptyCart' : null,
+    customerName: sanitizeText(input.customerName) ? null : 'nameRequired',
+    pickupTime: pickupTimeError(input.pickupTime, now),
+  })
 }
 
 export function buildReservationMessage(input: ReservationInput, lang: Language): string {

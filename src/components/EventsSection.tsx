@@ -1,36 +1,33 @@
 import { useLanguage } from '../context/useLanguage'
-import { CULTURAL_EVENTS } from '../data/menu'
+import { useEventsToShow } from '../context/useEventsToShow'
 
 interface EventsSectionProps {
   onReserveEvent: (eventTitle: string) => void
 }
 
+const EVENTS_HEADER_PHOTO = {
+  src: '/images/nightlife-show.jpg',
+  caption: { it: 'Performance & Luce', en: 'Live Show & Lights' },
+} as const
+
 const EVENT_GALLERY = [
   {
-    src: '/images/fb-celebrity-barman.jpg',
-    captionIt: 'Celebrity Barman · Dorime Chief Priest',
-    captionEn: 'Celebrity Barman · Dorime Chief Priest',
-  },
-  {
-    src: '/images/nightlife-show.jpg',
-    captionIt: 'Performance & Luce',
-    captionEn: 'Live Show & Lights',
-  },
-  {
     src: '/images/nightlife-led.jpg',
-    captionIt: 'Energia in Pista',
-    captionEn: 'Dancefloor Energy',
+    caption: { it: 'Energia in Pista', en: 'Dancefloor Energy' },
   },
   {
     src: '/images/nightlife-crowd.jpg',
-    captionIt: 'Festa da Mama Africa',
-    captionEn: 'Mama Africa Crowd',
+    caption: { it: 'Festa da Mama Africa', en: 'Mama Africa Crowd' },
+  },
+  {
+    src: '/images/dorime-priest-pose.jpg',
+    caption: { it: 'Dorime Chief Priest in Scena', en: 'Dorime Chief Priest on Stage' },
   },
 ] as const
 
 export function EventsSection({ onReserveEvent }: EventsSectionProps) {
   const { lang, t } = useLanguage()
-  const [featuredEvent, ...weeklyEvents] = CULTURAL_EVENTS
+  const { featured: featuredEvent, weekly: weeklyEvents } = useEventsToShow()
 
   return (
     <section id="events" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
@@ -49,7 +46,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
 
         <figure className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-espresso)] p-2 shadow-[var(--shadow-card)] md:col-span-6">
           <img
-            src="/images/dj-sky-face.jpg"
+            src={EVENTS_HEADER_PHOTO.src}
             alt={t.events.imageAlt}
             loading="lazy"
             width={800}
@@ -57,7 +54,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
             className="aspect-[16/10] w-full rounded-sm object-cover"
           />
           <figcaption className="flex items-center justify-between px-2 pb-1 pt-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-gold)]">
-            <span>DJ Sky face</span>
+            <span>{EVENTS_HEADER_PHOTO.caption[lang]}</span>
             <span className="text-[var(--color-surface)]">Mama Africa Cosenza</span>
           </figcaption>
         </figure>
@@ -104,33 +101,24 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-3 md:col-span-7">
-            <figure className="overflow-hidden rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-1.5">
-              <img
-                src="/images/dorime-chief-priest.jpg"
-                alt="Dorime Chief Priest at Mama Africa"
-                loading="lazy"
-                width={500}
-                height={360}
-                className="aspect-[4/3] w-full rounded-sm object-cover"
-              />
-              <figcaption className="px-1.5 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-[var(--color-gold)]">
-                Dorime Chief Priest
-              </figcaption>
-            </figure>
-
-            <figure className="overflow-hidden rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-1.5">
-              <img
-                src="/images/dj-sky-face.jpg"
-                alt="DJ Sky face mixing live"
-                loading="lazy"
-                width={500}
-                height={360}
-                className="aspect-[4/3] w-full rounded-sm object-cover"
-              />
-              <figcaption className="px-1.5 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-[var(--color-gold)]">
-                DJ Sky face
-              </figcaption>
-            </figure>
+            {featuredEvent.photos?.map((photo) => (
+              <figure
+                key={photo.src}
+                className="overflow-hidden rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-1.5"
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt[lang]}
+                  loading="lazy"
+                  width={500}
+                  height={360}
+                  className="aspect-[4/3] w-full rounded-sm object-cover"
+                />
+                <figcaption className="px-1.5 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-[var(--color-gold)]">
+                  {photo.caption[lang]}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </article>
       )}
@@ -176,7 +164,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-muted)]">
           {t.events.galleryTitle}
         </p>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           {EVENT_GALLERY.map((photo) => (
             <figure
               key={photo.src}
@@ -185,7 +173,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
               <div className="overflow-hidden">
                 <img
                   src={photo.src}
-                  alt={lang === 'it' ? photo.captionIt : photo.captionEn}
+                  alt={photo.caption[lang]}
                   loading="lazy"
                   width={480}
                   height={360}
@@ -193,7 +181,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
                 />
               </div>
               <figcaption className="px-3 py-2 text-xs font-bold text-[var(--color-espresso)]">
-                {lang === 'it' ? photo.captionIt : photo.captionEn}
+                {photo.caption[lang]}
               </figcaption>
             </figure>
           ))}

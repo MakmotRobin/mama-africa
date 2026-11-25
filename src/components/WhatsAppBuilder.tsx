@@ -7,19 +7,27 @@ import {
 } from 'lucide-react'
 import { useRef, useState, type FormEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
-import { CULTURAL_EVENTS } from '../data/menu'
+import { useEventsToShow } from '../context/useEventsToShow'
+import type { TRANSLATIONS } from '../i18n/translations'
 import type { CartItem } from '../types'
+import { toLocalIsoDate } from '../utils/dates'
 import {
   buildReservationMessage,
   buildTakeawayMessage,
   buildWhatsAppUrl,
   calculateCartTotal,
   formatEuro,
+  MAX_PARTY_SIZE,
+  MIN_PARTY_SIZE,
   validateReservation,
   validateTakeaway,
 } from '../utils/whatsapp'
 
 export type BuilderTab = 'reservation' | 'takeaway'
+
+type WhatsAppTranslations = (typeof TRANSLATIONS)['it']['whatsapp']
+type ReservationErrorKey = keyof WhatsAppTranslations['reservationForm']['errors']
+type TakeawayErrorKey = keyof WhatsAppTranslations['takeawayForm']['errors']
 
 interface WhatsAppBuilderProps {
   activeTab: BuilderTab
@@ -33,7 +41,7 @@ interface WhatsAppBuilderProps {
 }
 
 function getTodayIso(): string {
-  return new Date().toISOString().split('T')[0]
+  return toLocalIsoDate(new Date())
 }
 
 export function WhatsAppBuilder({
@@ -50,7 +58,8 @@ export function WhatsAppBuilder({
 
   // Reservation state
   const [guestName, setGuestName] = useState('')
-  const [date, setDate] = useState(getTodayIso)
+  const [today] = useState(getTodayIso)
+  const [date, setDate] = useState(today)
   const [time, setTime] = useState('20:30')
   const [partySize, setPartySize] = useState(2)
   const [resNotes, setResNotes] = useState('')
@@ -65,8 +74,16 @@ export function WhatsAppBuilder({
   const guestNameRef = useRef<HTMLInputElement>(null)
   const dateRef = useRef<HTMLInputElement>(null)
   const customerNameRef = useRef<HTMLInputElement>(null)
+  const timeRef = useRef<HTMLInputElement>(null)
+  const pickupTimeRef = useRef<HTMLInputElement>(null)
+
+  const reservationErrorText = (key: string) =>
+    t.whatsapp.reservationForm.errors[key as ReservationErrorKey]
+  const takeawayErrorText = (key: string) =>
+    t.whatsapp.takeawayForm.errors[key as TakeawayErrorKey]
 
   const cartTotal = calculateCartTotal(cart)
+  const bookableEvents = useEventsToShow().bookable
 
   const handleReservationSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -83,6 +100,7 @@ export function WhatsAppBuilder({
       setResErrors(result.errors)
       if (result.errors.guestName) guestNameRef.current?.focus()
       else if (result.errors.date) dateRef.current?.focus()
+      else if (result.errors.time) timeRef.current?.focus()
       return
     }
 
@@ -111,6 +129,7 @@ export function WhatsAppBuilder({
     if (!result.valid) {
       setTakeErrors(result.errors)
       if (result.errors.customerName) customerNameRef.current?.focus()
+      else if (result.errors.pickupTime) pickupTimeRef.current?.focus()
       return
     }
 
@@ -241,6 +260,7 @@ export function WhatsAppBuilder({
                       name="date"
                       type="date"
                       required
+                      min={today}
                       value={date}
                       onChange={(e) => {
                         setDate(e.target.value)
@@ -252,7 +272,7 @@ export function WhatsAppBuilder({
                     />
                     {resErrors.date && (
                       <p id="res-date-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
-                        {t.whatsapp.reservationForm.errors.dateRequired}
+                        {reservationErrorText(resErrors.date)}
                       </p>
                     )}
                   </div>
@@ -265,14 +285,25 @@ export function WhatsAppBuilder({
                       {t.whatsapp.reservationForm.timeLabel}
                     </label>
                     <input
+                      ref={timeRef}
                       id="res-time"
                       name="time"
                       type="time"
                       required
                       value={time}
-                      onChange={(e) => setTime(e.target.value)}
+                      onChange={(e) => {
+                        setTime(e.target.value)
+                        if (resErrors.time) setResErrors((prev) => ({ ...prev, time: '' }))
+                      }}
+                      aria-invalid={resErrors.time ? 'true' : 'false'}
+                      aria-describedby={resErrors.time ? 'res-time-error' : undefined}
                       className="mt-1.5 min-h-[48px] w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-espresso)]"
                     />
+                    {resErrors.time && (
+                      <p id="res-time-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
+                        {reservationErrorText(resErrors.time)}
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -286,8 +317,8 @@ export function WhatsAppBuilder({
                       id="res-party"
                       name="partySize"
                       type="number"
-                      min={1}
-                      max={20}
+                      min={MIN_PARTY_SIZE}
+                      max={MAX_PARTY_SIZE}
                       required
                       value={partySize}
                       onChange={(e) => setPartySize(Number(e.target.value))}
@@ -317,7 +348,7 @@ export function WhatsAppBuilder({
                     className="mt-1.5 min-h-[48px] w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
                   >
                     <option value="">{t.whatsapp.reservationForm.occasionDefault}</option>
-                    {CULTURAL_EVENTS.map((ev) => (
+                    {bookableEvents.map((ev) => (
                       <option key={ev.id} value={ev.title[lang]}>
                         {ev.title[lang]} ({ev.dayBadge[lang]})
                       </option>
@@ -497,14 +528,31 @@ export function WhatsAppBuilder({
                       {t.whatsapp.takeawayForm.pickupLabel}
                     </label>
                     <input
+                      ref={pickupTimeRef}
                       id="take-pickup"
                       name="pickupTime"
                       type="time"
                       required
                       value={pickupTime}
-                      onChange={(e) => setPickupTime(e.target.value)}
+                      onChange={(e) => {
+                        setPickupTime(e.target.value)
+                        if (takeErrors.pickupTime) {
+                          setTakeErrors((prev) => ({ ...prev, pickupTime: '' }))
+                        }
+                      }}
+                      aria-invalid={takeErrors.pickupTime ? 'true' : 'false'}
+                      aria-describedby={takeErrors.pickupTime ? 'take-pickup-error' : undefined}
                       className="mt-1.5 min-h-[48px] w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
                     />
+                    {takeErrors.pickupTime && (
+                      <p
+                        id="take-pickup-error"
+                        className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-error)]"
+                      >
+                        <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                        <span>{takeawayErrorText(takeErrors.pickupTime)}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
 

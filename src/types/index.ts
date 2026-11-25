@@ -15,10 +15,22 @@ export interface MenuItem {
   name: LocalizedText
   description: LocalizedText
   price: number
-  image: string
+  /** Photo of this exact dish; omitted when no genuine photo exists. */
+  image?: string
   badges: DietaryBadge[]
   customizableVegan?: boolean
 }
+
+/** Day index as returned by Date.getDay(): 0 = Sunday ... 6 = Saturday. */
+export type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+/** A service period in 24h "HH:MM". A close earlier than open runs past midnight. */
+export interface ServiceWindow {
+  open: string
+  close: string
+}
+
+export type WeeklySchedule = Record<Weekday, readonly ServiceWindow[]>
 
 export interface CartItem {
   item: MenuItem
@@ -32,6 +44,16 @@ export interface CulturalEvent {
   title: LocalizedText
   description: LocalizedText
   highlights: LocalizedText[]
+  /** Local end date-time ("YYYY-MM-DDTHH:MM") of a one-off event; absent for weekly events. */
+  endsAt?: string
+  /** Photos shown when the event is featured. */
+  photos?: EventPhoto[]
+}
+
+export interface EventPhoto {
+  src: string
+  alt: LocalizedText
+  caption: LocalizedText
 }
 
 export interface ReservationInput {

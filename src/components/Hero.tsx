@@ -23,16 +23,6 @@ const HERO_IMAGES = [
     altEn: 'Signature Jollof rice with caramelized sweet plantains',
   },
   {
-    src: '/images/fb-dish-2.jpg',
-    altIt: 'Alette di pollo glassate alle spezie preparate al momento',
-    altEn: 'Freshly prepared spiced glazed chicken wings',
-  },
-  {
-    src: '/images/fb-dish-5.jpg',
-    altIt: 'Nkwobi / Isi-Ewu tradizionale con cipolla rossa',
-    altEn: 'Traditional Nkwobi / Isi-Ewu with fresh red onions',
-  },
-  {
     src: '/images/dish-grill.jpg',
     altIt: 'Tilapia alla brace e spiedini Suya con platano e lime',
     altEn: 'Charcoal-grilled tilapia and Suya skewers with plantains and lime',

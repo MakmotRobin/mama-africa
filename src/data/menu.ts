@@ -29,7 +29,6 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Freshly fried sweet ripe plantains served with marinated red onions and house ginger-pepper sauce.',
     },
     price: 6.0,
-    image: '/images/dish-fataya.jpg',
     badges: ['vegan', 'vegetarian', 'freshToOrder'],
   },
   {
@@ -76,7 +75,6 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Slow-simmered roasted peanut sauce with sweet potatoes, leafy greens, and seasonal vegetables over fragrant rice.',
     },
     price: 12.5,
-    image: '/images/dish-okra.jpg',
     badges: ['vegan', 'vegetarian', 'freshToOrder'],
   },
   {
@@ -121,7 +119,6 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Chilled West African hibiscus flower infusion with fresh mint and a hint of ginger. Alcohol-free and vegan.',
     },
     price: 4.5,
-    image: '/images/hero-feast.jpg',
     badges: ['vegan', 'vegetarian', 'freshToOrder'],
   },
   {
@@ -136,7 +133,6 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Fresh-pressed spicy ginger, sweet pineapple, and lime elixir crafted daily at our bar.',
     },
     price: 5.0,
-    image: '/images/hero-feast.jpg',
     badges: ['vegan', 'vegetarian', 'freshToOrder'],
   },
   {
@@ -151,7 +147,6 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Signature bar cocktail blending hibiscus infusion, Calabrian bergamot, dark rum, and fresh lime.',
     },
     price: 7.5,
-    image: '/images/events-night.jpg',
     badges: ['vegan', 'vegetarian', 'freshToOrder'],
   },
   {
@@ -191,10 +186,26 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
     id: 'all-white-night',
     dayBadge: { it: '12 Dicembre 2026 · Evento Speciale', en: '12th December 2026 · Special Event' },
     time: '22:00 - 02:00',
+    endsAt: '2026-12-13T02:00',
     title: {
       it: 'All White Night Party',
       en: 'All White Night Party',
     },
+    photos: [
+      {
+        src: '/images/dorime-chief-priest.jpg',
+        alt: {
+          it: 'Dorime Chief Priest ospite da Mama Africa',
+          en: 'Dorime Chief Priest at Mama Africa',
+        },
+        caption: { it: 'Dorime Chief Priest', en: 'Dorime Chief Priest' },
+      },
+      {
+        src: '/images/dj-sky-face.jpg',
+        alt: { it: 'DJ Sky face alla consolle', en: 'DJ Sky face mixing live' },
+        caption: { it: 'DJ Sky face', en: 'DJ Sky face' },
+      },
+    ],
     description: {
       it: 'Serata esclusiva con dress code total white nel cuore di Cosenza: musica, energia e cocktail d’autore fino a tarda notte.',
       en: 'Exclusive total white dress code night in the heart of Cosenza: non-stop music, high energy, and signature cocktails late into the night.',

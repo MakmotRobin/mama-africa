@@ -40,12 +40,12 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           </span>
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-4 lg:flex xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="nav-link-underline text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-surface)] transition-colors duration-150 hover:text-[var(--color-gold)]"
+              className="nav-link-underline whitespace-nowrap text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-surface)] transition-colors duration-150 hover:text-[var(--color-gold)]"
             >
               {link.label}
             </a>
@@ -78,7 +78,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           <button
             type="button"
             onClick={onOpenReservation}
-            className="hidden min-h-[44px] cursor-pointer items-center justify-center rounded-md bg-[var(--color-terracotta)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)] sm:inline-flex"
+            className="hidden min-h-[44px] cursor-pointer items-center justify-center whitespace-nowrap rounded-md bg-[var(--color-terracotta)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)] sm:inline-flex"
           >
             {t.nav.reserveCta}
           </button>
@@ -89,7 +89,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-dark)] text-[var(--color-white)] md:hidden"
+            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-dark)] text-[var(--color-white)] lg:hidden"
           >
             {mobileOpen ? (
               <X className="h-5 w-5" aria-hidden="true" />
@@ -104,7 +104,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] px-4 pb-4 pt-2 md:hidden"
+          className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] px-4 pb-4 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (

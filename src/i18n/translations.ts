@@ -71,7 +71,10 @@ export const TRANSLATIONS: Record<
         errors: {
           nameRequired: string
           dateRequired: string
+          datePast: string
+          dayClosed: string
           timeRequired: string
+          timeOutsideHours: string
           partyInvalid: string
         }
       }
@@ -96,6 +99,7 @@ export const TRANSLATIONS: Record<
           emptyCart: string
           nameRequired: string
           pickupRequired: string
+          pickupOutsideHours: string
         }
       }
       previewLabel: string
@@ -115,6 +119,7 @@ export const TRANSLATIONS: Record<
       subtitle: string
       addressTitle: string
       hoursTitle: string
+      closedLabel: string
       directionsTitle: string
       directionsList: string[]
       openMapsCta: string
@@ -216,7 +221,10 @@ export const TRANSLATIONS: Record<
         errors: {
           nameRequired: 'Inserisci il tuo nome per la prenotazione.',
           dateRequired: 'Seleziona una data valida.',
+          datePast: 'La data è già passata. Scegli oggi o un giorno futuro.',
+          dayClosed: 'In quel giorno siamo chiusi. Scegli un altro giorno.',
           timeRequired: 'Seleziona un orario.',
+          timeOutsideHours: 'Orario fuori dagli orari di apertura. Controlla gli orari qui sotto.',
           partyInvalid: 'Inserisci un numero di persone tra 1 e 20.',
         },
       },
@@ -241,6 +249,7 @@ export const TRANSLATIONS: Record<
           emptyCart: 'Aggiungi almeno un piatto dal menu prima di inviare l’ordine.',
           nameRequired: 'Inserisci il tuo nome per il ritiro.',
           pickupRequired: 'Indica l’orario di ritiro.',
+          pickupOutsideHours: 'Oggi a quell’orario la cucina è chiusa. Controlla gli orari qui sotto.',
         },
       },
       previewLabel: 'Anteprima messaggio WhatsApp',
@@ -253,7 +262,7 @@ export const TRANSLATIONS: Record<
       sponsoredBy: 'Tutti gli eventi sono sponsorizzati da Celebrity Barman',
       reserveNightCta: 'Prenota per questa serata',
       galleryTitle: 'Atmosfera & Ospiti dal Vivo',
-      imageAlt: 'DJ Sky face alla consolle durante una serata dal vivo da Mama Africa a Cosenza',
+      imageAlt: 'Performance dal vivo con luci di scena durante una serata da Mama Africa a Cosenza',
     },
     location: {
       eyebrow: 'Vieni a Trovarci',
@@ -262,6 +271,7 @@ export const TRANSLATIONS: Record<
         'Facilmente raggiungibile a piedi da Corso Mazzini e in autobus dal campus UniCal di Rende.',
       addressTitle: 'Indirizzo',
       hoursTitle: 'Orari di Apertura (Demo)',
+      closedLabel: 'Chiuso',
       directionsTitle: 'Come Arrivare',
       directionsList: [
         'A piedi: 1 minuto da Corso Mazzini (traversa all’altezza di Piazza Bilotti / area pedonale).',
@@ -366,7 +376,10 @@ export const TRANSLATIONS: Record<
         errors: {
           nameRequired: 'Please enter your name for the reservation.',
           dateRequired: 'Please choose a valid date.',
+          datePast: 'That date has passed. Please choose today or a later day.',
+          dayClosed: 'We are closed on that day. Please choose another day.',
           timeRequired: 'Please choose a time.',
+          timeOutsideHours: 'That time is outside our opening hours. See the hours below.',
           partyInvalid: 'Please enter between 1 and 20 guests.',
         },
       },
@@ -391,6 +404,7 @@ export const TRANSLATIONS: Record<
           emptyCart: 'Add at least one dish from the menu before ordering.',
           nameRequired: 'Please enter your name for pickup.',
           pickupRequired: 'Please choose a pickup time.',
+          pickupOutsideHours: 'The kitchen is closed at that time today. See the hours below.',
         },
       },
       previewLabel: 'WhatsApp message preview',
@@ -403,7 +417,7 @@ export const TRANSLATIONS: Record<
       sponsoredBy: 'All events are sponsored by Celebrity Barman',
       reserveNightCta: 'Reserve for this night',
       galleryTitle: 'Live Nights & Guest Moments',
-      imageAlt: 'DJ Sky face on the decks during a live party night at Mama Africa in Cosenza',
+      imageAlt: 'Live performance under stage lights during a party night at Mama Africa in Cosenza',
     },
     location: {
       eyebrow: 'Visit Us',
@@ -412,6 +426,7 @@ export const TRANSLATIONS: Record<
         'Steps away from Corso Mazzini and easily reached by bus from the UniCal campus in Rende.',
       addressTitle: 'Address',
       hoursTitle: 'Opening Hours (Demo)',
+      closedLabel: 'Closed',
       directionsTitle: 'Directions',
       directionsList: [
         'On foot: 1 minute off Corso Mazzini (near Piazza Bilotti pedestrian area).',

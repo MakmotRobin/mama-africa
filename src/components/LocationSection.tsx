@@ -1,9 +1,11 @@
 import { ExternalLink } from 'lucide-react'
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
+import { useOpeningHoursRows } from '../context/useOpeningHoursRows'
 
 export function LocationSection() {
   const { lang, t } = useLanguage()
+  const openingHoursRows = useOpeningHoursRows()
 
   return (
     <section
@@ -41,7 +43,7 @@ export function LocationSection() {
                 {t.location.hoursTitle}
               </h3>
               <dl className="mt-2 space-y-1.5 text-sm">
-                {RESTAURANT_CONFIG.hours[lang].map((row) => (
+                {openingHoursRows.map((row) => (
                   <div key={row.days} className="flex justify-between gap-4">
                     <dt className="font-bold text-[var(--color-espresso)]">{row.days}</dt>
                     <dd className="text-[var(--color-muted)] tabular-nums">{row.time}</dd>

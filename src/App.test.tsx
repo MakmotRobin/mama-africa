@@ -1,11 +1,33 @@
 import '@testing-library/jest-dom/vitest'
 import { act, fireEvent, render, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
+
+/** Wednesday 25 November 2026, 18:00: an open day, before the 12 December event. */
+const WEDNESDAY_EVENING = new Date(2026, 10, 25, 18, 0)
 
 describe('Mama Africa App', () => {
   beforeEach(() => {
     window.localStorage.clear()
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(WEDNESDAY_EVENING)
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('shows an opening-hours error when the reservation time falls between services', () => {
+    const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
+    render(<App />)
+
+    fireEvent.change(screen.getByLabelText(/Il tuo nome \*/i), { target: { value: 'Giulia' } })
+    fireEvent.change(screen.getByLabelText(/Orario \*/i), { target: { value: '17:00' } })
+    fireEvent.click(screen.getByRole('button', { name: /Prenota su WhatsApp/i }))
+
+    expect(screen.getByText(/fuori dagli orari di apertura/i)).toBeInTheDocument()
+    expect(openSpy).not.toHaveBeenCalled()
+    openSpy.mockRestore()
   })
   it('opens in Italian by default and toggles to English', () => {
     render(<App />)
@@ -101,12 +123,12 @@ describe('Mama Africa App', () => {
     expect(screen.getAllByText(/12th December/i).length).toBeGreaterThanOrEqual(1)
   })
 
-  it('cycles hero gallery across 10 images every 3 seconds', () => {
+  it('cycles hero gallery across 8 images every 3 seconds', () => {
     vi.useFakeTimers()
     render(<App />)
 
-    const slide1 = screen.getByRole('button', { name: /Immagine 1 \/ 10/i })
-    const slide2 = screen.getByRole('button', { name: /Immagine 2 \/ 10/i })
+    const slide1 = screen.getByRole('button', { name: /Immagine 1 \/ 8/i })
+    const slide2 = screen.getByRole('button', { name: /Immagine 2 \/ 8/i })
     expect(slide1).toHaveAttribute('aria-pressed', 'true')
     expect(slide2).toHaveAttribute('aria-pressed', 'false')
 
@@ -114,7 +136,7 @@ describe('Mama Africa App', () => {
       vi.advanceTimersByTime(3000)
     })
 
-    expect(screen.getByRole('button', { name: /Immagine 2 \/ 10/i })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: /Immagine 2 \/ 8/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     )

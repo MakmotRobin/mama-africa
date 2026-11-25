@@ -11,6 +11,77 @@ import {
   validateTakeaway,
 } from './whatsapp'
 
+/** Wednesday 25 November 2026, 18:00 local time. */
+const WEDNESDAY_EVENING = new Date(2026, 10, 25, 18, 0)
+/** Monday 30 November 2026, 18:00 local time: the restaurant is closed on Mondays. */
+const MONDAY_EVENING = new Date(2026, 10, 30, 18, 0)
+
+const VALID_RESERVATION = {
+  guestName: 'Giulia Rossi',
+  date: '2026-11-25',
+  time: '20:30',
+  partySize: 4,
+  eventOrSeating: '',
+  notes: '',
+}
+
+describe('reservation validation against the calendar and opening hours', () => {
+  it('accepts a dinner booking for today', () => {
+    expect(validateReservation(VALID_RESERVATION, WEDNESDAY_EVENING).valid).toBe(true)
+  })
+
+  it('rejects a date in the past', () => {
+    const result = validateReservation({ ...VALID_RESERVATION, date: '2026-11-24' }, WEDNESDAY_EVENING)
+
+    expect(result.errors.date).toBe('datePast')
+  })
+
+  it('rejects a day the restaurant is closed', () => {
+    const result = validateReservation({ ...VALID_RESERVATION, date: '2026-11-30' }, WEDNESDAY_EVENING)
+
+    expect(result.errors.date).toBe('dayClosed')
+  })
+
+  it('rejects a time between lunch and dinner service', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-11-26', time: '17:00' },
+      WEDNESDAY_EVENING,
+    )
+
+    expect(result.errors.time).toBe('timeOutsideHours')
+  })
+
+  it('accepts a late Friday booking that runs past midnight', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-11-27', time: '00:30' },
+      WEDNESDAY_EVENING,
+    )
+
+    expect(result.valid).toBe(true)
+  })
+})
+
+describe('takeaway validation against opening hours', () => {
+  const cart = [{ item: MENU_ITEMS[0], quantity: 1 }]
+  const order = { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' }
+
+  it('accepts a pickup during today’s dinner service', () => {
+    expect(validateTakeaway(order, cart, WEDNESDAY_EVENING).valid).toBe(true)
+  })
+
+  it('rejects a pickup outside today’s service windows', () => {
+    const result = validateTakeaway({ ...order, pickupTime: '17:00' }, cart, WEDNESDAY_EVENING)
+
+    expect(result.errors.pickupTime).toBe('pickupOutsideHours')
+  })
+
+  it('rejects any pickup on a closed day', () => {
+    const result = validateTakeaway(order, cart, MONDAY_EVENING)
+
+    expect(result.errors.pickupTime).toBe('pickupOutsideHours')
+  })
+})
+
 describe('whatsapp utilities', () => {
   it('sanitizes angle brackets and normalizes whitespace', () => {
     expect(sanitizeText('  <script>alert(1)</script>  Giulia   Rossi  ')).toBe(
@@ -41,7 +112,7 @@ describe('whatsapp utilities', () => {
       partySize: 4,
       eventOrSeating: 'Venerdi Afrobeats',
       notes: 'Opzione vegana',
-    })
+    }, WEDNESDAY_EVENING)
     expect(valid.valid).toBe(true)
   })
 
@@ -77,6 +148,7 @@ describe('whatsapp utilities', () => {
     const takeawayCheck = validateTakeaway(
       { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' },
       [],
+      WEDNESDAY_EVENING,
     )
     expect(takeawayCheck.valid).toBe(false)
     expect(takeawayCheck.errors.cart).toBe('emptyCart')

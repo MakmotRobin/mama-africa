@@ -1,8 +1,10 @@
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
+import { useOpeningHoursRows } from '../context/useOpeningHoursRows'
 
 export function Footer() {
-  const { lang, t } = useLanguage()
+  const { t } = useLanguage()
+  const openingHoursRows = useOpeningHoursRows()
 
   return (
     <footer className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] text-[var(--color-surface)]">
@@ -31,7 +33,7 @@ export function Footer() {
             {t.location.hoursTitle}
           </p>
           <dl className="mt-3 space-y-1.5 text-sm">
-            {RESTAURANT_CONFIG.hours[lang].map((row) => (
+            {openingHoursRows.map((row) => (
               <div key={row.days} className="flex justify-between gap-4">
                 <dt className="font-semibold text-[var(--color-white)]">{row.days}</dt>
                 <dd className="text-[var(--color-surface)] tabular-nums">{row.time}</dd>

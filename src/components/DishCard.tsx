@@ -47,16 +47,18 @@ export function DishCard({ dish, onAdd, variant = 'ledger' }: DishCardProps) {
   if (variant === 'spotlight') {
     return (
       <article className="card-hover flex flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] shadow-[var(--shadow-card)]">
-        <div className="overflow-hidden">
-          <img
-            src={dish.image}
-            alt={dish.name[lang]}
-            loading="lazy"
-            width={640}
-            height={480}
-            className="img-zoom aspect-[4/3] w-full object-cover"
-          />
-        </div>
+        {dish.image && (
+          <div className="overflow-hidden">
+            <img
+              src={dish.image}
+              alt={dish.name[lang]}
+              loading="lazy"
+              width={640}
+              height={480}
+              className="img-zoom aspect-[4/3] w-full object-cover"
+            />
+          </div>
+        )}
         <div className="flex flex-1 flex-col p-4">
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-espresso)]">

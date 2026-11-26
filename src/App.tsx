@@ -5,10 +5,12 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { LocationSection } from './components/LocationSection'
 import { MenuSection } from './components/MenuSection'
+import { MobileOrderBar } from './components/MobileOrderBar'
 import { WhatsAppBuilder, type BuilderTab } from './components/WhatsAppBuilder'
 import { LanguageProvider } from './context/LanguageContext'
 import { useLanguage } from './context/useLanguage'
 import type { CartItem, MenuItem } from './types'
+import { calculateCartTotal } from './utils/whatsapp'
 
 function MamaAfricaPage() {
   const { t } = useLanguage()
@@ -58,7 +60,11 @@ function MamaAfricaPage() {
   const totalItems = cart.reduce((sum, entry) => sum + entry.quantity, 0)
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-espresso)]">
+    <div
+      className={`min-h-screen bg-[var(--color-bg)] text-[var(--color-espresso)] ${
+        totalItems > 0 ? 'pb-[76px] lg:pb-0' : ''
+      }`}
+    >
       <a href="#main-content" className="skip-link">
         {t.skipToContent}
       </a>
@@ -87,6 +93,12 @@ function MamaAfricaPage() {
       </main>
 
       <Footer />
+
+      <MobileOrderBar
+        itemCount={totalItems}
+        total={calculateCartTotal(cart)}
+        onViewOrder={() => scrollToBuilder('takeaway')}
+      />
     </div>
   )
 }

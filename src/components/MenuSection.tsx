@@ -50,11 +50,13 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-muted)]">
             {t.menu.signatureTitle}
           </p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
             {signatureDishes.map((dish) => (
-              <DishCard key={dish.id} dish={dish} onAdd={onAddToCart} variant="spotlight" />
+              <li key={dish.id} className="w-[78%] shrink-0 snap-start sm:w-auto">
+                <DishCard dish={dish} onAdd={onAddToCart} variant="spotlight" />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
 

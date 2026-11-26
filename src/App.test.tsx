@@ -17,6 +17,64 @@ describe('Mama Africa App', () => {
     vi.useRealTimers()
   })
 
+  it('stops the hero slideshow when the pause button is pressed and resumes on play', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(WEDNESDAY_EVENING)
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: /Metti in pausa la galleria/i }))
+    act(() => {
+      vi.advanceTimersByTime(9000)
+    })
+    expect(screen.getByRole('button', { name: /Immagine 1 \/ 8/i })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: /Riprendi la galleria/i }))
+    act(() => {
+      vi.advanceTimersByTime(3000)
+    })
+    expect(screen.getByRole('button', { name: /Immagine 2 \/ 8/i })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+  })
+
+  it('loads the Google map only after the visitor asks for it', () => {
+    render(<App />)
+    expect(screen.queryByTitle(/mappa/i)).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /Mostra la mappa/i }))
+
+    expect(screen.getByTitle(/mappa/i).tagName).toBe('IFRAME')
+  })
+
+  it('links the secondary hero button to the menu', () => {
+    render(<App />)
+
+    expect(screen.getByRole('link', { name: /Esplora il Menu/i })).toHaveAttribute('href', '#menu')
+  })
+
+  it('shows the order bar with item count and total only once the cart has items', () => {
+    render(<App />)
+    expect(screen.queryByRole('button', { name: /Vedi ordine/i })).not.toBeInTheDocument()
+
+    const addButtons = screen.getAllByRole('button', { name: /Aggiungi all’ordine/i })
+    fireEvent.click(addButtons[0])
+    fireEvent.click(addButtons[1])
+
+    const orderBar = screen.getByRole('button', { name: /Vedi ordine/i })
+    expect(orderBar).toHaveTextContent('2')
+    expect(orderBar).toHaveTextContent('€20,50')
+
+    fireEvent.click(orderBar)
+    expect(screen.getByRole('tab', { name: /Ordine d’Asporto/i })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    )
+  })
+
   it('shows an opening-hours error when the reservation time falls between services', () => {
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
     render(<App />)

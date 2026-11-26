@@ -4,6 +4,9 @@ export const TRANSLATIONS: Record<
   Language,
   {
     skipToContent: string
+    orderBar: {
+      viewOrder: string
+    }
     nav: {
       menu: string
       orderReserve: string
@@ -19,6 +22,10 @@ export const TRANSLATIONS: Record<
       subtitle: string
       primaryCta: string
       secondaryCta: string
+      galleryLabel: string
+      slideLabel: string
+      pauseSlideshow: string
+      playSlideshow: string
       highlights: string[]
       facts: {
         addressLabel: string
@@ -124,7 +131,10 @@ export const TRANSLATIONS: Record<
       directionsList: string[]
       openMapsCta: string
       whatsappDirectCta: string
+      callCta: string
       mapIframeTitle: string
+      loadMapCta: string
+      mapConsentNote: string
     }
     footer: {
       tagline: string
@@ -135,6 +145,9 @@ export const TRANSLATIONS: Record<
 > = {
   it: {
     skipToContent: 'Vai al contenuto principale',
+    orderBar: {
+      viewOrder: 'Vedi ordine',
+    },
     nav: {
       menu: 'Menu',
       orderReserve: 'Prenota & Asporto',
@@ -151,6 +164,10 @@ export const TRANSLATIONS: Record<
         'Sapori genuini dell’Africa Occidentale nel cuore di Cosenza, a due passi da Corso Mazzini. Ideale per cene tra amici, studenti UniCal e amanti della musica dal vivo.',
       primaryCta: 'Prenota o Ordina su WhatsApp',
       secondaryCta: 'Esplora il Menu',
+      galleryLabel: 'Galleria foto',
+      slideLabel: 'Immagine',
+      pauseSlideshow: 'Metti in pausa la galleria',
+      playSlideshow: 'Riprendi la galleria',
       highlights: [
         'Ogni piatto preparato espresso al momento',
         'Opzioni vegane e vegetariane personalizzabili',
@@ -280,6 +297,9 @@ export const TRANSLATIONS: Record<
       ],
       openMapsCta: 'Apri su Google Maps',
       whatsappDirectCta: 'Scrivici su WhatsApp',
+      callCta: 'Chiamaci',
+      loadMapCta: 'Mostra la mappa',
+      mapConsentNote: 'La mappa è fornita da Google, che può impostare cookie al caricamento.',
       mapIframeTitle: 'Mappa di Mama Africa Restaurant & Bar a Via Pietro Pompilio Rodotà 12/14, Cosenza',
     },
     footer: {
@@ -290,6 +310,9 @@ export const TRANSLATIONS: Record<
   },
   en: {
     skipToContent: 'Skip to main content',
+    orderBar: {
+      viewOrder: 'View order',
+    },
     nav: {
       menu: 'Menu',
       orderReserve: 'Reserve & Takeaway',
@@ -306,6 +329,10 @@ export const TRANSLATIONS: Record<
         'Vibrant West African flavors in the heart of Cosenza, just off Corso Mazzini. A welcoming hub for locals, UniCal students, and travelers.',
       primaryCta: 'Book or Order on WhatsApp',
       secondaryCta: 'Explore Menu',
+      galleryLabel: 'Photo gallery',
+      slideLabel: 'Image',
+      pauseSlideshow: 'Pause the gallery',
+      playSlideshow: 'Resume the gallery',
       highlights: [
         'Every dish cooked fresh to order',
         'Customizable vegan and vegetarian options',
@@ -435,6 +462,9 @@ export const TRANSLATIONS: Record<
       ],
       openMapsCta: 'Open in Google Maps',
       whatsappDirectCta: 'Message us on WhatsApp',
+      callCta: 'Call us',
+      loadMapCta: 'Show the map',
+      mapConsentNote: 'The map is provided by Google, which may set cookies when it loads.',
       mapIframeTitle: 'Map of Mama Africa Restaurant & Bar at Via Pietro Pompilio Rodotà 12/14, Cosenza',
     },
     footer: {

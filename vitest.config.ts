@@ -8,5 +8,7 @@ export default defineConfig({
     globals: true,
     setupFiles: './src/test/setup.ts',
     env: { TZ: 'Europe/Rome' },
+    // Full-app render tests run in parallel workers and can exceed the 5s default.
+    testTimeout: 15000,
   },
 })

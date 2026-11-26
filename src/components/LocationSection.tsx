@@ -1,11 +1,14 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { useState } from 'react'
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
 import { useOpeningHoursRows } from '../context/useOpeningHoursRows'
+import { PHONE_CALL_URL, WHATSAPP_CHAT_URL } from '../utils/whatsapp'
 
 export function LocationSection() {
   const { lang, t } = useLanguage()
   const openingHoursRows = useOpeningHoursRows()
+  const [isMapLoaded, setIsMapLoaded] = useState(false)
 
   return (
     <section
@@ -52,27 +55,64 @@ export function LocationSection() {
               </dl>
             </div>
 
-            <div className="pt-2">
+            <div className="space-y-3 pt-2">
               <a
                 href={RESTAURANT_CONFIG.mapsQueryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-terracotta)] px-4 text-sm font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)]"
+                className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-[var(--color-terracotta)] px-4 text-sm font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)]"
               >
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 <span>{t.location.openMapsCta}</span>
               </a>
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href={WHATSAPP_CHAT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md bg-[var(--color-emerald)] px-3 text-sm font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-emerald-hover)]"
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>WhatsApp</span>
+                </a>
+                <a
+                  href={PHONE_CALL_URL}
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-[var(--color-espresso)] bg-[var(--color-surface-card)] px-3 text-sm font-bold text-[var(--color-espresso)] transition-colors duration-150 hover:bg-[var(--color-espresso)] hover:text-[var(--color-white)]"
+                >
+                  <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>{t.location.callCta}</span>
+                </a>
+              </div>
             </div>
           </div>
 
           <div className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] shadow-[var(--shadow-card)] lg:col-span-7">
-            <iframe
-              title={t.location.mapIframeTitle}
-              src={RESTAURANT_CONFIG.mapsEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-[360px] w-full border-0 lg:h-full lg:min-h-[460px]"
-            />
+            {isMapLoaded ? (
+              <iframe
+                title={t.location.mapIframeTitle}
+                src={RESTAURANT_CONFIG.mapsEmbedUrl}
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-[360px] w-full border-0 lg:h-full lg:min-h-[460px]"
+              />
+            ) : (
+              <div className="flex h-[360px] flex-col items-center justify-center gap-4 bg-[var(--color-bg)] p-6 text-center lg:h-full lg:min-h-[460px]">
+                <MapPin className="h-10 w-10 text-[var(--color-terracotta)]" aria-hidden="true" />
+                <div>
+                  <p className="font-[var(--font-display)] text-lg font-bold text-[var(--color-espresso)]">
+                    {RESTAURANT_CONFIG.addressLine}
+                  </p>
+                  <p className="text-sm text-[var(--color-muted)]">{RESTAURANT_CONFIG.cityLine}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsMapLoaded(true)}
+                  className="inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-espresso)] bg-[var(--color-surface-card)] px-5 text-sm font-bold text-[var(--color-espresso)] transition-colors duration-150 hover:bg-[var(--color-espresso)] hover:text-[var(--color-white)]"
+                >
+                  {t.location.loadMapCta}
+                </button>
+                <p className="max-w-xs text-xs text-[var(--color-muted)]">{t.location.mapConsentNote}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

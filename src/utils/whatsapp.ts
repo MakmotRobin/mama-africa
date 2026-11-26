@@ -158,7 +158,10 @@ export function buildTakeawayMessage(
     .join('\n')
 }
 
+export const WHATSAPP_CHAT_URL = `https://wa.me/${RESTAURANT_CONFIG.whatsappDigits}`
+export const PHONE_CALL_URL = `tel:${RESTAURANT_CONFIG.phoneDial}`
+
 export function buildWhatsAppUrl(message: string): string {
   const encoded = encodeURIComponent(message)
-  return `https://wa.me/${RESTAURANT_CONFIG.whatsappDigits}?text=${encoded}`
+  return `${WHATSAPP_CHAT_URL}?text=${encoded}`
 }

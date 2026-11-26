@@ -1,5 +1,5 @@
-import { MessageCircle } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { MessageCircle, Pause, Play, UtensilsCrossed } from 'lucide-react'
+import { useEffect, useState, type FocusEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
 
 interface HeroProps {
@@ -51,26 +51,37 @@ const HERO_IMAGES = [
 
 const SLIDE_INTERVAL_MS = 3000
 
+function prefersReducedMotion(): boolean {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+}
+
 export function Hero({ onOpenWhatsapp }: HeroProps) {
   const { lang, t } = useLanguage()
   const [activeIndex, setActiveIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [hasFocusInside, setHasFocusInside] = useState(false)
+  const [isPausedByUser, setIsPausedByUser] = useState(false)
+  const isPaused = isHovered || hasFocusInside || isPausedByUser
 
   useEffect(() => {
-    if (paused) return
-    if (
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return
-    }
+    if (isPaused || prefersReducedMotion()) return
 
     const timer = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_IMAGES.length)
     }, SLIDE_INTERVAL_MS)
 
     return () => window.clearInterval(timer)
-  }, [paused])
+  }, [isPaused])
+
+  // Pause only for keyboard focus: a mouse click on Play must not keep the gallery paused.
+  const handleFocus = (event: FocusEvent<HTMLDivElement>) => {
+    if (event.target.matches(':focus-visible')) setHasFocusInside(true)
+  }
+
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    const focusStaysInside = event.currentTarget.contains(event.relatedTarget as Node | null)
+    if (!focusStaysInside) setHasFocusInside(false)
+  }
 
   return (
     <section
@@ -88,7 +99,7 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
               {t.hero.subtitle}
             </p>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
                 onClick={onOpenWhatsapp}
@@ -97,13 +108,22 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span>{t.hero.primaryCta}</span>
               </button>
+              <a
+                href="#menu"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-md border border-[var(--color-surface)] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              >
+                <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
+                <span>{t.hero.secondaryCta}</span>
+              </a>
             </div>
           </div>
 
           <div
             className="lg:col-span-5"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           >
             <div className="overflow-hidden rounded-lg border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-2 shadow-[var(--shadow-elevated)]">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[var(--color-espresso)]">
@@ -122,25 +142,41 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
                 ))}
               </div>
 
-              <div
-                className="flex items-center justify-center gap-1.5 pt-2.5 pb-1"
-                role="group"
-                aria-label={lang === 'it' ? 'Galleria hero' : 'Hero gallery'}
-              >
-                {HERO_IMAGES.map((img, idx) => (
-                  <button
-                    key={img.src}
-                    type="button"
-                    aria-label={`${lang === 'it' ? 'Immagine' : 'Image'} ${idx + 1} / ${HERO_IMAGES.length}`}
-                    aria-pressed={idx === activeIndex}
-                    onClick={() => setActiveIndex(idx)}
-                    className={`h-2 cursor-pointer rounded-full transition-all duration-200 ${
-                      idx === activeIndex
-                        ? 'w-5 bg-[var(--color-gold)]'
-                        : 'w-2 bg-[var(--color-border-dark)] hover:bg-[var(--color-surface)]'
-                    }`}
-                  />
-                ))}
+              <div className="flex items-center justify-center gap-1 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setIsPausedByUser((prev) => !prev)}
+                  aria-label={isPausedByUser ? t.hero.playSlideshow : t.hero.pauseSlideshow}
+                  className="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-md text-[var(--color-surface)] transition-colors duration-150 hover:text-[var(--color-gold)]"
+                >
+                  {isPausedByUser ? (
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Pause className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
+
+                <div className="flex items-center" role="group" aria-label={t.hero.galleryLabel}>
+                  {HERO_IMAGES.map((img, idx) => (
+                    <button
+                      key={img.src}
+                      type="button"
+                      aria-label={`${t.hero.slideLabel} ${idx + 1} / ${HERO_IMAGES.length}`}
+                      aria-pressed={idx === activeIndex}
+                      onClick={() => setActiveIndex(idx)}
+                      className="group inline-flex h-11 cursor-pointer items-center justify-center px-1"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`block h-2 rounded-full transition-all duration-200 ${
+                          idx === activeIndex
+                            ? 'w-5 bg-[var(--color-gold)]'
+                            : 'w-2 bg-[var(--color-border-dark)] group-hover:bg-[var(--color-surface)]'
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

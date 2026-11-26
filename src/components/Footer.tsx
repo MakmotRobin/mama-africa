@@ -1,6 +1,7 @@
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
 import { useOpeningHoursRows } from '../context/useOpeningHoursRows'
+import { PHONE_CALL_URL, WHATSAPP_CHAT_URL } from '../utils/whatsapp'
 
 export function Footer() {
   const { t } = useLanguage()
@@ -49,11 +50,23 @@ export function Footer() {
           <p className="font-semibold text-[var(--color-white)]">
             {RESTAURANT_CONFIG.addressLine}, Cosenza
           </p>
-          <p className="font-bold text-[var(--color-gold)] tabular-nums">
-            WhatsApp: {RESTAURANT_CONFIG.whatsappDisplay}
+          <p>
+            <a
+              href={WHATSAPP_CHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center font-bold text-[var(--color-gold)] tabular-nums underline-offset-4 hover:underline md:min-h-0"
+            >
+              WhatsApp: {RESTAURANT_CONFIG.whatsappDisplay}
+            </a>
           </p>
-          <p className="font-semibold text-[var(--color-surface)] tabular-nums">
-            Tel: {RESTAURANT_CONFIG.phoneDisplay}
+          <p>
+            <a
+              href={PHONE_CALL_URL}
+              className="inline-flex min-h-[44px] items-center font-semibold text-[var(--color-surface)] tabular-nums underline-offset-4 hover:text-[var(--color-white)] hover:underline md:min-h-0"
+            >
+              Tel: {RESTAURANT_CONFIG.phoneDisplay}
+            </a>
           </p>
           <p>
             <a

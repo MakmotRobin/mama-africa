@@ -35,7 +35,13 @@ function BadgePill({ badge, label }: { badge: DietaryBadge; label: string }) {
 
 const ADDED_FEEDBACK_MS = 1200
 
-function AddToOrderButton({ onAdd, fullWidth }: { onAdd: () => void; fullWidth: boolean }) {
+interface AddToOrderButtonProps {
+  dishName: string
+  onAdd: () => void
+  fullWidth: boolean
+}
+
+function AddToOrderButton({ dishName, onAdd, fullWidth }: AddToOrderButtonProps) {
   const { t } = useLanguage()
   const [justAdded, setJustAdded] = useState(false)
 
@@ -56,6 +62,7 @@ function AddToOrderButton({ onAdd, fullWidth }: { onAdd: () => void; fullWidth: 
     <button
       type="button"
       onClick={handleClick}
+      aria-label={`${justAdded ? t.menu.addedFeedback : t.menu.addToOrder}: ${dishName}`}
       className={`btn min-h-[44px] px-3 text-xs ${fullWidth ? 'w-full' : ''} ${stateClasses}`}
     >
       {justAdded ? (
@@ -97,7 +104,7 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
           {dish.description[lang]}
         </p>
         <div className="mt-4">
-          <AddToOrderButton onAdd={onAdd} fullWidth />
+          <AddToOrderButton dishName={dish.name[lang]} onAdd={onAdd} fullWidth />
         </div>
       </div>
     </article>
@@ -166,7 +173,7 @@ function LedgerDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void }) 
             ))}
           </div>
 
-          <AddToOrderButton onAdd={onAdd} fullWidth={false} />
+          <AddToOrderButton dishName={dish.name[lang]} onAdd={onAdd} fullWidth={false} />
         </div>
       </div>
     </article>

@@ -198,6 +198,15 @@ describe('Mama Africa App', () => {
     openSpy.mockRestore()
   })
 
+  it('names the dish on every add-to-order button for screen readers', () => {
+    render(<App />)
+
+    expect(
+      screen.getAllByRole('button', { name: 'Aggiungi all’ordine: Riso Jollof Tradizionale' }),
+    ).toHaveLength(2)
+    expect(screen.queryByRole('button', { name: 'Aggiungi all’ordine' })).not.toBeInTheDocument()
+  })
+
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

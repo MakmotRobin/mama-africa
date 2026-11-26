@@ -149,10 +149,10 @@ export function WhatsAppBuilder({
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-terracotta)]">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-red)]">
             {t.whatsapp.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-espresso)] sm:text-4xl">
+          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.whatsapp.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.whatsapp.subtitle}</p>
@@ -174,8 +174,8 @@ export function WhatsAppBuilder({
                 onClick={() => onTabChange('reservation')}
                 className={`inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-md px-3 text-sm font-bold transition-colors duration-150 ${
                   activeTab === 'reservation'
-                    ? 'bg-[var(--color-terracotta)] text-[var(--color-white)]'
-                    : 'text-[var(--color-espresso)] hover:bg-[var(--color-bg)]'
+                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
+                    : 'text-[var(--color-ink)] hover:bg-[var(--color-bg)]'
                 }`}
               >
                 <span>{t.whatsapp.tabs.reservation}</span>
@@ -190,8 +190,8 @@ export function WhatsAppBuilder({
                 onClick={() => onTabChange('takeaway')}
                 className={`inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-md px-3 text-sm font-bold transition-colors duration-150 ${
                   activeTab === 'takeaway'
-                    ? 'bg-[var(--color-terracotta)] text-[var(--color-white)]'
-                    : 'text-[var(--color-espresso)] hover:bg-[var(--color-bg)]'
+                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
+                    : 'text-[var(--color-ink)] hover:bg-[var(--color-bg)]'
                 }`}
               >
                 <span>
@@ -212,7 +212,7 @@ export function WhatsAppBuilder({
                 <div>
                   <label
                     htmlFor="res-name"
-                    className="block text-sm font-bold text-[var(--color-espresso)]"
+                    className="block text-sm font-bold text-[var(--color-ink)]"
                   >
                     {t.whatsapp.reservationForm.nameLabel}
                   </label>
@@ -233,7 +233,7 @@ export function WhatsAppBuilder({
                     aria-invalid={resErrors.guestName ? 'true' : 'false'}
                     aria-describedby={resErrors.guestName ? 'res-name-error' : undefined}
                     placeholder={t.whatsapp.reservationForm.namePlaceholder}
-                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
+                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
                   />
                   {resErrors.guestName && (
                     <p
@@ -250,7 +250,7 @@ export function WhatsAppBuilder({
                   <div>
                     <label
                       htmlFor="res-date"
-                      className="block text-sm font-bold text-[var(--color-espresso)]"
+                      className="block text-sm font-bold text-[var(--color-ink)]"
                     >
                       {t.whatsapp.reservationForm.dateLabel}
                     </label>
@@ -268,7 +268,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={resErrors.date ? 'true' : 'false'}
                       aria-describedby={resErrors.date ? 'res-date-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-espresso)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.date && (
                       <p id="res-date-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -280,7 +280,7 @@ export function WhatsAppBuilder({
                   <div>
                     <label
                       htmlFor="res-time"
-                      className="block text-sm font-bold text-[var(--color-espresso)]"
+                      className="block text-sm font-bold text-[var(--color-ink)]"
                     >
                       {t.whatsapp.reservationForm.timeLabel}
                     </label>
@@ -297,7 +297,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={resErrors.time ? 'true' : 'false'}
                       aria-describedby={resErrors.time ? 'res-time-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-espresso)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.time && (
                       <p id="res-time-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -309,7 +309,7 @@ export function WhatsAppBuilder({
                   <div>
                     <label
                       htmlFor="res-party"
-                      className="block text-sm font-bold text-[var(--color-espresso)]"
+                      className="block text-sm font-bold text-[var(--color-ink)]"
                     >
                       {t.whatsapp.reservationForm.partyLabel}
                     </label>
@@ -323,7 +323,7 @@ export function WhatsAppBuilder({
                       value={partySize}
                       onChange={(e) => setPartySize(Number(e.target.value))}
                       aria-invalid={resErrors.partySize ? 'true' : 'false'}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-espresso)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.partySize && (
                       <p className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -336,7 +336,7 @@ export function WhatsAppBuilder({
                 <div>
                   <label
                     htmlFor="res-occasion"
-                    className="block text-sm font-bold text-[var(--color-espresso)]"
+                    className="block text-sm font-bold text-[var(--color-ink)]"
                   >
                     {t.whatsapp.reservationForm.occasionLabel}
                   </label>
@@ -345,7 +345,7 @@ export function WhatsAppBuilder({
                     name="occasion"
                     value={occasion}
                     onChange={(e) => onOccasionChange(e.target.value)}
-                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
+                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
                   >
                     <option value="">{t.whatsapp.reservationForm.occasionDefault}</option>
                     {bookableEvents.map((ev) => (
@@ -359,7 +359,7 @@ export function WhatsAppBuilder({
                 <div>
                   <label
                     htmlFor="res-notes"
-                    className="block text-sm font-bold text-[var(--color-espresso)]"
+                    className="block text-sm font-bold text-[var(--color-ink)]"
                   >
                     {t.whatsapp.reservationForm.notesLabel}
                   </label>
@@ -371,7 +371,7 @@ export function WhatsAppBuilder({
                     value={resNotes}
                     onChange={(e) => setResNotes(e.target.value)}
                     placeholder={t.whatsapp.reservationForm.notesPlaceholder}
-                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-espresso)]"
+                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-ink)]"
                   />
                 </div>
 
@@ -394,14 +394,14 @@ export function WhatsAppBuilder({
               >
                 <div className="rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-4">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-espresso)]">
+                    <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
                       {t.whatsapp.takeawayForm.cartTitle}
                     </h3>
                     {cart.length > 0 && (
                       <button
                         type="button"
                         onClick={onClearCart}
-                        className="text-xs font-bold text-[var(--color-terracotta)] underline cursor-pointer"
+                        className="text-xs font-bold text-[var(--color-red)] underline cursor-pointer"
                       >
                         {t.whatsapp.takeawayForm.clearCart}
                       </button>
@@ -413,7 +413,7 @@ export function WhatsAppBuilder({
                       <p>{t.whatsapp.takeawayForm.emptyCart}</p>
                       <a
                         href="#menu"
-                        className="mt-2 inline-block font-bold text-[var(--color-terracotta)] underline"
+                        className="mt-2 inline-block font-bold text-[var(--color-red)] underline"
                       >
                         {t.whatsapp.takeawayForm.browseMenu}
                       </a>
@@ -423,7 +423,7 @@ export function WhatsAppBuilder({
                       {cart.map(({ item, quantity }) => (
                         <li key={item.id} className="flex items-center justify-between gap-3 py-2.5">
                           <div className="min-w-0">
-                            <p className="truncate text-sm font-bold text-[var(--color-espresso)]">
+                            <p className="truncate text-sm font-bold text-[var(--color-ink)]">
                               {item.name[lang]}
                             </p>
                             <p className="text-xs text-[var(--color-muted)] tabular-nums">
@@ -466,9 +466,9 @@ export function WhatsAppBuilder({
                   )}
 
                   {cart.length > 0 && (
-                    <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3 text-base font-extrabold text-[var(--color-espresso)]">
+                    <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3 text-base font-extrabold text-[var(--color-ink)]">
                       <span>{t.whatsapp.takeawayForm.totalLabel}</span>
-                      <span className="text-[var(--color-terracotta)] tabular-nums">
+                      <span className="text-[var(--color-red)] tabular-nums">
                         {formatEuro(cartTotal)}
                       </span>
                     </div>
@@ -486,7 +486,7 @@ export function WhatsAppBuilder({
                   <div>
                     <label
                       htmlFor="take-name"
-                      className="block text-sm font-bold text-[var(--color-espresso)]"
+                      className="block text-sm font-bold text-[var(--color-ink)]"
                     >
                       {t.whatsapp.takeawayForm.nameLabel}
                     </label>
@@ -507,7 +507,7 @@ export function WhatsAppBuilder({
                       aria-invalid={takeErrors.customerName ? 'true' : 'false'}
                       aria-describedby={takeErrors.customerName ? 'take-name-error' : undefined}
                       placeholder={t.whatsapp.takeawayForm.namePlaceholder}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
                     />
                     {takeErrors.customerName && (
                       <p
@@ -523,7 +523,7 @@ export function WhatsAppBuilder({
                   <div>
                     <label
                       htmlFor="take-pickup"
-                      className="block text-sm font-bold text-[var(--color-espresso)]"
+                      className="block text-sm font-bold text-[var(--color-ink)]"
                     >
                       {t.whatsapp.takeawayForm.pickupLabel}
                     </label>
@@ -542,7 +542,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={takeErrors.pickupTime ? 'true' : 'false'}
                       aria-describedby={takeErrors.pickupTime ? 'take-pickup-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-espresso)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
                     />
                     {takeErrors.pickupTime && (
                       <p
@@ -559,7 +559,7 @@ export function WhatsAppBuilder({
                 <div>
                   <label
                     htmlFor="take-notes"
-                    className="block text-sm font-bold text-[var(--color-espresso)]"
+                    className="block text-sm font-bold text-[var(--color-ink)]"
                   >
                     {t.whatsapp.takeawayForm.notesLabel}
                   </label>
@@ -571,7 +571,7 @@ export function WhatsAppBuilder({
                     value={dietaryNotes}
                     onChange={(e) => setDietaryNotes(e.target.value)}
                     placeholder={t.whatsapp.takeawayForm.notesPlaceholder}
-                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-espresso)]"
+                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-ink)]"
                   />
                 </div>
 

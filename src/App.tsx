@@ -61,7 +61,7 @@ function MamaAfricaPage() {
 
   return (
     <div
-      className={`min-h-screen bg-[var(--color-bg)] text-[var(--color-espresso)] ${
+      className={`min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] ${
         totalItems > 0 ? 'pb-[76px] lg:pb-0' : ''
       }`}
     >

@@ -20,7 +20,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
   ]
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border-dark)] bg-[var(--color-espresso)] text-[var(--color-white)]">
+    <header className="sticky top-0 z-50 border-b border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-white)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 sm:py-3.5">
         <a href="#top" className="flex min-w-0 items-center gap-2.5 text-left sm:gap-3">
           <img
@@ -28,7 +28,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             alt="Mama Africa Restaurant & Bar"
             width={44}
             height={44}
-            className="h-10 w-10 shrink-0 rounded-md border border-[var(--color-border-dark)] object-cover sm:h-11 sm:w-11"
+            className="h-10 w-10 shrink-0 rounded-md border border-[var(--color-border-on-black)] object-cover sm:h-11 sm:w-11"
           />
           <span className="min-w-0">
             <span className="block truncate font-[var(--font-display)] text-base font-bold leading-none tracking-tight text-[var(--color-white)] sm:text-lg">
@@ -57,7 +57,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             type="button"
             onClick={toggleLang}
             aria-label={t.nav.languageToggleAria}
-            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] px-3 text-xs font-bold uppercase tracking-wider text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
+            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] px-3 text-xs font-bold uppercase tracking-wider text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
           >
             <Globe className="h-3.5 w-3.5 text-[var(--color-gold)]" aria-hidden="true" />
             <span>{lang.toUpperCase()}</span>
@@ -68,7 +68,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
               type="button"
               onClick={onOpenTakeaway}
               aria-label={`${t.nav.cartLabel} (${cartCount})`}
-              className="relative inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] px-3 text-xs font-bold text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
+              className="relative inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] px-3 text-xs font-bold text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
             >
               <ShoppingBag className="h-4 w-4 text-[var(--color-gold)]" aria-hidden="true" />
               <span className="ml-1.5 tabular-nums">{cartCount}</span>
@@ -78,7 +78,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           <button
             type="button"
             onClick={onOpenReservation}
-            className="hidden min-h-[44px] cursor-pointer items-center justify-center whitespace-nowrap rounded-md bg-[var(--color-terracotta)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)] sm:inline-flex"
+            className="hidden min-h-[44px] cursor-pointer items-center justify-center whitespace-nowrap rounded-md bg-[var(--color-red)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)] sm:inline-flex"
           >
             {t.nav.reserveCta}
           </button>
@@ -89,7 +89,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-dark)] text-[var(--color-white)] lg:hidden"
+            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-on-black)] text-[var(--color-white)] lg:hidden"
           >
             {mobileOpen ? (
               <X className="h-5 w-5" aria-hidden="true" />
@@ -104,7 +104,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] px-4 pb-4 pt-2 lg:hidden"
+          className="border-t border-[var(--color-border-on-black)] bg-[var(--color-black)] px-4 pb-4 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
@@ -112,7 +112,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
                 <a
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="flex min-h-[44px] items-center rounded-md px-3 text-sm font-bold uppercase tracking-wider text-[var(--color-bg)] hover:bg-[var(--color-espresso-soft)]"
+                  className="flex min-h-[44px] items-center rounded-md px-3 text-sm font-bold uppercase tracking-wider text-[var(--color-bg)] hover:bg-[var(--color-black-soft)]"
                 >
                   {link.label}
                 </a>
@@ -125,7 +125,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
                   setMobileOpen(false)
                   onOpenReservation()
                 }}
-                className="flex min-h-[44px] w-full cursor-pointer items-center justify-center rounded-md bg-[var(--color-terracotta)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)]"
+                className="flex min-h-[44px] w-full cursor-pointer items-center justify-center rounded-md bg-[var(--color-red)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)]"
               >
                 {t.nav.reserveCta}
               </button>

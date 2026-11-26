@@ -35,10 +35,10 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
     <section id="menu" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
       <div className="flex flex-col justify-between gap-6 border-b border-[var(--color-border)] pb-8 md:flex-row md:items-end">
         <div className="max-w-2xl">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-terracotta)]">
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
             {t.menu.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-espresso)] sm:text-4xl">
+          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.menu.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.menu.subtitle}</p>
@@ -76,8 +76,8 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
                 onClick={() => setActiveCategory(category)}
                 className={`min-h-[44px] cursor-pointer rounded-md px-3 text-center text-xs font-bold uppercase tracking-[0.06em] transition-colors duration-150 sm:px-4 sm:tracking-[0.08em] ${
                   active
-                    ? 'bg-[var(--color-terracotta)] text-[var(--color-white)]'
-                    : 'border border-[var(--color-border)] bg-[var(--color-surface-card)] text-[var(--color-espresso)] hover:bg-[var(--color-surface)]'
+                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
+                    : 'border border-[var(--color-border)] bg-[var(--color-surface-card)] text-[var(--color-ink)] hover:bg-[var(--color-surface)]'
                 }`}
               >
                 {t.menu.categories[category]}
@@ -89,8 +89,8 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
 
       <div className="mt-8 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface-card)] p-2 shadow-[var(--shadow-card-hover)] sm:p-3">
         <div className="border border-[var(--color-border)] px-5 py-7 sm:px-9 sm:py-10">
-          <div className="border-b-2 border-[var(--color-espresso)] pb-4 text-center">
-            <h3 className="font-[var(--font-display)] text-2xl font-bold text-[var(--color-espresso)] sm:text-3xl">
+          <div className="border-b-2 border-[var(--color-black)] pb-4 text-center">
+            <h3 className="font-[var(--font-display)] text-2xl font-bold text-[var(--color-ink)] sm:text-3xl">
               {t.menu.fullLedgerTitle}
             </h3>
           </div>

@@ -8,7 +8,7 @@ export function Footer() {
   const openingHoursRows = useOpeningHoursRows()
 
   return (
-    <footer className="border-t border-[var(--color-border-dark)] bg-[var(--color-espresso)] text-[var(--color-surface)]">
+    <footer className="border-t border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-surface)]">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
@@ -18,7 +18,7 @@ export function Footer() {
               loading="lazy"
               width={52}
               height={52}
-              className="h-13 w-13 rounded-md border border-[var(--color-border-dark)] object-cover"
+              className="h-13 w-13 rounded-md border border-[var(--color-border-on-black)] object-cover"
             />
             <span className="font-[var(--font-display)] text-lg font-bold text-[var(--color-white)]">
               {RESTAURANT_CONFIG.name}

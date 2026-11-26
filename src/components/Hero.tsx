@@ -86,7 +86,7 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
   return (
     <section
       id="top"
-      className="border-b border-[var(--color-border-dark)] bg-[var(--color-espresso)] text-[var(--color-white)]"
+      className="border-b border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-white)]"
     >
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
@@ -103,7 +103,7 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
               <button
                 type="button"
                 onClick={onOpenWhatsapp}
-                className="inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2.5 rounded-md bg-[var(--color-terracotta)] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)]"
+                className="inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2.5 rounded-md bg-[var(--color-red)] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)]"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span>{t.hero.primaryCta}</span>
@@ -125,8 +125,8 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
             onFocus={handleFocus}
             onBlur={handleBlur}
           >
-            <div className="overflow-hidden rounded-lg border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-2 shadow-[var(--shadow-elevated)]">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[var(--color-espresso)]">
+            <div className="overflow-hidden rounded-lg border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] p-2 shadow-[var(--shadow-elevated)]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[var(--color-black)]">
                 {HERO_IMAGES.map((img, idx) => (
                   <img
                     key={img.src}
@@ -171,7 +171,7 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
                         className={`block h-2 rounded-full transition-all duration-200 ${
                           idx === activeIndex
                             ? 'w-5 bg-[var(--color-gold)]'
-                            : 'w-2 bg-[var(--color-border-dark)] group-hover:bg-[var(--color-surface)]'
+                            : 'w-2 bg-[var(--color-border-on-black)] group-hover:bg-[var(--color-surface)]'
                         }`}
                       />
                     </button>

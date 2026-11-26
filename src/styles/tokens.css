@@ -1,35 +1,43 @@
 :root {
-  /* Logo-derived brand palette - solid colors only */
-  --color-bg: #fbf7ee;
-  --color-surface: #f2e9da;
+  /* Ankara Table palette, taken from the Mama Africa logo - solid colours only */
+  --color-bg: #fbf5ea;
+  --color-surface: #f6ecd9;
   --color-surface-card: #ffffff;
-  --color-espresso: #090807;
-  --color-espresso-soft: #181411;
-  --color-terracotta: #c82b23;
-  --color-terracotta-hover: #a62019;
+  --color-ink: #2a1d14;
+  --color-muted: #5b4c40;
+  --color-black: #0b0907;
+  --color-black-soft: #1a1511;
+  --color-white: #ffffff;
+
+  /* Headwrap stripe colours. Gold is text only on black; orange only at 24px and up; green is decorative. */
   --color-gold: #f2a918;
-  --color-gold-hover: #d9940c;
-  --color-gold-text: #8a5800;
+  --color-red: #c8281e;
+  --color-red-hover: #a62019;
+  --color-orange: #e8671a;
+  --color-green: #128a3e;
+  --color-brown: #7a3e1a;
+
+  /* Functional green for WhatsApp actions, vegan badges and green text (passes AA) */
   --color-emerald: #0f7a47;
   --color-emerald-hover: #0b5e36;
   --color-emerald-tint: #e3f2ea;
   --color-emerald-ink: #0a5230;
-  --color-border: #dfd3c0;
-  --color-border-dark: #2c241e;
-  --color-muted: #594b40;
-  --color-white: #ffffff;
+
+  --color-border: #e3d3b8;
+  --color-border-on-black: #2b231c;
   --color-error: #b42318;
   --color-error-bg: #fef3f2;
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'Alfa Slab One', Georgia, serif;
+  --font-script: 'Kaushan Script', cursive;
   --font-body: 'Karla', system-ui, -apple-system, sans-serif;
 
   /* Radii & Elevation */
   --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --shadow-card: 0 1px 4px rgba(9, 8, 7, 0.06);
-  --shadow-card-hover: 0 8px 20px rgba(9, 8, 7, 0.12);
-  --shadow-elevated: 0 10px 24px rgba(9, 8, 7, 0.24);
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --shadow-card: 0 1px 4px rgba(11, 9, 7, 0.08);
+  --shadow-card-hover: 0 8px 20px rgba(11, 9, 7, 0.12);
+  --shadow-elevated: 0 10px 24px rgba(11, 9, 7, 0.24);
 }

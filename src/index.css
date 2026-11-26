@@ -5,7 +5,7 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    color: var(--color-espresso);
+    color: var(--color-ink);
     background-color: var(--color-bg);
   }
 
@@ -14,7 +14,7 @@
     min-height: 100vh;
     overflow-x: clip;
     background-color: var(--color-bg);
-    color: var(--color-espresso);
+    color: var(--color-ink);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
@@ -62,7 +62,7 @@
   left: 1rem;
   top: -4rem;
   z-index: 60;
-  background-color: var(--color-espresso);
+  background-color: var(--color-black);
   color: var(--color-white);
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-sm);

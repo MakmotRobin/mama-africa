@@ -28,7 +28,7 @@ function BadgePill({ badge, label }: { badge: DietaryBadge; label: string }) {
   }
 
   return (
-    <span className="inline-flex items-center rounded-sm bg-[var(--color-surface)] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[var(--color-gold-text)]">
+    <span className="inline-flex items-center rounded-sm bg-[var(--color-surface)] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[var(--color-emerald-ink)]">
       {label}
     </span>
   )
@@ -53,7 +53,7 @@ function AddToOrderButton({ onAdd, fullWidth }: { onAdd: () => void; fullWidth: 
 
   const stateClasses = justAdded
     ? 'border-[var(--color-emerald)] bg-[var(--color-emerald)] text-[var(--color-white)]'
-    : 'border-[var(--color-espresso)] bg-[var(--color-surface-card)] text-[var(--color-espresso)] hover:bg-[var(--color-espresso)] hover:text-[var(--color-white)]'
+    : 'border-[var(--color-black)] bg-[var(--color-surface-card)] text-[var(--color-ink)] hover:bg-[var(--color-black)] hover:text-[var(--color-white)]'
 
   return (
     <button
@@ -92,10 +92,10 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
       )}
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-baseline justify-between gap-2">
-          <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-espresso)]">
+          <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
             {dish.name[lang]}
           </h3>
-          <span className="shrink-0 text-sm font-extrabold text-[var(--color-terracotta)] tabular-nums">
+          <span className="shrink-0 text-sm font-extrabold text-[var(--color-red)] tabular-nums">
             {formatEuro(dish.price)}
           </span>
         </div>
@@ -117,14 +117,14 @@ function LedgerDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void }) 
     <article className="flex h-full flex-col justify-between gap-3 border-b border-dashed border-[var(--color-border)] py-4 transition-colors duration-150 hover:bg-[var(--color-bg)]">
       <div className="min-w-0">
         <div className="flex items-baseline gap-2">
-          <h3 className="min-w-0 font-[var(--font-display)] text-lg font-bold text-[var(--color-espresso)] sm:text-xl">
+          <h3 className="min-w-0 font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)] sm:text-xl">
             {dish.name[lang]}
           </h3>
           <span
             aria-hidden="true"
             className="min-w-[1.5rem] flex-1 border-b border-dotted border-[var(--color-border)]"
           />
-          <span className="shrink-0 font-[var(--font-display)] text-base font-bold text-[var(--color-terracotta)] tabular-nums">
+          <span className="shrink-0 font-[var(--font-display)] text-base font-bold text-[var(--color-red)] tabular-nums">
             {formatEuro(dish.price)}
           </span>
         </div>

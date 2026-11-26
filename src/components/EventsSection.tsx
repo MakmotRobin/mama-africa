@@ -33,10 +33,10 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
     <section id="events" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
       <div className="grid items-center gap-8 border-b border-[var(--color-border)] pb-10 md:grid-cols-12">
         <div className="md:col-span-6">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-terracotta)]">
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
             {t.events.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-espresso)] sm:text-4xl">
+          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.events.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-muted)]">
@@ -44,7 +44,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
           </p>
         </div>
 
-        <figure className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-espresso)] p-2 shadow-[var(--shadow-card)] md:col-span-6">
+        <figure className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-black)] p-2 shadow-[var(--shadow-card)] md:col-span-6">
           <img
             src={EVENTS_HEADER_PHOTO.src}
             alt={t.events.imageAlt}
@@ -61,10 +61,10 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
       </div>
 
       {featuredEvent && (
-        <article className="mt-10 grid gap-6 rounded-lg border border-[var(--color-border-dark)] bg-[var(--color-espresso)] p-6 text-[var(--color-white)] shadow-[var(--shadow-elevated)] md:grid-cols-12 md:items-center md:p-8">
+        <article className="mt-10 grid gap-6 rounded-lg border border-[var(--color-border-on-black)] bg-[var(--color-black)] p-6 text-[var(--color-white)] shadow-[var(--shadow-elevated)] md:grid-cols-12 md:items-center md:p-8">
           <div className="md:col-span-5">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center rounded-sm bg-[var(--color-gold)] px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-[var(--color-espresso)]">
+              <span className="inline-flex items-center rounded-sm bg-[var(--color-gold)] px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-[var(--color-ink)]">
                 {featuredEvent.dayBadge[lang]}
               </span>
               <span className="text-xs font-bold text-[var(--color-surface)] tabular-nums">
@@ -94,7 +94,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
             <button
               type="button"
               onClick={() => onReserveEvent(featuredEvent.title[lang])}
-              className="mt-5 inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center rounded-md bg-[var(--color-terracotta)] px-5 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-terracotta-hover)] sm:w-auto"
+              className="mt-5 inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center rounded-md bg-[var(--color-red)] px-5 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)] sm:w-auto"
             >
               {t.events.reserveNightCta}
             </button>
@@ -104,7 +104,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
             {featuredEvent.photos?.map((photo) => (
               <figure
                 key={photo.src}
-                className="overflow-hidden rounded-md border border-[var(--color-border-dark)] bg-[var(--color-espresso-soft)] p-1.5"
+                className="overflow-hidden rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] p-1.5"
               >
                 <img
                   src={photo.src}
@@ -130,7 +130,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
             className="card-hover flex flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] p-6 shadow-[var(--shadow-card)]"
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="inline-flex items-center rounded-sm bg-[var(--color-surface)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-espresso)]">
+              <span className="inline-flex items-center rounded-sm bg-[var(--color-surface)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-ink)]">
                 {ev.dayBadge[lang]}
               </span>
               <span className="text-xs font-bold text-[var(--color-muted)] tabular-nums">
@@ -138,7 +138,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
               </span>
             </div>
 
-            <h3 className="mt-4 font-[var(--font-display)] text-xl font-bold text-[var(--color-espresso)]">
+            <h3 className="mt-4 font-[var(--font-display)] text-xl font-bold text-[var(--color-ink)]">
               {ev.title[lang]}
             </h3>
 
@@ -150,7 +150,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
               {ev.highlights.map((hl) => (
                 <li
                   key={hl[lang]}
-                  className="text-xs font-semibold text-[var(--color-espresso)]"
+                  className="text-xs font-semibold text-[var(--color-ink)]"
                 >
                   {hl[lang]}
                 </li>
@@ -180,7 +180,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
                   className="img-zoom aspect-[4/3] w-full object-cover"
                 />
               </div>
-              <figcaption className="px-3 py-2 text-xs font-bold text-[var(--color-espresso)]">
+              <figcaption className="px-3 py-2 text-xs font-bold text-[var(--color-ink)]">
                 {photo.caption[lang]}
               </figcaption>
             </figure>

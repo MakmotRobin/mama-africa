@@ -210,11 +210,23 @@ describe('Mama Africa App', () => {
   it('closes the mobile menu with Escape', () => {
     render(<App />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Apri il menu' }))
     expect(document.getElementById('mobile-nav')).toBeInTheDocument()
 
     fireEvent.keyDown(document, { key: 'Escape' })
     expect(document.getElementById('mobile-nav')).not.toBeInTheDocument()
+  })
+
+  it('translates navigation labels and the page title with the language', () => {
+    render(<App />)
+    expect(screen.getByRole('navigation', { name: 'Principale' })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: 'Categorie del menu' })).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /Passa a Inglese/i }))
+
+    expect(screen.getByRole('navigation', { name: 'Main' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open menu' })).toBeInTheDocument()
+    expect(document.title).toMatch(/Nigerian Food in Cosenza/)
   })
 
   it('advertises no weekly events that the restaurant does not run', () => {

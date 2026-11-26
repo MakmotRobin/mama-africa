@@ -155,7 +155,7 @@ export function WhatsAppBuilder({
           <div className="mx-auto max-w-2xl rounded-[var(--radius-lg)] border-t-[6px] border-[var(--color-gold)] bg-[var(--color-surface-card)] p-5 shadow-[var(--shadow-card)] sm:p-7">
             <div
               role="tablist"
-              aria-label="WhatsApp actions"
+              aria-label={t.whatsapp.tabsLabel}
               className="grid grid-cols-2 gap-2 rounded-md bg-[var(--color-surface)] p-1.5"
             >
               <button

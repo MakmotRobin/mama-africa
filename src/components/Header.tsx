@@ -53,7 +53,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           </span>
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-4 lg:flex xl:gap-7">
+        <nav aria-label={t.nav.primaryLabel} className="hidden items-center gap-4 lg:flex xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -101,7 +101,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
             className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-on-black)] text-[var(--color-white)] lg:hidden"
           >
             {mobileOpen ? (
@@ -116,7 +116,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
       {mobileOpen && (
         <nav
           id="mobile-nav"
-          aria-label="Mobile"
+          aria-label={t.nav.mobileLabel}
           className="border-t border-[var(--color-border-on-black)] bg-[var(--color-black)] px-4 pb-4 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">

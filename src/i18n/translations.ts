@@ -4,6 +4,7 @@ export const TRANSLATIONS: Record<
   Language,
   {
     skipToContent: string
+    documentTitle: string
     orderBar: {
       viewOrder: string
     }
@@ -15,6 +16,10 @@ export const TRANSLATIONS: Record<
       reserveCta: string
       cartLabel: string
       languageToggleAria: string
+      openMenu: string
+      closeMenu: string
+      primaryLabel: string
+      mobileLabel: string
     }
     hero: {
       kicker: string
@@ -36,6 +41,7 @@ export const TRANSLATIONS: Record<
       signatureTitle: string
       fullLedgerTitle: string
       categories: Record<MenuCategory, string>
+      categoriesLabel: string
       badges: Record<DietaryBadge, string>
       customizableHint: string
       addToOrder: string
@@ -49,6 +55,7 @@ export const TRANSLATIONS: Record<
         reservation: string
         takeaway: string
       }
+      tabsLabel: string
       reservationForm: {
         nameLabel: string
         namePlaceholder: string
@@ -125,6 +132,7 @@ export const TRANSLATIONS: Record<
 > = {
   it: {
     skipToContent: 'Vai al contenuto principale',
+    documentTitle: 'Mama Africa Restaurant & Bar | Cucina Nigeriana a Cosenza',
     orderBar: {
       viewOrder: 'Vedi ordine',
     },
@@ -136,6 +144,10 @@ export const TRANSLATIONS: Record<
       reserveCta: 'Prenota Tavolo',
       cartLabel: 'Ordine asporto',
       languageToggleAria: 'Passa a Inglese',
+      openMenu: 'Apri il menu',
+      closeMenu: 'Chiudi il menu',
+      primaryLabel: 'Principale',
+      mobileLabel: 'Menu di navigazione',
     },
     hero: {
       kicker: 'benvenuti a casa',
@@ -166,6 +178,7 @@ export const TRANSLATIONS: Record<
         vegan: 'Vegano & Vegetariano',
         drinks: 'Bar & Bevande',
       },
+      categoriesLabel: 'Categorie del menu',
       badges: {
         vegan: 'Vegano',
         vegetarian: 'Vegetariano',
@@ -184,6 +197,7 @@ export const TRANSLATIONS: Record<
         reservation: 'Prenota un Tavolo',
         takeaway: 'Ordine d’Asporto',
       },
+      tabsLabel: 'Prenotazione o asporto',
       reservationForm: {
         nameLabel: 'Il tuo nome *',
         namePlaceholder: 'Es. Giulia Rossi',
@@ -262,6 +276,7 @@ export const TRANSLATIONS: Record<
   },
   en: {
     skipToContent: 'Skip to main content',
+    documentTitle: 'Mama Africa Restaurant & Bar | Nigerian Food in Cosenza',
     orderBar: {
       viewOrder: 'View order',
     },
@@ -273,6 +288,10 @@ export const TRANSLATIONS: Record<
       reserveCta: 'Book a Table',
       cartLabel: 'Takeaway order',
       languageToggleAria: 'Switch to Italian',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      primaryLabel: 'Main',
+      mobileLabel: 'Navigation menu',
     },
     hero: {
       kicker: 'welcome home',
@@ -303,6 +322,7 @@ export const TRANSLATIONS: Record<
         vegan: 'Vegan & Vegetarian',
         drinks: 'Bar & Drinks',
       },
+      categoriesLabel: 'Menu categories',
       badges: {
         vegan: 'Vegan',
         vegetarian: 'Vegetarian',
@@ -321,6 +341,7 @@ export const TRANSLATIONS: Record<
         reservation: 'Book a Table',
         takeaway: 'Takeaway Order',
       },
+      tabsLabel: 'Booking or takeaway',
       reservationForm: {
         nameLabel: 'Your name *',
         namePlaceholder: 'e.g. Alex Taylor',

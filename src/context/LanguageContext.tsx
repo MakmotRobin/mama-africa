@@ -21,6 +21,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = lang
+    document.title = TRANSLATIONS[lang].documentTitle
     try {
       window.localStorage.setItem(STORAGE_KEY, lang)
     } catch {

@@ -67,7 +67,7 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
 
           <div
             role="group"
-            aria-label="Menu categories"
+            aria-label={t.menu.categoriesLabel}
             className="mt-6 flex flex-wrap justify-center gap-2"
           >
             {CATEGORIES.map((category) => {

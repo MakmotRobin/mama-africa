@@ -49,28 +49,6 @@ const HERO_SLIDES: readonly HeroSlide[] = [
     },
   },
   {
-    src: 'images/dish-egusi-soup.jpg',
-    alt: {
-      it: 'Egusi Soup servita con fufu',
-      en: 'Egusi soup served with fufu',
-    },
-    caption: {
-      title: { it: 'Egusi Soup', en: 'Egusi Soup' },
-      line: { it: 'Semi di melone, foglie verdi e fufu', en: 'Melon-seed soup with greens and fufu' },
-    },
-  },
-  {
-    src: 'images/dish-okra.jpg',
-    alt: {
-      it: 'Okra Soup servita con fufu',
-      en: 'Okra soup served with fufu',
-    },
-    caption: {
-      title: { it: 'Okra Soup', en: 'Okra Soup' },
-      line: { it: 'Okra fresca con fufu fatto in casa', en: 'Fresh okra soup with homemade fufu' },
-    },
-  },
-  {
     src: 'images/dish-nkwobi.jpg',
     alt: {
       it: 'Nkwobi tradizionale in salsa di olio di palma',
@@ -79,17 +57,6 @@ const HERO_SLIDES: readonly HeroSlide[] = [
     caption: {
       title: { it: 'Nkwobi', en: 'Nkwobi' },
       line: { it: 'Specialità Igbo in salsa speziata', en: 'Traditional Igbo spiced delicacy' },
-    },
-  },
-  {
-    src: 'images/dish-abacha-ugba.jpg',
-    alt: {
-      it: 'Abacha e Ugba con cipolla rossa e peperoncino',
-      en: 'Abacha and Ugba with red onions and peppers',
-    },
-    caption: {
-      title: { it: 'Abacha & Ugba', en: 'Abacha & Ugba' },
-      line: { it: 'Insalata africana fatta al momento', en: 'Fresh Nigerian African salad' },
     },
   },
 ]

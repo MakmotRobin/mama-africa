@@ -56,7 +56,7 @@ describe('Mama Africa App', () => {
     act(() => {
       vi.advanceTimersByTime(9000)
     })
-    expect(screen.getByRole('button', { name: /Immagine 1 \/ 7/i })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: /Immagine 1 \/ 4/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     )
@@ -65,7 +65,7 @@ describe('Mama Africa App', () => {
     act(() => {
       vi.advanceTimersByTime(3000)
     })
-    expect(screen.getByRole('button', { name: /Immagine 2 \/ 7/i })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: /Immagine 2 \/ 4/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     )
@@ -213,12 +213,12 @@ describe('Mama Africa App', () => {
     expect(screen.getAllByText(/12th December/i).length).toBeGreaterThanOrEqual(1)
   })
 
-  it('cycles hero gallery across 7 images every 3 seconds', () => {
+  it('cycles hero gallery across 4 images every 3 seconds', () => {
     vi.useFakeTimers()
     render(<App />)
 
-    const slide1 = screen.getByRole('button', { name: /Immagine 1 \/ 7/i })
-    const slide2 = screen.getByRole('button', { name: /Immagine 2 \/ 7/i })
+    const slide1 = screen.getByRole('button', { name: /Immagine 1 \/ 4/i })
+    const slide2 = screen.getByRole('button', { name: /Immagine 2 \/ 4/i })
     expect(slide1).toHaveAttribute('aria-pressed', 'true')
     expect(slide2).toHaveAttribute('aria-pressed', 'false')
 
@@ -226,7 +226,7 @@ describe('Mama Africa App', () => {
       vi.advanceTimersByTime(3000)
     })
 
-    expect(screen.getByRole('button', { name: /Immagine 2 \/ 7/i })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: /Immagine 2 \/ 4/i })).toHaveAttribute(
       'aria-pressed',
       'true',
     )

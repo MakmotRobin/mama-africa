@@ -75,6 +75,10 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
   const [isPausedByUser, setIsPausedByUser] = useState(false)
   const isPaused = isHovered || hasFocusInside || isPausedByUser
   const activeCaption = HERO_SLIDES[activeIndex].caption
+  // Load photos one slide ahead of the furthest slide shown, not all four up front.
+  const [furthestShown, setFurthestShown] = useState(0)
+  if (activeIndex > furthestShown) setFurthestShown(activeIndex)
+  const slidesToRender = HERO_SLIDES.slice(0, Math.min(HERO_SLIDES.length, furthestShown + 2))
 
   useEffect(() => {
     if (isPaused || prefersReducedMotion()) return
@@ -131,13 +135,14 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
         onBlur={handleBlur}
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--color-black)] lg:aspect-auto lg:flex-1">
-          {HERO_SLIDES.map((slide, idx) => (
+          {slidesToRender.map((slide, idx) => (
             <img
               key={slide.src}
               src={slide.src}
               alt={slide.alt[lang]}
               width={800}
               height={600}
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
               aria-hidden={idx !== activeIndex}
               className={`img-pop absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
                 idx === activeIndex ? 'opacity-100' : 'pointer-events-none opacity-0'

@@ -22,6 +22,10 @@ describe('index.html search and sharing tags', () => {
     expect(meta('meta[property="og:image"]')).toMatch(new RegExp(`^${SITE_URL}images/.+\\.jpg$`))
   })
 
+  it('uses the small logo as the browser-tab icon', () => {
+    expect(doc.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('images/logo-128.jpg')
+  })
+
   it('has Restaurant schema matching the restaurant config, without unconfirmed hours', () => {
     const script = doc.querySelector('script[type="application/ld+json"]')
     const schema = JSON.parse(script?.textContent ?? '{}')

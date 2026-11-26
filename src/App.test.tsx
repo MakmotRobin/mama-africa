@@ -198,6 +198,27 @@ describe('Mama Africa App', () => {
     openSpy.mockRestore()
   })
 
+  it('loads hero photos one slide ahead instead of all at once', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(WEDNESDAY_EVENING)
+    const { container } = render(<App />)
+    const heroImages = () => container.querySelectorAll('#top img')
+
+    expect(heroImages()).toHaveLength(2)
+    act(() => {
+      vi.advanceTimersByTime(3000)
+    })
+    expect(heroImages()).toHaveLength(3)
+  })
+
+  it('uses the small logo file in the header and footer', () => {
+    render(<App />)
+
+    const logos = screen.getAllByAltText('Mama Africa Restaurant & Bar')
+    expect(logos.length).toBeGreaterThanOrEqual(2)
+    logos.forEach((logo) => expect(logo.getAttribute('src')).toBe('images/logo-128.jpg'))
+  })
+
   it('names the dish on every add-to-order button for screen readers', () => {
     render(<App />)
 

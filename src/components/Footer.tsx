@@ -15,7 +15,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
             <img
-              src="images/logo.jpg"
+              src="images/logo-128.jpg"
               alt="Mama Africa Restaurant & Bar"
               loading="lazy"
               width={52}

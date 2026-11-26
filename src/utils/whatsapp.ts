@@ -3,7 +3,7 @@ import type { CartItem, Language, ReservationInput, TakeawayInput, Weekday } fro
 import { CULTURAL_EVENTS } from '../data/menu'
 import { parseLocalIsoDate, toLocalIsoDate } from './dates'
 import { isDuringSpecialEvent } from './events'
-import { isClosedOn, isWithinOpeningHours } from './openingHours'
+import { isAfterMidnightPart, isClosedOn, isWithinOpeningHours, toMinutes } from './openingHours'
 
 const MAX_TEXT_LENGTH = 240
 export const MIN_PARTY_SIZE = 1
@@ -42,11 +42,25 @@ function reservationDateError(isoDate: string, now: Date): string | null {
   return null
 }
 
-function reservationTimeError(isoDate: string, time: string): string | null {
+const MINUTES_PER_HOUR = 60
+
+/** A time on today's date that is already behind us (after-midnight service times count as later). */
+function isEarlierToday(time: string, now: Date): boolean {
+  const minutes = toMinutes(time)
+  if (minutes === null) return false
+  const nowMinutes = now.getHours() * MINUTES_PER_HOUR + now.getMinutes()
+  if (minutes >= nowMinutes) return false
+  return !isAfterMidnightPart(OPENING_SCHEDULE, weekdayOf(now), time)
+}
+
+function reservationTimeError(isoDate: string, time: string, now: Date): string | null {
   if (!time.trim()) return 'timeRequired'
-  if (isDuringSpecialEvent(CULTURAL_EVENTS, isoDate, time)) return null
   const weekday = weekdayOf(parseLocalIsoDate(isoDate))
-  if (!isWithinOpeningHours(OPENING_SCHEDULE, weekday, time)) return 'timeOutsideHours'
+  const isBookable =
+    isDuringSpecialEvent(CULTURAL_EVENTS, isoDate, time) ||
+    isWithinOpeningHours(OPENING_SCHEDULE, weekday, time)
+  if (!isBookable) return 'timeOutsideHours'
+  if (isoDate === toLocalIsoDate(now) && isEarlierToday(time, now)) return 'timePast'
   return null
 }
 
@@ -55,6 +69,7 @@ function pickupTimeError(pickupTime: string, now: Date): string | null {
   if (!isWithinOpeningHours(OPENING_SCHEDULE, weekdayOf(now), pickupTime)) {
     return 'pickupOutsideHours'
   }
+  if (isEarlierToday(pickupTime, now)) return 'pickupPast'
   return null
 }
 
@@ -76,7 +91,7 @@ export function validateReservation(input: ReservationInput, now = new Date()): 
   return toValidationResult({
     guestName: sanitizeText(input.guestName) ? null : 'nameRequired',
     date: dateError,
-    time: dateError ? null : reservationTimeError(input.date, input.time),
+    time: dateError ? null : reservationTimeError(input.date, input.time, now),
     partySize: isValidPartySize(input.partySize) ? null : 'partyInvalid',
   })
 }

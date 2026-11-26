@@ -67,6 +67,7 @@ export const TRANSLATIONS: Record<
           dayClosed: string
           timeRequired: string
           timeOutsideHours: string
+          timePast: string
           partyInvalid: string
         }
       }
@@ -90,6 +91,7 @@ export const TRANSLATIONS: Record<
           nameRequired: string
           pickupRequired: string
           pickupOutsideHours: string
+          pickupPast: string
         }
       }
     }
@@ -200,6 +202,7 @@ export const TRANSLATIONS: Record<
           dayClosed: 'In quel giorno siamo chiusi. Scegli un altro giorno.',
           timeRequired: 'Seleziona un orario.',
           timeOutsideHours: 'Orario fuori dagli orari di apertura. Controlla gli orari qui sotto.',
+          timePast: 'Quell’orario di oggi è già passato. Scegli un orario più tardi.',
           partyInvalid: 'Inserisci un numero di persone tra 1 e 20.',
         },
       },
@@ -223,6 +226,7 @@ export const TRANSLATIONS: Record<
           nameRequired: 'Inserisci il tuo nome per il ritiro.',
           pickupRequired: 'Indica l’orario di ritiro.',
           pickupOutsideHours: 'Oggi a quell’orario la cucina è chiusa. Controlla gli orari qui sotto.',
+          pickupPast: 'Quell’orario di oggi è già passato. Scegli un orario di ritiro più tardi.',
         },
       },
     },
@@ -335,6 +339,7 @@ export const TRANSLATIONS: Record<
           dayClosed: 'We are closed on that day. Please choose another day.',
           timeRequired: 'Please choose a time.',
           timeOutsideHours: 'That time is outside our opening hours. See the hours below.',
+          timePast: 'That time has already passed today. Please choose a later time.',
           partyInvalid: 'Please enter between 1 and 20 guests.',
         },
       },
@@ -358,6 +363,7 @@ export const TRANSLATIONS: Record<
           nameRequired: 'Please enter your name for pickup.',
           pickupRequired: 'Please choose a pickup time.',
           pickupOutsideHours: 'The kitchen is closed at that time today. See the hours below.',
+          pickupPast: 'That time has already passed today. Please choose a later pickup time.',
         },
       },
     },

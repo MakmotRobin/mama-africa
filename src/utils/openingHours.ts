@@ -18,7 +18,7 @@ export interface OpeningHoursRow {
   time: string | null
 }
 
-function toMinutes(time: string): number | null {
+export function toMinutes(time: string): number | null {
   const match = TIME_PATTERN.exec(time)
   if (!match) return null
 
@@ -36,6 +36,22 @@ function windowContains(window: ServiceWindow, minutes: number): boolean {
 
   if (runsPastMidnight) return minutes >= open || minutes < close
   return minutes >= open && minutes < close
+}
+
+/** True when `time` is the after-midnight part of a service that started the evening before. */
+export function isAfterMidnightPart(
+  schedule: WeeklySchedule,
+  weekday: Weekday,
+  time: string,
+): boolean {
+  const minutes = toMinutes(time)
+  if (minutes === null) return false
+
+  return schedule[weekday].some((window) => {
+    const open = toMinutes(window.open) ?? 0
+    const close = toMinutes(window.close) ?? 0
+    return close <= open && minutes < close
+  })
 }
 
 export function isClosedOn(schedule: WeeklySchedule, weekday: Weekday): boolean {

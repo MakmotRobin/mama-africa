@@ -79,6 +79,48 @@ describe('reservation validation against the calendar and opening hours', () => 
   })
 })
 
+/** Thursday 26 November 2026, 23:24: Thursday dinner runs until 23:30. */
+const THURSDAY_LATE = new Date(2026, 10, 26, 23, 24)
+/** Friday 27 November 2026, 23:50: Friday dinner runs past midnight until 01:00. */
+const FRIDAY_LATE = new Date(2026, 10, 27, 23, 50)
+
+describe('times that have already passed today', () => {
+  const cart = [{ item: MENU_ITEMS[0], quantity: 1 }]
+  const order = { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' }
+
+  it('rejects a pickup time earlier today', () => {
+    const result = validateTakeaway(order, cart, THURSDAY_LATE)
+
+    expect(result.errors.pickupTime).toBe('pickupPast')
+  })
+
+  it('accepts a pickup later today', () => {
+    expect(validateTakeaway({ ...order, pickupTime: '23:29' }, cart, THURSDAY_LATE).valid).toBe(true)
+  })
+
+  it('accepts an after-midnight pickup during a service that runs past midnight', () => {
+    expect(validateTakeaway({ ...order, pickupTime: '00:30' }, cart, FRIDAY_LATE).valid).toBe(true)
+  })
+
+  it('rejects a booking for a time earlier today', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-11-26', time: '20:30' },
+      THURSDAY_LATE,
+    )
+
+    expect(result.errors.time).toBe('timePast')
+  })
+
+  it('accepts the same time on a later day', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-11-27', time: '20:30' },
+      THURSDAY_LATE,
+    )
+
+    expect(result.valid).toBe(true)
+  })
+})
+
 describe('takeaway validation against opening hours', () => {
   const cart = [{ item: MENU_ITEMS[0], quantity: 1 }]
   const order = { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' }

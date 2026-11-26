@@ -70,7 +70,15 @@ export function Footer() {
               Tel: {RESTAURANT_CONFIG.phoneDisplay}
             </a>
           </p>
-          <p>
+          <p className="flex gap-5 md:justify-end">
+            <a
+              href={RESTAURANT_CONFIG.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-wider text-[var(--color-gold)] underline hover:text-[var(--color-white)] md:min-h-0"
+            >
+              Instagram
+            </a>
             <a
               href={RESTAURANT_CONFIG.facebookUrl}
               target="_blank"

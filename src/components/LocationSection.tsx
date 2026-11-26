@@ -79,6 +79,25 @@ export function LocationSection() {
                   <span>{t.location.callCta}</span>
                 </a>
               </div>
+              <p className="flex flex-wrap items-center gap-x-4 text-sm text-[var(--color-muted)]">
+                <span>{t.location.followUs}</span>
+                <a
+                  href={RESTAURANT_CONFIG.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[44px] items-center font-bold text-[var(--color-ink)] underline underline-offset-4 hover:text-[var(--color-red)]"
+                >
+                  Instagram
+                </a>
+                <a
+                  href={RESTAURANT_CONFIG.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[44px] items-center font-bold text-[var(--color-ink)] underline underline-offset-4 hover:text-[var(--color-red)]"
+                >
+                  Facebook
+                </a>
+              </p>
             </div>
           </div>
 

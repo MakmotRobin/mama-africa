@@ -260,6 +260,17 @@ describe('Mama Africa App', () => {
     expect(screen.queryByText(/Demo/)).not.toBeInTheDocument()
   })
 
+  it('links to the restaurant’s Instagram and Facebook pages', () => {
+    render(<App />)
+
+    const instagram = screen.getAllByRole('link', { name: /Instagram/i })
+    expect(instagram.length).toBeGreaterThanOrEqual(2)
+    instagram.forEach((link) =>
+      expect(link).toHaveAttribute('href', 'https://www.instagram.com/mamaafricarestaurantbar/'),
+    )
+    expect(screen.getAllByRole('link', { name: /Facebook/i }).length).toBeGreaterThanOrEqual(2)
+  })
+
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

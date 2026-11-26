@@ -8,6 +8,7 @@ export const RESTAURANT_CONFIG = {
   phoneDisplay: '+39 349 437 3912',
   phoneDial: '+393494373912',
   facebookUrl: 'https://www.facebook.com/profile.php?id=61571605631762',
+  instagramUrl: 'https://www.instagram.com/mamaafricarestaurantbar/',
   addressLine: 'Via Pietro Pompilio Rodotà, 12/14',
   cityLine: '87100 Cosenza (CS), Italia',
   landmark: {

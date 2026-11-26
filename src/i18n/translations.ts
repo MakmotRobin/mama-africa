@@ -121,6 +121,7 @@ export const TRANSLATIONS: Record<
       closedLabel: string
       openMapsCta: string
       callCta: string
+      followUs: string
       mapIframeTitle: string
       loadMapCta: string
       mapConsentNote: string
@@ -266,6 +267,7 @@ export const TRANSLATIONS: Record<
       closedLabel: 'Chiuso',
       openMapsCta: 'Apri su Google Maps',
       callCta: 'Chiamaci',
+      followUs: 'Seguici su',
       loadMapCta: 'Mostra la mappa',
       mapConsentNote: 'La mappa è fornita da Google, che può impostare cookie al caricamento.',
       mapIframeTitle: 'Mappa di Mama Africa Restaurant & Bar a Via Pietro Pompilio Rodotà 12/14, Cosenza',
@@ -410,6 +412,7 @@ export const TRANSLATIONS: Record<
       closedLabel: 'Closed',
       openMapsCta: 'Open in Google Maps',
       callCta: 'Call us',
+      followUs: 'Follow us on',
       loadMapCta: 'Show the map',
       mapConsentNote: 'The map is provided by Google, which may set cookies when it loads.',
       mapIframeTitle: 'Map of Mama Africa Restaurant & Bar at Via Pietro Pompilio Rodotà 12/14, Cosenza',

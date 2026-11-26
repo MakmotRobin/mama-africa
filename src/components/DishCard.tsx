@@ -51,15 +51,13 @@ function AddToOrderButton({ onAdd, fullWidth }: { onAdd: () => void; fullWidth: 
     setJustAdded(true)
   }
 
-  const stateClasses = justAdded
-    ? 'border-[var(--color-emerald)] bg-[var(--color-emerald)] text-[var(--color-white)]'
-    : 'border-[var(--color-black)] bg-[var(--color-surface-card)] text-[var(--color-ink)] hover:bg-[var(--color-black)] hover:text-[var(--color-white)]'
+  const stateClasses = justAdded ? 'btn-whatsapp' : 'btn-outline'
 
   return (
     <button
       type="button"
       onClick={handleClick}
-      className={`inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-md border px-3 text-xs font-bold uppercase tracking-wider transition-colors duration-150 ${fullWidth ? 'w-full' : ''} ${stateClasses}`}
+      className={`btn min-h-[44px] px-3 text-xs ${fullWidth ? 'w-full' : ''} ${stateClasses}`}
     >
       {justAdded ? (
         <>
@@ -77,9 +75,9 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
   const { lang } = useLanguage()
 
   return (
-    <article className="card-hover flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] shadow-[var(--shadow-card)]">
+    <article className="group flex h-full flex-col">
       {dish.image && (
-        <div className="overflow-hidden">
+        <div className="overflow-hidden rounded-[var(--radius-lg)] border-[3px] border-[var(--color-gold)]">
           <img
             src={dish.image}
             alt={dish.name[lang]}
@@ -90,16 +88,16 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
           />
         </div>
       )}
-      <div className="flex flex-1 flex-col p-4">
-        <div className="flex items-baseline justify-between gap-2">
-          <h3 className="font-display text-lg font-bold text-[var(--color-ink)]">
+      <div className="flex flex-1 flex-col pt-4">
+        <div className="flex items-baseline justify-between gap-3">
+          <h4 className="font-display text-xl leading-tight text-[var(--color-ink)]">
             {dish.name[lang]}
-          </h3>
-          <span className="shrink-0 text-sm font-extrabold text-[var(--color-red)] tabular-nums">
+          </h4>
+          <span className="shrink-0 font-display text-lg text-[var(--color-red)] tabular-nums">
             {formatEuro(dish.price)}
           </span>
         </div>
-        <p className="mt-1.5 line-clamp-2 flex-1 text-xs leading-relaxed text-[var(--color-muted)]">
+        <p className="mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed text-[var(--color-muted)]">
           {dish.description[lang]}
         </p>
         <div className="mt-4">
@@ -110,44 +108,70 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
   )
 }
 
+function DishPhotoSlot({ dish }: { dish: MenuItem }) {
+  const { lang } = useLanguage()
+
+  return (
+    <div data-slot="photo" className="h-16 w-16 shrink-0">
+      {dish.image && (
+        <img
+          src={dish.image}
+          alt={dish.name[lang]}
+          loading="lazy"
+          width={64}
+          height={64}
+          className="h-16 w-16 rounded-full border-[3px] border-[var(--color-gold)] object-cover"
+        />
+      )}
+    </div>
+  )
+}
+
 function LedgerDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void }) {
   const { lang, t } = useLanguage()
 
   return (
-    <article className="flex h-full flex-col justify-between gap-3 border-b border-dashed border-[var(--color-border)] py-4 transition-colors duration-150 hover:bg-[var(--color-bg)]">
-      <div className="min-w-0">
-        <div className="flex items-baseline gap-2">
-          <h3 className="min-w-0 font-display text-lg font-bold text-[var(--color-ink)] sm:text-xl">
-            {dish.name[lang]}
-          </h3>
-          <span
-            aria-hidden="true"
-            className="min-w-[1.5rem] flex-1 border-b border-dotted border-[var(--color-border)]"
-          />
-          <span className="shrink-0 font-display text-base font-bold text-[var(--color-red)] tabular-nums">
-            {formatEuro(dish.price)}
-          </span>
-        </div>
+    <article
+      data-testid={`menu-row-${dish.id}`}
+      className="flex gap-4 border-b-2 border-dotted border-[var(--color-border)] py-5"
+    >
+      <DishPhotoSlot dish={dish} />
 
-        <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
-          {dish.description[lang]}
-        </p>
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
+        <div className="min-w-0">
+          <div className="flex items-baseline gap-2">
+            <h4 className="min-w-0 font-display text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
+              {dish.name[lang]}
+            </h4>
+            <span
+              aria-hidden="true"
+              className="min-w-[1rem] flex-1 border-b-2 border-dotted border-[var(--color-border)]"
+            />
+            <span className="shrink-0 whitespace-nowrap font-display text-lg text-[var(--color-red)] tabular-nums">
+              {formatEuro(dish.price)}
+            </span>
+          </div>
 
-        {dish.customizableVegan && (
-          <p className="mt-1 text-xs font-bold text-[var(--color-emerald-ink)]">
-            {t.menu.customizableHint}
+          <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
+            {dish.description[lang]}
           </p>
-        )}
-      </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2.5">
-        <div className="flex flex-wrap gap-1.5">
-          {dish.badges.map((badge) => (
-            <BadgePill key={badge} badge={badge} label={t.menu.badges[badge]} />
-          ))}
+          {dish.customizableVegan && (
+            <p className="mt-1 text-xs font-bold text-[var(--color-emerald-ink)]">
+              {t.menu.customizableHint}
+            </p>
+          )}
         </div>
 
-        <AddToOrderButton onAdd={onAdd} fullWidth={false} />
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex flex-wrap gap-1.5">
+            {dish.badges.map((badge) => (
+              <BadgePill key={badge} badge={badge} label={t.menu.badges[badge]} />
+            ))}
+          </div>
+
+          <AddToOrderButton onAdd={onAdd} fullWidth={false} />
+        </div>
       </div>
     </article>
   )

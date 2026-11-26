@@ -41,7 +41,6 @@ export const TRANSLATIONS: Record<
       imageAlt: string
     }
     menu: {
-      eyebrow: string
       kicker: string
       title: string
       subtitle: string
@@ -194,9 +193,8 @@ export const TRANSLATIONS: Record<
         'Tavola imbandita da Mama Africa con riso Jollof, Fataya croccanti, pesce alla griglia e zuppa di okra',
     },
     menu: {
-      eyebrow: 'La Nostra Cucina',
       kicker: 'cosa bolle in pentola',
-      title: 'Menu Digitale Interattivo',
+      title: 'Il Menu',
       subtitle:
         'Filtra per categoria o esigenza alimentare e aggiungi i piatti direttamente al tuo ordine d’asporto WhatsApp.',
       signatureTitle: 'Piatti Firma della Casa',
@@ -365,9 +363,8 @@ export const TRANSLATIONS: Record<
         'Mama Africa feast spread featuring Jollof rice, crispy Fataya pies, grilled fish, and okra soup',
     },
     menu: {
-      eyebrow: 'Our Kitchen',
       kicker: 'what’s cooking',
-      title: 'Interactive Digital Menu',
+      title: 'The Menu',
       subtitle:
         'Filter by course or dietary preference and add dishes directly to your WhatsApp takeaway order.',
       signatureTitle: 'Signature Plates',

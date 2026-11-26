@@ -3,6 +3,8 @@ import { useLanguage } from '../context/useLanguage'
 import { MENU_ITEMS } from '../data/menu'
 import type { MenuCategory, MenuItem } from '../types'
 import { DishCard } from './DishCard'
+import { ScriptKicker } from './brand/ScriptKicker'
+import { ZigzagDivider } from './brand/ZigzagDivider'
 
 interface MenuSectionProps {
   onAddToCart: (dish: MenuItem) => void
@@ -32,70 +34,63 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
   }, [activeCategory])
 
   return (
-    <section id="menu" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
-      <div className="flex flex-col justify-between gap-6 border-b border-[var(--color-border)] pb-8 md:flex-row md:items-end">
-        <div className="max-w-2xl">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
-            {t.menu.eyebrow}
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+    <section id="menu" className="bg-[var(--color-bg)]">
+      <ZigzagDivider />
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <ScriptKicker tone="orange">{t.menu.kicker}</ScriptKicker>
+          <h2 className="mt-1 font-display text-4xl text-[var(--color-black)] sm:text-5xl">
             {t.menu.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.menu.subtitle}</p>
         </div>
-      </div>
 
-      {activeCategory === 'all' && (
-        <div className="mt-10">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-muted)]">
-            {t.menu.signatureTitle}
-          </p>
-          <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
-            {signatureDishes.map((dish) => (
-              <li key={dish.id} className="w-[78%] shrink-0 snap-start sm:w-auto">
-                <DishCard dish={dish} onAdd={onAddToCart} variant="spotlight" />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <div className="mt-10">
-        <div
-          role="group"
-          aria-label="Menu categories"
-          className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
-        >
-          {CATEGORIES.map((category) => {
-            const active = activeCategory === category
-            return (
-              <button
-                key={category}
-                type="button"
-                aria-pressed={active}
-                onClick={() => setActiveCategory(category)}
-                className={`min-h-[44px] cursor-pointer rounded-md px-3 text-center text-xs font-bold uppercase tracking-[0.06em] transition-colors duration-150 sm:px-4 sm:tracking-[0.08em] ${
-                  active
-                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
-                    : 'border border-[var(--color-border)] bg-[var(--color-surface-card)] text-[var(--color-ink)] hover:bg-[var(--color-surface)]'
-                }`}
-              >
-                {t.menu.categories[category]}
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      <div className="mt-8 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface-card)] p-2 shadow-[var(--shadow-card-hover)] sm:p-3">
-        <div className="border border-[var(--color-border)] px-5 py-7 sm:px-9 sm:py-10">
-          <div className="border-b-2 border-[var(--color-black)] pb-4 text-center">
-            <h3 className="font-display text-2xl font-bold text-[var(--color-ink)] sm:text-3xl">
-              {t.menu.fullLedgerTitle}
+        {activeCategory === 'all' && (
+          <div className="mt-12">
+            <h3 className="mb-5 font-display text-2xl text-[var(--color-ink)]">
+              {t.menu.signatureTitle}
             </h3>
+            <ul className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+              {signatureDishes.map((dish) => (
+                <li key={dish.id} className="w-[78%] shrink-0 snap-start sm:w-auto">
+                  <DishCard dish={dish} onAdd={onAddToCart} variant="spotlight" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="mt-14 border-t-2 border-dotted border-[var(--color-border)] pt-10">
+          <h3 className="text-center font-display text-3xl text-[var(--color-black)]">
+            {t.menu.fullLedgerTitle}
+          </h3>
+
+          <div
+            role="group"
+            aria-label="Menu categories"
+            className="mt-6 flex flex-wrap justify-center gap-2"
+          >
+            {CATEGORIES.map((category) => {
+              const active = activeCategory === category
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => setActiveCategory(category)}
+                  className={`min-h-[44px] cursor-pointer rounded-full border-2 px-4 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-150 ${
+                    active
+                      ? 'border-[var(--color-black)] bg-[var(--color-black)] text-[var(--color-gold)]'
+                      : 'border-[var(--color-border)] bg-transparent text-[var(--color-ink)] hover:border-[var(--color-ink)]'
+                  }`}
+                >
+                  {t.menu.categories[category]}
+                </button>
+              )
+            })}
           </div>
 
-          <div className="mt-4 grid gap-x-10 md:grid-cols-2">
+          <div className="mt-8 grid gap-x-12 md:grid-cols-2">
             {filteredItems.map((dish) => (
               <DishCard key={dish.id} dish={dish} onAdd={onAddToCart} variant="ledger" />
             ))}

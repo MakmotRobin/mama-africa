@@ -31,6 +31,16 @@ describe('Mama Africa App', () => {
     expect(caption).toHaveTextContent('Il nostro locale')
   })
 
+  it('aligns menu rows without a photo with rows that have one', () => {
+    render(<App />)
+
+    const withPhoto = screen.getByTestId('menu-row-jollof-rice')
+    const withoutPhoto = screen.getByTestId('menu-row-alloco-plantain')
+    expect(withPhoto.querySelector('img')).not.toBeNull()
+    expect(withoutPhoto.querySelector('img')).toBeNull()
+    expect(withoutPhoto.querySelector('[data-slot="photo"]')).not.toBeNull()
+  })
+
   it('switches the hero caption language with the toggle', () => {
     render(<App />)
 

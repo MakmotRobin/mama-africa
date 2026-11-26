@@ -114,7 +114,6 @@ export const TRANSLATIONS: Record<
       previewLabel: string
     }
     events: {
-      eyebrow: string
       kicker: string
       title: string
       subtitle: string
@@ -124,7 +123,6 @@ export const TRANSLATIONS: Record<
       imageAlt: string
     }
     location: {
-      eyebrow: string
       kicker: string
       title: string
       subtitle: string
@@ -167,7 +165,7 @@ export const TRANSLATIONS: Record<
       titleHighlight: 'fatta al momento',
       titleEnd: 'a Cosenza',
       subtitle:
-        'Dal party jollof alla suya, ogni piatto è cucinato al momento, come lo fa mama.',
+        'Dal party jollof alla tilapia alla brace, ogni piatto è cucinato al momento, come lo fa mama.',
       primaryCta: 'Prenota o Ordina su WhatsApp',
       secondaryCta: 'Esplora il Menu',
       galleryLabel: 'Galleria foto',
@@ -278,7 +276,6 @@ export const TRANSLATIONS: Record<
       previewLabel: 'Anteprima messaggio WhatsApp',
     },
     events: {
-      eyebrow: 'Cultura, Ritmo & Bar',
       kicker: 'la sera da mama',
       title: 'Serate Culturali & Musica dal Vivo',
       subtitle:
@@ -289,7 +286,6 @@ export const TRANSLATIONS: Record<
       imageAlt: 'Performance dal vivo con luci di scena durante una serata da Mama Africa a Cosenza',
     },
     location: {
-      eyebrow: 'Vieni a Trovarci',
       kicker: 'vieni a trovarci',
       title: 'Nel Cuore di Cosenza',
       subtitle:
@@ -336,7 +332,7 @@ export const TRANSLATIONS: Record<
       titleHighlight: 'made fresh',
       titleEnd: 'in Cosenza',
       subtitle:
-        'From party jollof to suya, every plate is cooked to order, the way mama makes it.',
+        'From party jollof to grilled tilapia, every plate is cooked to order, the way mama makes it.',
       primaryCta: 'Book or Order on WhatsApp',
       secondaryCta: 'Explore Menu',
       galleryLabel: 'Photo gallery',
@@ -447,7 +443,6 @@ export const TRANSLATIONS: Record<
       previewLabel: 'WhatsApp message preview',
     },
     events: {
-      eyebrow: 'Culture, Rhythm & Bar',
       kicker: 'nights at mama’s',
       title: 'Cultural Events & Music Nights',
       subtitle:
@@ -458,7 +453,6 @@ export const TRANSLATIONS: Record<
       imageAlt: 'Live performance under stage lights during a party night at Mama Africa in Cosenza',
     },
     location: {
-      eyebrow: 'Visit Us',
       kicker: 'come and see us',
       title: 'In the Heart of Cosenza',
       subtitle:

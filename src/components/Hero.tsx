@@ -51,26 +51,15 @@ const HERO_SLIDES: readonly HeroSlide[] = [
   {
     src: '/images/dish-grill.jpg',
     alt: {
-      it: 'Tilapia alla brace e spiedini Suya con platano e lime',
-      en: 'Charcoal-grilled tilapia and Suya skewers with plantains and lime',
+      it: 'Tilapia alla brace con platano e lime',
+      en: 'Charcoal-grilled tilapia with plantains and lime',
     },
     caption: {
       title: { it: 'Dalla brace', en: 'Off the grill' },
       line: {
-        it: 'Tilapia e suya con platano e lime',
-        en: 'Tilapia and suya with plantain and lime',
+        it: 'Tilapia alla brace con platano e lime',
+        en: 'Grilled tilapia with plantain and lime',
       },
-    },
-  },
-  {
-    src: '/images/dish-suya-real.jpg',
-    alt: {
-      it: 'Carne speziata alla brace dalla cucina di Mama Africa',
-      en: 'Spiced charcoal meat from the Mama Africa kitchen',
-    },
-    caption: {
-      title: { it: 'Suya', en: 'Suya' },
-      line: { it: 'Carne speziata alla brace', en: 'Spiced meat off the charcoal' },
     },
   },
   {
@@ -191,7 +180,7 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
               width={800}
               height={600}
               aria-hidden={idx !== activeIndex}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
+              className={`img-pop absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
                 idx === activeIndex ? 'opacity-100' : 'pointer-events-none opacity-0'
               }`}
             />

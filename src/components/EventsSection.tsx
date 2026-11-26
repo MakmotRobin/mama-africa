@@ -1,5 +1,7 @@
 import { useLanguage } from '../context/useLanguage'
 import { useEventsToShow } from '../context/useEventsToShow'
+import { ScriptKicker } from './brand/ScriptKicker'
+import { StripeBand } from './brand/StripeBand'
 
 interface EventsSectionProps {
   onReserveEvent: (eventTitle: string) => void
@@ -30,13 +32,11 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
   const { featured: featuredEvent, weekly: weeklyEvents } = useEventsToShow()
 
   return (
-    <section id="events" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
-      <div className="grid items-center gap-8 border-b border-[var(--color-border)] pb-10 md:grid-cols-12">
+    <section id="events" className="bg-[var(--color-bg)]">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 pt-14 pb-10 sm:px-6 md:grid-cols-12 md:pt-20">
         <div className="md:col-span-6">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
-            {t.events.eyebrow}
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+          <ScriptKicker tone="orange">{t.events.kicker}</ScriptKicker>
+          <h2 className="mt-1 font-display text-4xl text-[var(--color-black)] sm:text-5xl">
             {t.events.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-muted)]">
@@ -44,147 +44,132 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
           </p>
         </div>
 
-        <figure className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-black)] p-2 shadow-[var(--shadow-card)] md:col-span-6">
+        <figure className="md:col-span-6">
           <img
             src={EVENTS_HEADER_PHOTO.src}
             alt={t.events.imageAlt}
             loading="lazy"
             width={800}
             height={520}
-            className="aspect-[16/10] w-full rounded-sm object-cover"
+            className="img-pop aspect-[16/10] w-full rounded-[var(--radius-lg)] border-[3px] border-[var(--color-gold)] object-cover shadow-[var(--shadow-card)]"
           />
-          <figcaption className="flex items-center justify-between px-2 pb-1 pt-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-gold)]">
-            <span>{EVENTS_HEADER_PHOTO.caption[lang]}</span>
-            <span className="text-[var(--color-surface)]">Mama Africa Cosenza</span>
+          <figcaption className="mt-2 text-sm font-semibold text-[var(--color-muted)]">
+            {EVENTS_HEADER_PHOTO.caption[lang]}
           </figcaption>
         </figure>
       </div>
 
       {featuredEvent && (
-        <article className="mt-10 grid gap-6 rounded-lg border border-[var(--color-border-on-black)] bg-[var(--color-black)] p-6 text-[var(--color-white)] shadow-[var(--shadow-elevated)] md:grid-cols-12 md:items-center md:p-8">
-          <div className="md:col-span-5">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center rounded-sm bg-[var(--color-gold)] px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-[var(--color-ink)]">
-                {featuredEvent.dayBadge[lang]}
-              </span>
-              <span className="text-xs font-bold text-[var(--color-surface)] tabular-nums">
-                {featuredEvent.time}
-              </span>
+        <article className="bg-[var(--color-black)] text-[var(--color-surface)]">
+          <StripeBand />
+          <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-12 md:items-center md:py-16">
+            <div className="md:col-span-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center rounded-sm bg-[var(--color-gold)] px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-[var(--color-black)]">
+                  {featuredEvent.dayBadge[lang]}
+                </span>
+                <span className="text-sm font-bold tabular-nums">{featuredEvent.time}</span>
+              </div>
+
+              <h3 className="mt-4 font-display text-3xl text-[var(--color-gold)] sm:text-4xl">
+                {featuredEvent.title[lang]}
+              </h3>
+
+              <p className="mt-3 text-base leading-relaxed">{featuredEvent.description[lang]}</p>
+
+              <ul className="mt-4 space-y-1.5">
+                {featuredEvent.highlights.map((hl) => (
+                  <li key={hl[lang]} className="text-sm font-bold text-[var(--color-white)]">
+                    {hl[lang]}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                type="button"
+                onClick={() => onReserveEvent(featuredEvent.title[lang])}
+                className="btn btn-accent mt-6 w-full sm:w-auto"
+              >
+                {t.events.reserveNightCta}
+              </button>
             </div>
 
-            <h3 className="mt-4 font-display text-2xl font-bold text-[var(--color-white)] sm:text-3xl">
-              {featuredEvent.title[lang]}
-            </h3>
-
-            <p className="mt-2 text-sm leading-relaxed text-[var(--color-surface)]">
-              {featuredEvent.description[lang]}
-            </p>
-
-            <ul className="mt-4 space-y-1.5">
-              {featuredEvent.highlights.map((hl) => (
-                <li
-                  key={hl[lang]}
-                  className="text-sm font-bold text-[var(--color-gold)]"
-                >
-                  {hl[lang]}
-                </li>
+            <div className="grid grid-cols-2 gap-4 md:col-span-7">
+              {featuredEvent.photos?.map((photo) => (
+                <figure key={photo.src}>
+                  <img
+                    src={photo.src}
+                    alt={photo.alt[lang]}
+                    loading="lazy"
+                    width={500}
+                    height={360}
+                    className="img-pop aspect-[4/3] w-full rounded-[var(--radius-lg)] border-[3px] border-[var(--color-gold)] object-cover shadow-[var(--shadow-elevated)]"
+                  />
+                  <figcaption className="mt-2 text-xs font-bold uppercase tracking-wider text-[var(--color-gold)]">
+                    {photo.caption[lang]}
+                  </figcaption>
+                </figure>
               ))}
-            </ul>
-
-            <button
-              type="button"
-              onClick={() => onReserveEvent(featuredEvent.title[lang])}
-              className="mt-5 inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center rounded-md bg-[var(--color-red)] px-5 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)] sm:w-auto"
-            >
-              {t.events.reserveNightCta}
-            </button>
+            </div>
           </div>
+        </article>
+      )}
 
-          <div className="grid grid-cols-2 gap-3 md:col-span-7">
-            {featuredEvent.photos?.map((photo) => (
-              <figure
-                key={photo.src}
-                className="overflow-hidden rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] p-1.5"
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.alt[lang]}
-                  loading="lazy"
-                  width={500}
-                  height={360}
-                  className="aspect-[4/3] w-full rounded-sm object-cover"
-                />
-                <figcaption className="px-1.5 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-[var(--color-gold)]">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-16">
+        <div className="grid divide-y-2 divide-dotted divide-[var(--color-border)] md:grid-cols-3 md:divide-x-2 md:divide-y-0">
+          {weeklyEvents.map((ev) => (
+            <article key={ev.id} className="flex flex-col py-6 md:px-6 md:py-0 md:first:pl-0 md:last:pr-0">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-red)]">
+                  {ev.dayBadge[lang]}
+                </span>
+                <span className="text-xs font-bold text-[var(--color-muted)] tabular-nums">
+                  {ev.time}
+                </span>
+              </div>
+
+              <h3 className="mt-3 font-display text-2xl leading-tight text-[var(--color-ink)]">
+                {ev.title[lang]}
+              </h3>
+
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted)]">
+                {ev.description[lang]}
+              </p>
+
+              <ul className="mt-4 space-y-1.5">
+                {ev.highlights.map((hl) => (
+                  <li key={hl[lang]} className="text-sm font-semibold text-[var(--color-emerald-ink)]">
+                    {hl[lang]}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-14">
+          <h3 className="mb-5 font-display text-2xl text-[var(--color-ink)]">
+            {t.events.galleryTitle}
+          </h3>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {EVENT_GALLERY.map((photo) => (
+              <figure key={photo.src} className="group">
+                <div className="overflow-hidden rounded-[var(--radius-lg)] border-2 border-[var(--color-gold)] shadow-[var(--shadow-card)]">
+                  <img
+                    src={photo.src}
+                    alt={photo.caption[lang]}
+                    loading="lazy"
+                    width={480}
+                    height={360}
+                    className="img-zoom img-pop aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+                <figcaption className="mt-2 text-sm font-semibold text-[var(--color-ink)]">
                   {photo.caption[lang]}
                 </figcaption>
               </figure>
             ))}
           </div>
-        </article>
-      )}
-
-      <div className="mt-6 grid gap-6 md:grid-cols-3">
-        {weeklyEvents.map((ev) => (
-          <article
-            key={ev.id}
-            className="card-hover flex flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] p-6 shadow-[var(--shadow-card)]"
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="inline-flex items-center rounded-sm bg-[var(--color-surface)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-ink)]">
-                {ev.dayBadge[lang]}
-              </span>
-              <span className="text-xs font-bold text-[var(--color-muted)] tabular-nums">
-                {ev.time}
-              </span>
-            </div>
-
-            <h3 className="mt-4 font-display text-xl font-bold text-[var(--color-ink)]">
-              {ev.title[lang]}
-            </h3>
-
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted)]">
-              {ev.description[lang]}
-            </p>
-
-            <ul className="mt-4 space-y-1.5 border-t border-[var(--color-border)] pt-4">
-              {ev.highlights.map((hl) => (
-                <li
-                  key={hl[lang]}
-                  className="text-xs font-semibold text-[var(--color-ink)]"
-                >
-                  {hl[lang]}
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-10">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-muted)]">
-          {t.events.galleryTitle}
-        </p>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-          {EVENT_GALLERY.map((photo) => (
-            <figure
-              key={photo.src}
-              className="card-hover overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] shadow-[var(--shadow-card)]"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={photo.src}
-                  alt={photo.caption[lang]}
-                  loading="lazy"
-                  width={480}
-                  height={360}
-                  className="img-zoom aspect-[4/3] w-full object-cover"
-                />
-              </div>
-              <figcaption className="px-3 py-2 text-xs font-bold text-[var(--color-ink)]">
-                {photo.caption[lang]}
-              </figcaption>
-            </figure>
-          ))}
         </div>
       </div>
     </section>

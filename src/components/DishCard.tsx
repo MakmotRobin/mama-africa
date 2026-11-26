@@ -84,7 +84,7 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
             loading="lazy"
             width={640}
             height={480}
-            className="img-zoom aspect-[4/3] w-full object-cover"
+            className="img-zoom img-pop aspect-[4/3] w-full object-cover"
           />
         </div>
       )}
@@ -120,7 +120,7 @@ function DishPhotoSlot({ dish }: { dish: MenuItem }) {
           loading="lazy"
           width={64}
           height={64}
-          className="h-16 w-16 rounded-full border-[3px] border-[var(--color-gold)] object-cover"
+          className="img-pop h-16 w-16 rounded-full border-[3px] border-[var(--color-gold)] object-cover shadow-[var(--shadow-card)]"
         />
       )}
     </div>

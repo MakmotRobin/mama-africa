@@ -103,7 +103,14 @@
 }
 
 .img-zoom {
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+}
+
+/* Warm contrast & saturation boost so imported kitchen and event photos pop on cream and black */
+.img-pop {
+  filter: contrast(1.07) saturate(1.16) brightness(1.03);
 }
 
 @media (hover: hover) {
@@ -120,6 +127,11 @@
   .card-hover:hover .img-zoom,
   .group:hover .img-zoom {
     transform: scale(1.03);
+  }
+
+  .card-hover:hover .img-pop,
+  .group:hover .img-pop {
+    filter: contrast(1.1) saturate(1.2) brightness(1.04);
   }
 }
 

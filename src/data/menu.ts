@@ -93,21 +93,6 @@ export const MENU_ITEMS: MenuItem[] = [
     badges: ['freshToOrder'],
   },
   {
-    id: 'suya-skewers',
-    category: 'grill',
-    name: {
-      it: 'Spiedini & Carne Speziata alla Brace',
-      en: 'Charcoal Spiced Meat & Suya',
-    },
-    description: {
-      it: 'Teneri tagli di carne speziati alla polvere di arachidi tostate e zenzero, serviti con cipolle rosse e platano.',
-      en: 'Tender cuts crusted in toasted peanut-ginger suya spice, served with crisp red onions and plantains.',
-    },
-    price: 14.5,
-    image: '/images/dish-suya-real.jpg',
-    badges: ['freshToOrder'],
-  },
-  {
     id: 'bissap-cooler',
     category: 'drinks',
     name: {

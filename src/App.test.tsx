@@ -271,6 +271,12 @@ describe('Mama Africa App', () => {
     expect(screen.getAllByRole('link', { name: /Facebook/i }).length).toBeGreaterThanOrEqual(2)
   })
 
+  it('tells guests that allergen information is available', () => {
+    render(<App />)
+
+    expect(within(document.getElementById('menu')!).getByText(/allergeni/i)).toBeInTheDocument()
+  })
+
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

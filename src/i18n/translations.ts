@@ -44,6 +44,7 @@ export const TRANSLATIONS: Record<
       categoriesLabel: string
       badges: Record<DietaryBadge, string>
       customizableHint: string
+      allergenNote: string
       addToOrder: string
       addedFeedback: string
     }
@@ -186,6 +187,8 @@ export const TRANSLATIONS: Record<
         freshToOrder: 'Preparato al Momento',
       },
       customizableHint: 'Personalizzabile 100% vegano su richiesta',
+      allergenNote:
+        'Informazioni sugli allergeni disponibili su richiesta: segnalaci eventuali allergie quando prenoti o ordini.',
       addToOrder: 'Aggiungi all’ordine',
       addedFeedback: 'Aggiunto',
     },
@@ -331,6 +334,8 @@ export const TRANSLATIONS: Record<
         freshToOrder: 'Fresh to Order',
       },
       customizableHint: 'Customizable 100% vegan on request',
+      allergenNote:
+        'Allergen information is available on request: please tell us about any allergies when you book or order.',
       addToOrder: 'Add to order',
       addedFeedback: 'Added',
     },

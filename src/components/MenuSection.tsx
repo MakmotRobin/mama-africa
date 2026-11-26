@@ -95,6 +95,10 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
               <DishCard key={dish.id} dish={dish} onAdd={onAddToCart} variant="ledger" />
             ))}
           </div>
+
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-[var(--color-muted)]">
+            {t.menu.allergenNote}
+          </p>
         </div>
       </div>
     </section>

@@ -1,32 +1,55 @@
-# React + TypeScript + Vite
+# Mama Africa Restaurant & Bar
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Website for Mama Africa Restaurant & Bar, a Nigerian restaurant and bar at Via Pietro Pompilio Rodotà 12/14, Cosenza. Guests can browse the menu, build a takeaway order, book a table or a special night, and see past and upcoming events. Every booking and order is sent to the restaurant as a ready-made WhatsApp message; there is no backend.
 
-Currently, two official plugins are available:
+Live site: https://makmotrobin.github.io/mama-africa/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Home page](docs/screenshots/home.jpg)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Menu** of the restaurant's Nigerian dishes with category filters, signature dishes and add-to-order buttons.
+- **Takeaway order** with quantities and an estimated total, sent as a WhatsApp message.
+- **Table booking** with validation: no past dates, no closed days, times inside opening hours. Bookings during a special event (for example the All White Night) are accepted for the whole event, even outside regular hours.
+- **Events**: the next special night and a list of past nights, taken from the owner's Instagram (@celebritybarmann).
+- **Italian and English**, switchable from the header; Italian is the default.
+- **Location** with address, opening hours, WhatsApp and phone links, and a Google map that loads only after the visitor asks for it (no Google requests before that).
 
-## Expanding the Oxlint configuration
+![Menu](docs/screenshots/menu.jpg)
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+![Events](docs/screenshots/events.jpg)
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Design
+
+The "Ankara Table" design is built from the restaurant's logo: cream pages, black and gold structure, the headwrap stripes and the zigzag triangle row as borders, Alfa Slab One for headings, Kaushan Script for short kickers and Karla for text. Solid colours only. Design tokens live in `src/styles/tokens.css`, shared buttons in `src/styles/buttons.css`, and the logo motifs in `src/components/brand/`.
+
+## Where to change content
+
+| What | File |
+|---|---|
+| Dishes, prices, photos | `src/data/menu.ts` (`MENU_ITEMS`) |
+| Upcoming and past events | `src/data/menu.ts` (`CULTURAL_EVENTS`, `PAST_EVENTS`) |
+| Opening hours (display and booking rules) | `src/config/restaurant.ts` (`OPENING_SCHEDULE`) |
+| Phone, WhatsApp, address, Facebook | `src/config/restaurant.ts` (`RESTAURANT_CONFIG`) |
+| All page text, Italian and English | `src/i18n/translations.ts` |
+| Search and sharing tags, Restaurant schema | `index.html` |
+
+The opening hours are still demo values and are marked "(Demo)" on the site until the owner confirms the real ones. They are left out of the Restaurant schema for the same reason.
+
+## Development
+
+Requires Node.js 22.
+
+```bash
+npm install
+npm run dev      # local site at http://localhost:5173
+npm test         # Vitest test suite
+npm run lint     # Oxlint
+npm run build    # type-check and production build into dist/
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Stack: React 19, TypeScript, Vite, Tailwind CSS v4, lucide-react, Vitest with Testing Library.
+
+## Deployment
+
+Every push to `main` builds the site and deploys it to GitHub Pages through `.github/workflows/deploy.yml`. Work happens on a branch per change and is merged into `main` when it is ready.

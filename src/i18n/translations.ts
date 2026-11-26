@@ -28,16 +28,6 @@ export const TRANSLATIONS: Record<
       slideLabel: string
       pauseSlideshow: string
       playSlideshow: string
-      highlights: string[]
-      facts: {
-        addressLabel: string
-        addressValue: string
-        hoursLabel: string
-        hoursValue: string
-        kitchenLabel: string
-        kitchenValue: string
-        whatsappLabel: string
-      }
     }
     menu: {
       kicker: string
@@ -46,14 +36,10 @@ export const TRANSLATIONS: Record<
       signatureTitle: string
       fullLedgerTitle: string
       categories: Record<MenuCategory, string>
-      dietaryFilterLabel: string
-      dietaryAll: string
       badges: Record<DietaryBadge, string>
       customizableHint: string
       addToOrder: string
       addedFeedback: string
-      emptyState: string
-      resetFilters: string
     }
     whatsapp: {
       kicker: string
@@ -74,8 +60,6 @@ export const TRANSLATIONS: Record<
         notesLabel: string
         notesPlaceholder: string
         submitCta: string
-        copyCta: string
-        copied: string
         errors: {
           nameRequired: string
           dateRequired: string
@@ -97,8 +81,6 @@ export const TRANSLATIONS: Record<
         notesLabel: string
         notesPlaceholder: string
         submitCta: string
-        copyCta: string
-        copied: string
         clearCart: string
         removeItem: string
         decreaseQty: string
@@ -110,13 +92,11 @@ export const TRANSLATIONS: Record<
           pickupOutsideHours: string
         }
       }
-      previewLabel: string
     }
     events: {
       kicker: string
       title: string
       subtitle: string
-      sponsoredBy: string
       reserveNightCta: string
       galleryTitle: string
       imageAlt: string
@@ -130,10 +110,7 @@ export const TRANSLATIONS: Record<
       addressTitle: string
       hoursTitle: string
       closedLabel: string
-      directionsTitle: string
-      directionsList: string[]
       openMapsCta: string
-      whatsappDirectCta: string
       callCta: string
       mapIframeTitle: string
       loadMapCta: string
@@ -141,8 +118,6 @@ export const TRANSLATIONS: Record<
     }
     footer: {
       tagline: string
-      rights: string
-      demoNote: string
     }
   }
 > = {
@@ -173,20 +148,6 @@ export const TRANSLATIONS: Record<
       slideLabel: 'Immagine',
       pauseSlideshow: 'Metti in pausa la galleria',
       playSlideshow: 'Riprendi la galleria',
-      highlights: [
-        'Ogni piatto preparato espresso al momento',
-        'Opzioni vegane e vegetariane personalizzabili',
-        'Bar, cocktail tropicali e serate culturali',
-      ],
-      facts: {
-        addressLabel: 'Indirizzo',
-        addressValue: 'Via Rodotà 12/14 · Cosenza',
-        hoursLabel: 'Cucina & Bar',
-        hoursValue: 'Mar–Dom · 12:00 / 19:00',
-        kitchenLabel: 'Cucina',
-        kitchenValue: 'Espresso al momento · Opzioni Vegane',
-        whatsappLabel: 'WhatsApp Diretto',
-      },
     },
     menu: {
       kicker: 'cosa bolle in pentola',
@@ -203,8 +164,6 @@ export const TRANSLATIONS: Record<
         vegan: 'Vegano & Vegetariano',
         drinks: 'Bar & Bevande',
       },
-      dietaryFilterLabel: 'Filtra per stile:',
-      dietaryAll: 'Tutti i piatti',
       badges: {
         vegan: 'Vegano',
         vegetarian: 'Vegetariano',
@@ -213,8 +172,6 @@ export const TRANSLATIONS: Record<
       customizableHint: 'Personalizzabile 100% vegano su richiesta',
       addToOrder: 'Aggiungi all’ordine',
       addedFeedback: 'Aggiunto',
-      emptyState: 'Nessun piatto corrisponde ai filtri selezionati.',
-      resetFilters: 'Mostra tutto il menu',
     },
     whatsapp: {
       kicker: 'un tavolo per te',
@@ -236,8 +193,6 @@ export const TRANSLATIONS: Record<
         notesLabel: 'Note o richieste alimentari',
         notesPlaceholder: 'Es. Opzione vegana, allergie, tavolo vicino alla musica...',
         submitCta: 'Prenota su WhatsApp',
-        copyCta: 'Copia messaggio',
-        copied: 'Messaggio copiato',
         errors: {
           nameRequired: 'Inserisci il tuo nome per la prenotazione.',
           dateRequired: 'Seleziona una data valida.',
@@ -259,8 +214,6 @@ export const TRANSLATIONS: Record<
         notesLabel: 'Personalizzazioni (piccante, vegano, allergie)',
         notesPlaceholder: 'Es. Poco piccante, versione vegana per il Jollof...',
         submitCta: 'Invia Ordine su WhatsApp',
-        copyCta: 'Copia ordine',
-        copied: 'Ordine copiato',
         clearCart: 'Svuota',
         removeItem: 'Rimuovi piatto',
         decreaseQty: 'Riduci quantità',
@@ -272,14 +225,12 @@ export const TRANSLATIONS: Record<
           pickupOutsideHours: 'Oggi a quell’orario la cucina è chiusa. Controlla gli orari qui sotto.',
         },
       },
-      previewLabel: 'Anteprima messaggio WhatsApp',
     },
     events: {
       kicker: 'la sera da mama',
       title: 'Feste & Ospiti Speciali',
       subtitle:
         'Feste del sabato sera, ospiti speciali e grandi serate firmate Celebrity Barman, con musica africana e cucina calda fino a tardi.',
-      sponsoredBy: 'Tutti gli eventi sono sponsorizzati da Celebrity Barman',
       reserveNightCta: 'Prenota per questa serata',
       galleryTitle: 'Atmosfera & Ospiti dal Vivo',
       pastTitle: 'Serate passate',
@@ -295,14 +246,7 @@ export const TRANSLATIONS: Record<
       addressTitle: 'Indirizzo',
       hoursTitle: 'Orari di Apertura (Demo)',
       closedLabel: 'Chiuso',
-      directionsTitle: 'Come Arrivare',
-      directionsList: [
-        'A piedi: 1 minuto da Corso Mazzini (traversa all’altezza di Piazza Bilotti / area pedonale).',
-        'Da UniCal (Rende): autobus urbani verso Cosenza Centro / Piazza Mancini, poi 5 minuti a piedi.',
-        'In auto: parcheggi disponibili su Piazza Bilotti e vie adiacenti.',
-      ],
       openMapsCta: 'Apri su Google Maps',
-      whatsappDirectCta: 'Scrivici su WhatsApp',
       callCta: 'Chiamaci',
       loadMapCta: 'Mostra la mappa',
       mapConsentNote: 'La mappa è fornita da Google, che può impostare cookie al caricamento.',
@@ -310,8 +254,6 @@ export const TRANSLATIONS: Record<
     },
     footer: {
       tagline: 'Sapori autentici dell’Africa Occidentale, bar e cultura nel centro di Cosenza.',
-      rights: 'Mama Africa Restaurant & Bar · Via Pietro Pompilio Rodotà, 12/14, Cosenza',
-      demoNote: 'Sito demo interattivo · Prenotazioni e ordini diretti via WhatsApp.',
     },
   },
   en: {
@@ -341,20 +283,6 @@ export const TRANSLATIONS: Record<
       slideLabel: 'Image',
       pauseSlideshow: 'Pause the gallery',
       playSlideshow: 'Resume the gallery',
-      highlights: [
-        'Every dish cooked fresh to order',
-        'Customizable vegan and vegetarian options',
-        'Full bar service and live cultural nights',
-      ],
-      facts: {
-        addressLabel: 'Address',
-        addressValue: 'Via Rodotà 12/14 · Cosenza',
-        hoursLabel: 'Kitchen & Bar',
-        hoursValue: 'Tue–Sun · 12:00 / 19:00',
-        kitchenLabel: 'Philosophy',
-        kitchenValue: 'Fresh to Order · Vegan Options',
-        whatsappLabel: 'Direct WhatsApp',
-      },
     },
     menu: {
       kicker: 'what’s cooking',
@@ -371,8 +299,6 @@ export const TRANSLATIONS: Record<
         vegan: 'Vegan & Vegetarian',
         drinks: 'Bar & Drinks',
       },
-      dietaryFilterLabel: 'Filter by badge:',
-      dietaryAll: 'All dishes',
       badges: {
         vegan: 'Vegan',
         vegetarian: 'Vegetarian',
@@ -381,8 +307,6 @@ export const TRANSLATIONS: Record<
       customizableHint: 'Customizable 100% vegan on request',
       addToOrder: 'Add to order',
       addedFeedback: 'Added',
-      emptyState: 'No dishes match the selected filters.',
-      resetFilters: 'Show full menu',
     },
     whatsapp: {
       kicker: 'a table for you',
@@ -404,8 +328,6 @@ export const TRANSLATIONS: Record<
         notesLabel: 'Dietary notes or requests',
         notesPlaceholder: 'e.g. Vegan option, allergies, table near live music...',
         submitCta: 'Reserve via WhatsApp',
-        copyCta: 'Copy message',
-        copied: 'Message copied',
         errors: {
           nameRequired: 'Please enter your name for the reservation.',
           dateRequired: 'Please choose a valid date.',
@@ -427,8 +349,6 @@ export const TRANSLATIONS: Record<
         notesLabel: 'Customizations (spice level, vegan, allergies)',
         notesPlaceholder: 'e.g. Mild spice, make Jollof 100% vegan...',
         submitCta: 'Send Order on WhatsApp',
-        copyCta: 'Copy order',
-        copied: 'Order copied',
         clearCart: 'Clear',
         removeItem: 'Remove dish',
         decreaseQty: 'Decrease quantity',
@@ -440,14 +360,12 @@ export const TRANSLATIONS: Record<
           pickupOutsideHours: 'The kitchen is closed at that time today. See the hours below.',
         },
       },
-      previewLabel: 'WhatsApp message preview',
     },
     events: {
       kicker: 'nights at mama’s',
       title: 'Parties & Special Guests',
       subtitle:
         'Saturday parties, special guests and big nights hosted by Celebrity Barman, with African music and a hot kitchen till late.',
-      sponsoredBy: 'All events are sponsored by Celebrity Barman',
       reserveNightCta: 'Reserve for this night',
       galleryTitle: 'Live Nights & Guest Moments',
       pastTitle: 'Past nights',
@@ -463,14 +381,7 @@ export const TRANSLATIONS: Record<
       addressTitle: 'Address',
       hoursTitle: 'Opening Hours (Demo)',
       closedLabel: 'Closed',
-      directionsTitle: 'Directions',
-      directionsList: [
-        'On foot: 1 minute off Corso Mazzini (near Piazza Bilotti pedestrian area).',
-        'From UniCal (Rende): Take city bus to Cosenza Centro / Piazza Mancini, then a 5-minute walk.',
-        'By car: Paid and street parking available around Piazza Bilotti.',
-      ],
       openMapsCta: 'Open in Google Maps',
-      whatsappDirectCta: 'Message us on WhatsApp',
       callCta: 'Call us',
       loadMapCta: 'Show the map',
       mapConsentNote: 'The map is provided by Google, which may set cookies when it loads.',
@@ -478,8 +389,6 @@ export const TRANSLATIONS: Record<
     },
     footer: {
       tagline: 'Authentic West African flavors, bar service, and culture in central Cosenza.',
-      rights: 'Mama Africa Restaurant & Bar · Via Pietro Pompilio Rodotà, 12/14, Cosenza',
-      demoNote: 'Interactive demo website · Direct table reservations and takeaway via WhatsApp.',
     },
   },
 }

@@ -20,7 +20,7 @@ interface ScriptKickerProps {
 export function ScriptKicker({ children, tone, className = '' }: ScriptKickerProps) {
   return (
     <p
-      className={`font-[var(--font-script)] text-2xl leading-tight sm:text-3xl ${className}`}
+      className={`font-script text-2xl leading-tight sm:text-3xl ${className}`}
       style={{ color: TONE_COLOUR[tone] }}
     >
       {children}

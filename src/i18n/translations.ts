@@ -17,9 +17,10 @@ export const TRANSLATIONS: Record<
       languageToggleAria: string
     }
     hero: {
-      eyebrow: string
       kicker: string
-      title: string
+      titleStart: string
+      titleHighlight: string
+      titleEnd: string
       subtitle: string
       primaryCta: string
       secondaryCta: string
@@ -163,11 +164,12 @@ export const TRANSLATIONS: Record<
       languageToggleAria: 'Passa a Inglese',
     },
     hero: {
-      eyebrow: 'Via Pietro Pompilio Rodotà 12/14 · Cosenza',
       kicker: 'benvenuti a casa',
-      title: 'Cucina Africana Autentica, Preparata al Momento.',
+      titleStart: 'Vera cucina nigeriana,',
+      titleHighlight: 'fatta al momento',
+      titleEnd: 'a Cosenza',
       subtitle:
-        'Sapori genuini dell’Africa Occidentale nel cuore di Cosenza, a due passi da Corso Mazzini. Ideale per cene tra amici, studenti UniCal e amanti della musica dal vivo.',
+        'Dal party jollof alla suya, ogni piatto è cucinato al momento, come lo fa mama.',
       primaryCta: 'Prenota o Ordina su WhatsApp',
       secondaryCta: 'Esplora il Menu',
       galleryLabel: 'Galleria foto',
@@ -333,11 +335,12 @@ export const TRANSLATIONS: Record<
       languageToggleAria: 'Switch to Italian',
     },
     hero: {
-      eyebrow: 'Via Pietro Pompilio Rodotà 12/14 · Cosenza',
       kicker: 'welcome home',
-      title: 'Authentic African Cuisine, Cooked Fresh to Order.',
+      titleStart: 'Real Nigerian cooking,',
+      titleHighlight: 'made fresh',
+      titleEnd: 'in Cosenza',
       subtitle:
-        'Vibrant West African flavors in the heart of Cosenza, just off Corso Mazzini. A welcoming hub for locals, UniCal students, and travelers.',
+        'From party jollof to suya, every plate is cooked to order, the way mama makes it.',
       primaryCta: 'Book or Order on WhatsApp',
       secondaryCta: 'Explore Menu',
       galleryLabel: 'Photo gallery',

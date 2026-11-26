@@ -32,7 +32,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             className="h-10 w-10 shrink-0 rounded-md border border-[var(--color-border-on-black)] object-cover sm:h-11 sm:w-11"
           />
           <span className="min-w-0">
-            <span className="block truncate font-[var(--font-display)] text-base leading-none text-[var(--color-gold)] sm:text-lg">
+            <span className="block truncate font-display text-base leading-none text-[var(--color-gold)] sm:text-lg">
               Mama Africa
             </span>
             <span className="mt-1 block truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-surface)] sm:text-[11px] sm:tracking-[0.16em]">

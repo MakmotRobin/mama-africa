@@ -1,53 +1,115 @@
 import { MessageCircle, Pause, Play, UtensilsCrossed } from 'lucide-react'
 import { useEffect, useState, type FocusEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
+import type { LocalizedText } from '../types'
+import { ScriptKicker } from './brand/ScriptKicker'
 
 interface HeroProps {
   onOpenWhatsapp: () => void
 }
 
-const HERO_IMAGES = [
+interface HeroSlide {
+  src: string
+  alt: LocalizedText
+  caption: { title: LocalizedText; line: LocalizedText }
+}
+
+const HERO_SLIDES: readonly HeroSlide[] = [
   {
     src: '/images/hero-feast.jpg',
-    altIt: 'Tavola imbandita da Mama Africa con riso Jollof, Fataya e pesce alla griglia',
-    altEn: 'Mama Africa feast with Jollof rice, Fataya pies, and grilled fish',
+    alt: {
+      it: 'Tavola imbandita da Mama Africa con riso Jollof, Fataya e pesce alla griglia',
+      en: 'Mama Africa feast with Jollof rice, Fataya pies, and grilled fish',
+    },
+    caption: {
+      title: { it: 'La tavola di Mama', en: 'Mama’s table' },
+      line: { it: 'Jollof, fataya e pesce alla brace', en: 'Jollof, fataya and grilled fish' },
+    },
   },
   {
     src: '/images/fb-cover.jpg',
-    altIt: 'Interno accogliente di Mama Africa Restaurant & Bar a Cosenza',
-    altEn: 'Cozy lounge interior at Mama Africa Restaurant & Bar in Cosenza',
+    alt: {
+      it: 'Interno accogliente di Mama Africa Restaurant & Bar a Cosenza',
+      en: 'Cozy lounge interior at Mama Africa Restaurant & Bar in Cosenza',
+    },
+    caption: {
+      title: { it: 'Il nostro locale', en: 'Our place' },
+      line: { it: 'A due passi da Corso Mazzini', en: 'Just off Corso Mazzini' },
+    },
   },
   {
     src: '/images/dish-jollof.jpg',
-    altIt: 'Riso Jollof tradizionale con platano dolce fritto',
-    altEn: 'Signature Jollof rice with caramelized sweet plantains',
+    alt: {
+      it: 'Riso Jollof tradizionale con platano dolce fritto',
+      en: 'Signature Jollof rice with caramelized sweet plantains',
+    },
+    caption: {
+      title: { it: 'Party Jollof', en: 'Party Jollof' },
+      line: { it: 'Riso affumicato con platano dolce', en: 'Smoky rice with sweet plantain' },
+    },
   },
   {
     src: '/images/dish-grill.jpg',
-    altIt: 'Tilapia alla brace e spiedini Suya con platano e lime',
-    altEn: 'Charcoal-grilled tilapia and Suya skewers with plantains and lime',
+    alt: {
+      it: 'Tilapia alla brace e spiedini Suya con platano e lime',
+      en: 'Charcoal-grilled tilapia and Suya skewers with plantains and lime',
+    },
+    caption: {
+      title: { it: 'Dalla brace', en: 'Off the grill' },
+      line: {
+        it: 'Tilapia e suya con platano e lime',
+        en: 'Tilapia and suya with plantain and lime',
+      },
+    },
   },
   {
     src: '/images/dish-suya-real.jpg',
-    altIt: 'Carne speziata alla brace dalla cucina di Mama Africa',
-    altEn: 'Spiced charcoal meat from the Mama Africa kitchen',
+    alt: {
+      it: 'Carne speziata alla brace dalla cucina di Mama Africa',
+      en: 'Spiced charcoal meat from the Mama Africa kitchen',
+    },
+    caption: {
+      title: { it: 'Suya', en: 'Suya' },
+      line: { it: 'Carne speziata alla brace', en: 'Spiced meat off the charcoal' },
+    },
   },
   {
     src: '/images/dj-sky-face.jpg',
-    altIt: 'DJ Sky face alla consolle durante una serata da Mama Africa',
-    altEn: 'DJ Sky face on the decks during a party night at Mama Africa',
+    alt: {
+      it: 'DJ Sky face alla consolle durante una serata da Mama Africa',
+      en: 'DJ Sky face on the decks during a party night at Mama Africa',
+    },
+    caption: {
+      title: { it: 'DJ Sky face', en: 'DJ Sky face' },
+      line: { it: 'Afrobeats e Amapiano il venerdì', en: 'Afrobeats and Amapiano on Fridays' },
+    },
   },
   {
     src: '/images/dorime-chief-priest.jpg',
-    altIt: 'Dorime Chief Priest ospite speciale da Mama Africa',
-    altEn: 'Dorime Chief Priest special guest at Mama Africa',
+    alt: {
+      it: 'Dorime Chief Priest ospite speciale da Mama Africa',
+      en: 'Dorime Chief Priest special guest at Mama Africa',
+    },
+    caption: {
+      title: { it: 'Ospiti speciali', en: 'Special guests' },
+      line: {
+        it: 'Dorime Chief Priest da Mama Africa',
+        en: 'Dorime Chief Priest at Mama Africa',
+      },
+    },
   },
   {
     src: '/images/nightlife-crowd.jpg',
-    altIt: 'Festa e musica in pista da Mama Africa Restaurant & Bar',
-    altEn: 'Dancefloor energy and drinks at Mama Africa Restaurant & Bar',
+    alt: {
+      it: 'Festa e musica in pista da Mama Africa Restaurant & Bar',
+      en: 'Dancefloor energy and drinks at Mama Africa Restaurant & Bar',
+    },
+    caption: {
+      title: { it: 'Venerdì in pista', en: 'Friday on the dancefloor' },
+      line: { it: 'Musica e drink fino a tardi', en: 'Music and drinks till late' },
+    },
   },
-] as const
+]
 
 const SLIDE_INTERVAL_MS = 3000
 
@@ -62,12 +124,13 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
   const [hasFocusInside, setHasFocusInside] = useState(false)
   const [isPausedByUser, setIsPausedByUser] = useState(false)
   const isPaused = isHovered || hasFocusInside || isPausedByUser
+  const activeCaption = HERO_SLIDES[activeIndex].caption
 
   useEffect(() => {
     if (isPaused || prefersReducedMotion()) return
 
     const timer = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % HERO_IMAGES.length)
+      setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length)
     }, SLIDE_INTERVAL_MS)
 
     return () => window.clearInterval(timer)
@@ -84,101 +147,102 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
   }
 
   return (
-    <section
-      id="top"
-      className="border-b border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-white)]"
-    >
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <h1 className="font-[var(--font-display)] text-4xl font-bold leading-[1.08] text-[var(--color-white)] sm:text-5xl lg:text-[3.5rem]">
-              {t.hero.title}
-            </h1>
+    <section id="top" className="bg-[var(--color-bg)] lg:grid lg:grid-cols-2">
+      <div className="border-b-[10px] border-[var(--color-gold)] px-4 py-12 sm:px-8 md:py-16 lg:border-b-0 lg:border-r-[10px] lg:py-20">
+        <div className="mx-auto max-w-xl lg:ml-auto lg:mr-0 lg:pr-6">
+          <ScriptKicker tone="red">{t.hero.kicker}</ScriptKicker>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-surface)] sm:text-lg">
-              {t.hero.subtitle}
-            </p>
+          <h1 className="mt-2 font-display text-4xl leading-[1.05] text-[var(--color-black)] text-balance sm:text-5xl lg:text-[3.4rem]">
+            {t.hero.titleStart}{' '}
+            <span className="text-[var(--color-emerald-ink)]">{t.hero.titleHighlight}</span>{' '}
+            {t.hero.titleEnd}
+          </h1>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={onOpenWhatsapp}
-                className="inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2.5 rounded-md bg-[var(--color-red)] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)]"
-              >
-                <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                <span>{t.hero.primaryCta}</span>
-              </button>
-              <a
-                href="#menu"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-md border border-[var(--color-surface)] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-              >
-                <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
-                <span>{t.hero.secondaryCta}</span>
-              </a>
-            </div>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-[var(--color-muted)] sm:text-lg">
+            {t.hero.subtitle}
+          </p>
+
+          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+            <button type="button" onClick={onOpenWhatsapp} className="btn btn-primary">
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              <span>{t.hero.primaryCta}</span>
+            </button>
+            <a href="#menu" className="btn btn-ghost">
+              <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
+              <span>{t.hero.secondaryCta}</span>
+            </a>
           </div>
+        </div>
+      </div>
+
+      <div
+        className="flex flex-col"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--color-black)] lg:aspect-auto lg:flex-1">
+          {HERO_SLIDES.map((slide, idx) => (
+            <img
+              key={slide.src}
+              src={slide.src}
+              alt={slide.alt[lang]}
+              width={800}
+              height={600}
+              aria-hidden={idx !== activeIndex}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
+                idx === activeIndex ? 'opacity-100' : 'pointer-events-none opacity-0'
+              }`}
+            />
+          ))}
 
           <div
-            className="lg:col-span-5"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            data-testid="hero-caption"
+            aria-live="polite"
+            className="absolute bottom-4 left-4 max-w-[16rem] border-l-[6px] border-[var(--color-red)] bg-[var(--color-bg)] px-4 py-3 shadow-[var(--shadow-card)]"
           >
-            <div className="overflow-hidden rounded-lg border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] p-2 shadow-[var(--shadow-elevated)]">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[var(--color-black)]">
-                {HERO_IMAGES.map((img, idx) => (
-                  <img
-                    key={img.src}
-                    src={img.src}
-                    alt={lang === 'it' ? img.altIt : img.altEn}
-                    width={800}
-                    height={600}
-                    aria-hidden={idx !== activeIndex}
-                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
-                      idx === activeIndex ? 'opacity-100' : 'pointer-events-none opacity-0'
-                    }`}
-                  />
-                ))}
-              </div>
+            <p className="font-display text-lg leading-tight text-[var(--color-ink)]">
+              {activeCaption.title[lang]}
+            </p>
+            <p className="mt-0.5 text-sm text-[var(--color-muted)]">{activeCaption.line[lang]}</p>
+          </div>
+        </div>
 
-              <div className="flex items-center justify-center gap-1 pt-1">
-                <button
-                  type="button"
-                  onClick={() => setIsPausedByUser((prev) => !prev)}
-                  aria-label={isPausedByUser ? t.hero.playSlideshow : t.hero.pauseSlideshow}
-                  className="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-md text-[var(--color-surface)] transition-colors duration-150 hover:text-[var(--color-gold)]"
-                >
-                  {isPausedByUser ? (
-                    <Play className="h-4 w-4" aria-hidden="true" />
-                  ) : (
-                    <Pause className="h-4 w-4" aria-hidden="true" />
-                  )}
-                </button>
+        <div className="flex items-center justify-center gap-1 bg-[var(--color-surface)] py-1">
+          <button
+            type="button"
+            onClick={() => setIsPausedByUser((prev) => !prev)}
+            aria-label={isPausedByUser ? t.hero.playSlideshow : t.hero.pauseSlideshow}
+            className="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-md text-[var(--color-ink)] transition-colors duration-150 hover:text-[var(--color-red)]"
+          >
+            {isPausedByUser ? (
+              <Play className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Pause className="h-4 w-4" aria-hidden="true" />
+            )}
+          </button>
 
-                <div className="flex items-center" role="group" aria-label={t.hero.galleryLabel}>
-                  {HERO_IMAGES.map((img, idx) => (
-                    <button
-                      key={img.src}
-                      type="button"
-                      aria-label={`${t.hero.slideLabel} ${idx + 1} / ${HERO_IMAGES.length}`}
-                      aria-pressed={idx === activeIndex}
-                      onClick={() => setActiveIndex(idx)}
-                      className="group inline-flex h-11 cursor-pointer items-center justify-center px-1"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={`block h-2 rounded-full transition-all duration-200 ${
-                          idx === activeIndex
-                            ? 'w-5 bg-[var(--color-gold)]'
-                            : 'w-2 bg-[var(--color-border-on-black)] group-hover:bg-[var(--color-surface)]'
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center" role="group" aria-label={t.hero.galleryLabel}>
+            {HERO_SLIDES.map((slide, idx) => (
+              <button
+                key={slide.src}
+                type="button"
+                aria-label={`${t.hero.slideLabel} ${idx + 1} / ${HERO_SLIDES.length}`}
+                aria-pressed={idx === activeIndex}
+                onClick={() => setActiveIndex(idx)}
+                className="group inline-flex h-11 cursor-pointer items-center justify-center px-1"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block h-2 rounded-full transition-all duration-200 ${
+                    idx === activeIndex
+                      ? 'w-5 bg-[var(--color-red)]'
+                      : 'w-2 bg-[var(--color-border)] group-hover:bg-[var(--color-muted)]'
+                  }`}
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>

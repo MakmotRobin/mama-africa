@@ -38,7 +38,7 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
             {t.menu.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.menu.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.menu.subtitle}</p>
@@ -90,7 +90,7 @@ export function MenuSection({ onAddToCart }: MenuSectionProps) {
       <div className="mt-8 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface-card)] p-2 shadow-[var(--shadow-card-hover)] sm:p-3">
         <div className="border border-[var(--color-border)] px-5 py-7 sm:px-9 sm:py-10">
           <div className="border-b-2 border-[var(--color-black)] pb-4 text-center">
-            <h3 className="font-[var(--font-display)] text-2xl font-bold text-[var(--color-ink)] sm:text-3xl">
+            <h3 className="font-display text-2xl font-bold text-[var(--color-ink)] sm:text-3xl">
               {t.menu.fullLedgerTitle}
             </h3>
           </div>

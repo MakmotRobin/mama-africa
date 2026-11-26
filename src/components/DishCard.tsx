@@ -92,7 +92,7 @@ function SpotlightDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void 
       )}
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-baseline justify-between gap-2">
-          <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
+          <h3 className="font-display text-lg font-bold text-[var(--color-ink)]">
             {dish.name[lang]}
           </h3>
           <span className="shrink-0 text-sm font-extrabold text-[var(--color-red)] tabular-nums">
@@ -117,14 +117,14 @@ function LedgerDishCard({ dish, onAdd }: { dish: MenuItem; onAdd: () => void }) 
     <article className="flex h-full flex-col justify-between gap-3 border-b border-dashed border-[var(--color-border)] py-4 transition-colors duration-150 hover:bg-[var(--color-bg)]">
       <div className="min-w-0">
         <div className="flex items-baseline gap-2">
-          <h3 className="min-w-0 font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)] sm:text-xl">
+          <h3 className="min-w-0 font-display text-lg font-bold text-[var(--color-ink)] sm:text-xl">
             {dish.name[lang]}
           </h3>
           <span
             aria-hidden="true"
             className="min-w-[1.5rem] flex-1 border-b border-dotted border-[var(--color-border)]"
           />
-          <span className="shrink-0 font-[var(--font-display)] text-base font-bold text-[var(--color-red)] tabular-nums">
+          <span className="shrink-0 font-display text-base font-bold text-[var(--color-red)] tabular-nums">
             {formatEuro(dish.price)}
           </span>
         </div>

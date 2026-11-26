@@ -17,6 +17,28 @@ describe('Mama Africa App', () => {
     vi.useRealTimers()
   })
 
+  it('shows the caption of the active hero slide and follows the slideshow', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(WEDNESDAY_EVENING)
+    render(<App />)
+
+    const caption = screen.getByTestId('hero-caption')
+    expect(caption).toHaveTextContent('La tavola di Mama')
+
+    act(() => {
+      vi.advanceTimersByTime(3000)
+    })
+    expect(caption).toHaveTextContent('Il nostro locale')
+  })
+
+  it('switches the hero caption language with the toggle', () => {
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: /Passa a Inglese/i }))
+
+    expect(screen.getByTestId('hero-caption')).toHaveTextContent('Mama’s table')
+  })
+
   it('stops the hero slideshow when the pause button is pressed and resumes on play', () => {
     vi.useFakeTimers()
     vi.setSystemTime(WEDNESDAY_EVENING)
@@ -93,7 +115,7 @@ describe('Mama Africa App', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /Cucina Africana Autentica, Preparata al Momento/i,
+        name: /Vera cucina nigeriana/i,
       }),
     ).toBeInTheDocument()
 
@@ -103,7 +125,7 @@ describe('Mama Africa App', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /Authentic African Cuisine, Cooked Fresh to Order/i,
+        name: /Real Nigerian cooking/i,
       }),
     ).toBeInTheDocument()
   })

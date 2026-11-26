@@ -152,7 +152,7 @@ export function WhatsAppBuilder({
           <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-red)]">
             {t.whatsapp.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.whatsapp.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.whatsapp.subtitle}</p>
@@ -394,7 +394,7 @@ export function WhatsAppBuilder({
               >
                 <div className="rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-4">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
+                    <h3 className="font-display text-lg font-bold text-[var(--color-ink)]">
                       {t.whatsapp.takeawayForm.cartTitle}
                     </h3>
                     {cart.length > 0 && (

@@ -20,7 +20,7 @@ export function LocationSection() {
           <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-red)]">
             {t.location.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.location.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.location.subtitle}</p>
@@ -29,7 +29,7 @@ export function LocationSection() {
         <div className="mt-8 grid gap-8 lg:grid-cols-12">
           <div className="space-y-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] p-6 shadow-[var(--shadow-card)] lg:col-span-5">
             <div>
-              <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
+              <h3 className="font-display text-lg font-bold text-[var(--color-ink)]">
                 {t.location.addressTitle}
               </h3>
               <p className="mt-1.5 text-base font-bold text-[var(--color-ink)]">
@@ -42,7 +42,7 @@ export function LocationSection() {
             </div>
 
             <div>
-              <h3 className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
+              <h3 className="font-display text-lg font-bold text-[var(--color-ink)]">
                 {t.location.hoursTitle}
               </h3>
               <dl className="mt-2 space-y-1.5 text-sm">
@@ -98,7 +98,7 @@ export function LocationSection() {
               <div className="flex h-[360px] flex-col items-center justify-center gap-4 bg-[var(--color-bg)] p-6 text-center lg:h-full lg:min-h-[460px]">
                 <MapPin className="h-10 w-10 text-[var(--color-red)]" aria-hidden="true" />
                 <div>
-                  <p className="font-[var(--font-display)] text-lg font-bold text-[var(--color-ink)]">
+                  <p className="font-display text-lg font-bold text-[var(--color-ink)]">
                     {RESTAURANT_CONFIG.addressLine}
                   </p>
                   <p className="text-sm text-[var(--color-muted)]">{RESTAURANT_CONFIG.cityLine}</p>

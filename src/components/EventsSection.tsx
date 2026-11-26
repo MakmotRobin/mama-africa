@@ -36,7 +36,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-red)]">
             {t.events.eyebrow}
           </p>
-          <h2 className="mt-2 font-[var(--font-display)] text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
             {t.events.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-muted)]">
@@ -72,7 +72,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
               </span>
             </div>
 
-            <h3 className="mt-4 font-[var(--font-display)] text-2xl font-bold text-[var(--color-white)] sm:text-3xl">
+            <h3 className="mt-4 font-display text-2xl font-bold text-[var(--color-white)] sm:text-3xl">
               {featuredEvent.title[lang]}
             </h3>
 
@@ -138,7 +138,7 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
               </span>
             </div>
 
-            <h3 className="mt-4 font-[var(--font-display)] text-xl font-bold text-[var(--color-ink)]">
+            <h3 className="mt-4 font-display text-xl font-bold text-[var(--color-ink)]">
               {ev.title[lang]}
             </h3>
 

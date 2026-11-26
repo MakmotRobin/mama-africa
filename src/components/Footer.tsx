@@ -22,7 +22,7 @@ export function Footer() {
               height={52}
               className="h-13 w-13 rounded-md border border-[var(--color-border-on-black)] object-cover"
             />
-            <span className="font-[var(--font-display)] text-xl text-[var(--color-gold)]">
+            <span className="font-display text-xl text-[var(--color-gold)]">
               {RESTAURANT_CONFIG.name}
             </span>
           </div>

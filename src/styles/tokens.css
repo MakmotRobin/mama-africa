@@ -28,11 +28,6 @@
   --color-error: #b42318;
   --color-error-bg: #fef3f2;
 
-  /* Typography */
-  --font-display: 'Alfa Slab One', Georgia, serif;
-  --font-script: 'Kaushan Script', cursive;
-  --font-body: 'Karla', system-ui, -apple-system, sans-serif;
-
   /* Radii & Elevation */
   --radius-sm: 0.25rem;
   --radius-md: 6px;
@@ -40,4 +35,12 @@
   --shadow-card: 0 1px 4px rgba(11, 9, 7, 0.08);
   --shadow-card-hover: 0 8px 20px rgba(11, 9, 7, 0.12);
   --shadow-elevated: 0 10px 24px rgba(11, 9, 7, 0.24);
+}
+
+/* Typography as Tailwind theme fonts: generates font-display, font-script and font-body classes
+   and still exposes var(--font-display) etc. to plain CSS. */
+@theme {
+  --font-display: 'Alfa Slab One', Georgia, serif;
+  --font-script: 'Kaushan Script', cursive;
+  --font-body: 'Karla', system-ui, -apple-system, sans-serif;
 }

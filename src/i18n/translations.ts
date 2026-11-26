@@ -276,7 +276,7 @@ export const TRANSLATIONS: Record<
     },
     events: {
       kicker: 'la sera da mama',
-      title: 'Serate Culturali & Musica dal Vivo',
+      title: 'Feste & Ospiti Speciali',
       subtitle:
         'Feste del sabato sera, ospiti speciali e grandi serate firmate Celebrity Barman, con musica africana e cucina calda fino a tardi.',
       sponsoredBy: 'Tutti gli eventi sono sponsorizzati da Celebrity Barman',
@@ -444,7 +444,7 @@ export const TRANSLATIONS: Record<
     },
     events: {
       kicker: 'nights at mama’s',
-      title: 'Cultural Events & Music Nights',
+      title: 'Parties & Special Guests',
       subtitle:
         'Saturday parties, special guests and big nights hosted by Celebrity Barman, with African music and a hot kitchen till late.',
       sponsoredBy: 'All events are sponsored by Celebrity Barman',

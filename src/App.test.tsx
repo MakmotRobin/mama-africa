@@ -204,6 +204,8 @@ describe('Mama Africa App', () => {
     expect(screen.queryByText(/UniCal International Aperitivo/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Afrobeats & Highlife/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Percussioni/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Feste & Ospiti Speciali' })).toBeInTheDocument()
+    expect(screen.queryByText(/Musica dal Vivo/i)).not.toBeInTheDocument()
 
     const occasions = screen.getByLabelText(/Tavolo o serata/i).querySelectorAll('option')
     expect([...occasions].map((option) => option.textContent)).toEqual([

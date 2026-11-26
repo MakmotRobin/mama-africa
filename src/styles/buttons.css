@@ -1,0 +1,75 @@
+/* One button set for the whole site (Ankara Table). Solid colours only. */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0 1.25rem;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      border-color 150ms ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-black);
+    color: var(--color-gold);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-black-soft);
+  }
+
+  .btn-accent {
+    background-color: var(--color-red);
+    color: var(--color-white);
+  }
+  .btn-accent:hover {
+    background-color: var(--color-red-hover);
+  }
+
+  .btn-whatsapp {
+    background-color: var(--color-emerald);
+    color: var(--color-white);
+  }
+  .btn-whatsapp:hover {
+    background-color: var(--color-emerald-hover);
+  }
+
+  .btn-ghost {
+    padding: 0 0.125rem;
+    border-radius: 0;
+    border-width: 0 0 3px;
+    border-color: var(--color-orange);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-red);
+  }
+
+  .btn-outline {
+    border-color: var(--color-ink);
+    background-color: transparent;
+    color: var(--color-ink);
+  }
+  .btn-outline:hover {
+    background-color: var(--color-black);
+    border-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
+.zigzag-divider {
+  background-repeat: repeat-x;
+  background-size: 84px 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='14'%3E%3Cpolygon points='0,14 7,0 14,14' fill='%23c8281e'/%3E%3Cpolygon points='14,14 21,0 28,14' fill='%23e8671a'/%3E%3Cpolygon points='28,14 35,0 42,14' fill='%23128a3e'/%3E%3Cpolygon points='42,14 49,0 56,14' fill='%23f2a918'/%3E%3Cpolygon points='56,14 63,0 70,14' fill='%237a3e1a'/%3E%3Cpolygon points='70,14 77,0 84,14' fill='%23e8671a'/%3E%3C/svg%3E");
+}

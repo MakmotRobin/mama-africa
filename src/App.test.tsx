@@ -277,14 +277,16 @@ describe('Mama Africa App', () => {
     expect(within(document.getElementById('menu')!).getByText(/allergeni/i)).toBeInTheDocument()
   })
 
-  it('explains in the footer where booking and order details go', () => {
+  it('links the privacy policy and terms of service from the footer', () => {
     render(<App />)
 
     const footer = screen.getByRole('contentinfo')
-    expect(footer).toHaveTextContent(/WhatsApp/)
-    expect(footer).toHaveTextContent(/non salva/i)
+    expect(within(footer).getByRole('link', { name: 'Privacy' })).toHaveAttribute('href', 'privacy.html')
+    expect(within(footer).getByRole('link', { name: 'Termini di servizio' })).toHaveAttribute(
+      'href',
+      'terms.html',
+    )
   })
-
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

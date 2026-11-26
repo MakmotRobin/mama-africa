@@ -127,9 +127,15 @@ export const TRANSLATIONS: Record<
       loadMapCta: string
       mapConsentNote: string
     }
+    legal: {
+      backToSite: string
+      lastUpdated: string
+    }
     footer: {
       tagline: string
-      privacyNote: string
+      privacyLink: string
+      legalNavLabel: string
+      termsLink: string
     }
   }
 > = {
@@ -276,10 +282,15 @@ export const TRANSLATIONS: Record<
       mapConsentNote: 'La mappa è fornita da Google, che può impostare cookie al caricamento.',
       mapIframeTitle: 'Mappa di Mama Africa Restaurant & Bar a Via Pietro Pompilio Rodotà 12/14, Cosenza',
     },
+    legal: {
+      backToSite: 'Torna al sito',
+      lastUpdated: 'Ultimo aggiornamento',
+    },
     footer: {
       tagline: 'Sapori autentici dell’Africa Occidentale, bar e cultura nel centro di Cosenza.',
-      privacyNote:
-        'Questo sito non salva i tuoi dati: prenotazioni e ordini arrivano direttamente al ristorante su WhatsApp. La mappa di Google si carica solo se lo chiedi.',
+      privacyLink: 'Privacy',
+      termsLink: 'Termini di servizio',
+      legalNavLabel: 'Note legali',
     },
   },
   en: {
@@ -425,10 +436,15 @@ export const TRANSLATIONS: Record<
       mapConsentNote: 'The map is provided by Google, which may set cookies when it loads.',
       mapIframeTitle: 'Map of Mama Africa Restaurant & Bar at Via Pietro Pompilio Rodotà 12/14, Cosenza',
     },
+    legal: {
+      backToSite: 'Back to the site',
+      lastUpdated: 'Last updated',
+    },
     footer: {
       tagline: 'Authentic West African flavors, bar service, and culture in central Cosenza.',
-      privacyNote:
-        'This site does not store your data: bookings and orders go straight to the restaurant on WhatsApp. The Google map loads only if you ask for it.',
+      privacyLink: 'Privacy',
+      termsLink: 'Terms of Service',
+      legalNavLabel: 'Legal',
     },
   },
 }

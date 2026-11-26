@@ -6,4 +6,14 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      // One HTML page each for the site, the privacy policy and the terms of service.
+      input: {
+        main: 'index.html',
+        privacy: 'privacy.html',
+        terms: 'terms.html',
+      },
+    },
+  },
 })

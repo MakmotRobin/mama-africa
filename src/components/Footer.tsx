@@ -91,9 +91,23 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-[var(--color-border-on-black)]">
-        <p className="mx-auto max-w-6xl px-4 py-5 text-xs leading-relaxed text-[var(--color-surface)] sm:px-6">
-          {t.footer.privacyNote}
-        </p>
+        <nav
+          aria-label={t.footer.legalNavLabel}
+          className="mx-auto flex max-w-6xl flex-wrap gap-x-6 px-4 py-3 sm:px-6"
+        >
+          <a
+            href="privacy.html"
+            className="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-wider text-[var(--color-surface)] underline-offset-4 hover:text-[var(--color-gold)] hover:underline"
+          >
+            {t.footer.privacyLink}
+          </a>
+          <a
+            href="terms.html"
+            className="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-wider text-[var(--color-surface)] underline-offset-4 hover:text-[var(--color-gold)] hover:underline"
+          >
+            {t.footer.termsLink}
+          </a>
+        </nav>
       </div>
     </footer>
   )

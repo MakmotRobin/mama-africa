@@ -21,6 +21,23 @@ export const RESTAURANT_CONFIG = {
     'https://www.google.com/maps?q=Via+Pietro+Pompilio+Rodot%C3%A0+12,+87100+Cosenza+CS,+Italy&output=embed',
 } as const
 
+/**
+ * The business behind the site, named as data controller in the privacy policy and in the terms.
+ * Uses the trading name until the owner provides the legal name and Partita IVA (agreed 2026-11-27).
+ * src/config/legal.test.ts fails if name or address is blank, and the deploy workflow runs the tests.
+ */
+export const LEGAL_ENTITY = {
+  /** Legal name of the company, or the owner's full name for a sole trader (ditta individuale). */
+  name: 'Mama Africa Restaurant & Bar',
+  /** Partita IVA, 11 digits. Empty until the owner provides it; the legal pages then omit it. */
+  vatNumber: '',
+  /** Registered address (sede legale); the restaurant's address unless the owner gives another. */
+  address: `${RESTAURANT_CONFIG.addressLine}, ${RESTAURANT_CONFIG.cityLine}`,
+}
+
+/** Date shown as "last updated" on the privacy policy and terms (YYYY-MM-DD). */
+export const LEGAL_LAST_UPDATED = '2026-11-27'
+
 const WEEKDAY_HOURS = { open: '09:00', close: '23:00' }
 
 /**

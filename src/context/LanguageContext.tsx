@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { TRANSLATIONS } from '../i18n/translations'
-import type { Language } from '../types'
+import type { Language, LocalizedText } from '../types'
 import { LanguageContext } from './useLanguage'
 
 const STORAGE_KEY = 'mama-africa-lang'
@@ -16,18 +16,24 @@ function getInitialLanguage(): Language {
   return 'it'
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+interface LanguageProviderProps {
+  children: ReactNode
+  /** Browser tab title for this page; defaults to the home page title. */
+  pageTitle?: LocalizedText
+}
+
+export function LanguageProvider({ children, pageTitle }: LanguageProviderProps) {
   const [lang, setLangState] = useState<Language>(getInitialLanguage)
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.title = TRANSLATIONS[lang].documentTitle
+    document.title = pageTitle?.[lang] ?? TRANSLATIONS[lang].documentTitle
     try {
       window.localStorage.setItem(STORAGE_KEY, lang)
     } catch {
       // Ignore storage access errors
     }
-  }, [lang])
+  }, [lang, pageTitle])
 
   const setLang = (next: Language) => setLangState(next)
   const toggleLang = () => setLangState((prev) => (prev === 'it' ? 'en' : 'it'))

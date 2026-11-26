@@ -90,6 +90,11 @@ export function Footer() {
           </p>
         </div>
       </div>
+      <div className="border-t border-[var(--color-border-on-black)]">
+        <p className="mx-auto max-w-6xl px-4 py-5 text-xs leading-relaxed text-[var(--color-surface)] sm:px-6">
+          {t.footer.privacyNote}
+        </p>
+      </div>
     </footer>
   )
 }

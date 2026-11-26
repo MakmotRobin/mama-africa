@@ -129,6 +129,7 @@ export const TRANSLATIONS: Record<
     }
     footer: {
       tagline: string
+      privacyNote: string
     }
   }
 > = {
@@ -277,6 +278,8 @@ export const TRANSLATIONS: Record<
     },
     footer: {
       tagline: 'Sapori autentici dell’Africa Occidentale, bar e cultura nel centro di Cosenza.',
+      privacyNote:
+        'Questo sito non salva i tuoi dati: prenotazioni e ordini arrivano direttamente al ristorante su WhatsApp. La mappa di Google si carica solo se lo chiedi.',
     },
   },
   en: {
@@ -424,6 +427,8 @@ export const TRANSLATIONS: Record<
     },
     footer: {
       tagline: 'Authentic West African flavors, bar service, and culture in central Cosenza.',
+      privacyNote:
+        'This site does not store your data: bookings and orders go straight to the restaurant on WhatsApp. The Google map loads only if you ask for it.',
     },
   },
 }

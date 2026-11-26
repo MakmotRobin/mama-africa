@@ -277,6 +277,14 @@ describe('Mama Africa App', () => {
     expect(within(document.getElementById('menu')!).getByText(/allergeni/i)).toBeInTheDocument()
   })
 
+  it('explains in the footer where booking and order details go', () => {
+    render(<App />)
+
+    const footer = screen.getByRole('contentinfo')
+    expect(footer).toHaveTextContent(/WhatsApp/)
+    expect(footer).toHaveTextContent(/non salva/i)
+  })
+
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

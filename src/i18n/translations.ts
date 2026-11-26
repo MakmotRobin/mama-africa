@@ -18,6 +18,7 @@ export const TRANSLATIONS: Record<
     }
     hero: {
       eyebrow: string
+      kicker: string
       title: string
       subtitle: string
       primaryCta: string
@@ -40,6 +41,7 @@ export const TRANSLATIONS: Record<
     }
     menu: {
       eyebrow: string
+      kicker: string
       title: string
       subtitle: string
       signatureTitle: string
@@ -56,6 +58,7 @@ export const TRANSLATIONS: Record<
     }
     whatsapp: {
       eyebrow: string
+      kicker: string
       title: string
       subtitle: string
       tabs: {
@@ -113,6 +116,7 @@ export const TRANSLATIONS: Record<
     }
     events: {
       eyebrow: string
+      kicker: string
       title: string
       subtitle: string
       sponsoredBy: string
@@ -122,6 +126,7 @@ export const TRANSLATIONS: Record<
     }
     location: {
       eyebrow: string
+      kicker: string
       title: string
       subtitle: string
       addressTitle: string
@@ -159,6 +164,7 @@ export const TRANSLATIONS: Record<
     },
     hero: {
       eyebrow: 'Via Pietro Pompilio Rodotà 12/14 · Cosenza',
+      kicker: 'benvenuti a casa',
       title: 'Cucina Africana Autentica, Preparata al Momento.',
       subtitle:
         'Sapori genuini dell’Africa Occidentale nel cuore di Cosenza, a due passi da Corso Mazzini. Ideale per cene tra amici, studenti UniCal e amanti della musica dal vivo.',
@@ -187,6 +193,7 @@ export const TRANSLATIONS: Record<
     },
     menu: {
       eyebrow: 'La Nostra Cucina',
+      kicker: 'cosa bolle in pentola',
       title: 'Menu Digitale Interattivo',
       subtitle:
         'Filtra per categoria o esigenza alimentare e aggiungi i piatti direttamente al tuo ordine d’asporto WhatsApp.',
@@ -215,6 +222,7 @@ export const TRANSLATIONS: Record<
     },
     whatsapp: {
       eyebrow: 'Prenotazione & Asporto Diretto',
+      kicker: 'un tavolo per te',
       title: 'Invia in 1 Click su WhatsApp',
       subtitle:
         'Compila i dati qui sotto: generiamo il messaggio pronto per il nostro WhatsApp (+39 349 565 5600) senza attese.',
@@ -273,6 +281,7 @@ export const TRANSLATIONS: Record<
     },
     events: {
       eyebrow: 'Cultura, Ritmo & Bar',
+      kicker: 'la sera da mama',
       title: 'Serate Culturali & Musica dal Vivo',
       subtitle:
         'Mama Africa è il punto d’incontro tra Cosenza e la comunità internazionale dell’UniCal: percussioni, Afrobeats, aperitivi e cucina calda fino a tardi.',
@@ -283,6 +292,7 @@ export const TRANSLATIONS: Record<
     },
     location: {
       eyebrow: 'Vieni a Trovarci',
+      kicker: 'vieni a trovarci',
       title: 'Nel Cuore di Cosenza',
       subtitle:
         'Facilmente raggiungibile a piedi da Corso Mazzini e in autobus dal campus UniCal di Rende.',
@@ -324,6 +334,7 @@ export const TRANSLATIONS: Record<
     },
     hero: {
       eyebrow: 'Via Pietro Pompilio Rodotà 12/14 · Cosenza',
+      kicker: 'welcome home',
       title: 'Authentic African Cuisine, Cooked Fresh to Order.',
       subtitle:
         'Vibrant West African flavors in the heart of Cosenza, just off Corso Mazzini. A welcoming hub for locals, UniCal students, and travelers.',
@@ -352,6 +363,7 @@ export const TRANSLATIONS: Record<
     },
     menu: {
       eyebrow: 'Our Kitchen',
+      kicker: 'what’s cooking',
       title: 'Interactive Digital Menu',
       subtitle:
         'Filter by course or dietary preference and add dishes directly to your WhatsApp takeaway order.',
@@ -380,6 +392,7 @@ export const TRANSLATIONS: Record<
     },
     whatsapp: {
       eyebrow: 'Direct Booking & Takeaway',
+      kicker: 'a table for you',
       title: '1-Click WhatsApp Builder',
       subtitle:
         'Fill in your details below to generate a ready-to-send message for our WhatsApp (+39 349 565 5600).',
@@ -438,6 +451,7 @@ export const TRANSLATIONS: Record<
     },
     events: {
       eyebrow: 'Culture, Rhythm & Bar',
+      kicker: 'nights at mama’s',
       title: 'Cultural Events & Music Nights',
       subtitle:
         'Where Cosenza meets the UniCal international community: live percussion, Afrobeats, tropical aperitivos, and late-night kitchen service.',
@@ -448,6 +462,7 @@ export const TRANSLATIONS: Record<
     },
     location: {
       eyebrow: 'Visit Us',
+      kicker: 'come and see us',
       title: 'In the Heart of Cosenza',
       subtitle:
         'Steps away from Corso Mazzini and easily reached by bus from the UniCal campus in Rende.',

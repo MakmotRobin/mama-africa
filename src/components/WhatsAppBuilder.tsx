@@ -8,6 +8,7 @@ import {
 import { useRef, useState, type FormEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import { useEventsToShow } from '../context/useEventsToShow'
+import { ScriptKicker } from './brand/ScriptKicker'
 import type { TRANSLATIONS } from '../i18n/translations'
 import type { CartItem } from '../types'
 import { toLocalIsoDate } from '../utils/dates'
@@ -145,21 +146,19 @@ export function WhatsAppBuilder({
   return (
     <section
       id="whatsapp-builder"
-      className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-14 md:py-20"
+      className="bg-[var(--color-surface)] py-14 md:py-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-2xl">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-red)]">
-            {t.whatsapp.eyebrow}
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] sm:text-4xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <ScriptKicker tone="red">{t.whatsapp.kicker}</ScriptKicker>
+          <h2 className="mt-1 font-display text-4xl text-[var(--color-black)] sm:text-5xl">
             {t.whatsapp.title}
           </h2>
           <p className="mt-3 text-base text-[var(--color-muted)]">{t.whatsapp.subtitle}</p>
         </div>
 
         <div className="mt-8">
-          <div className="mx-auto max-w-2xl rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-card)] p-5 shadow-[var(--shadow-card)] sm:p-7">
+          <div className="mx-auto max-w-2xl rounded-[var(--radius-lg)] border-t-[6px] border-[var(--color-gold)] bg-[var(--color-surface-card)] p-5 shadow-[var(--shadow-card)] sm:p-7">
             <div
               role="tablist"
               aria-label="WhatsApp actions"
@@ -174,7 +173,7 @@ export function WhatsAppBuilder({
                 onClick={() => onTabChange('reservation')}
                 className={`inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-md px-3 text-sm font-bold transition-colors duration-150 ${
                   activeTab === 'reservation'
-                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
+                    ? 'bg-[var(--color-black)] text-[var(--color-gold)]'
                     : 'text-[var(--color-ink)] hover:bg-[var(--color-bg)]'
                 }`}
               >
@@ -190,7 +189,7 @@ export function WhatsAppBuilder({
                 onClick={() => onTabChange('takeaway')}
                 className={`inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-md px-3 text-sm font-bold transition-colors duration-150 ${
                   activeTab === 'takeaway'
-                    ? 'bg-[var(--color-red)] text-[var(--color-white)]'
+                    ? 'bg-[var(--color-black)] text-[var(--color-gold)]'
                     : 'text-[var(--color-ink)] hover:bg-[var(--color-bg)]'
                 }`}
               >
@@ -233,7 +232,7 @@ export function WhatsAppBuilder({
                     aria-invalid={resErrors.guestName ? 'true' : 'false'}
                     aria-describedby={resErrors.guestName ? 'res-name-error' : undefined}
                     placeholder={t.whatsapp.reservationForm.namePlaceholder}
-                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
+                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 text-[var(--color-ink)]"
                   />
                   {resErrors.guestName && (
                     <p
@@ -268,7 +267,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={resErrors.date ? 'true' : 'false'}
                       aria-describedby={resErrors.date ? 'res-date-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.date && (
                       <p id="res-date-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -297,7 +296,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={resErrors.time ? 'true' : 'false'}
                       aria-describedby={resErrors.time ? 'res-time-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.time && (
                       <p id="res-time-error" className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -323,7 +322,7 @@ export function WhatsAppBuilder({
                       value={partySize}
                       onChange={(e) => setPartySize(Number(e.target.value))}
                       aria-invalid={resErrors.partySize ? 'true' : 'false'}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-[var(--color-ink)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[var(--color-ink)]"
                     />
                     {resErrors.partySize && (
                       <p className="mt-1 text-xs font-semibold text-[var(--color-error)]">
@@ -345,7 +344,7 @@ export function WhatsAppBuilder({
                     name="occasion"
                     value={occasion}
                     onChange={(e) => onOccasionChange(e.target.value)}
-                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
+                    className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 text-[var(--color-ink)]"
                   >
                     <option value="">{t.whatsapp.reservationForm.occasionDefault}</option>
                     {bookableEvents.map((ev) => (
@@ -371,13 +370,13 @@ export function WhatsAppBuilder({
                     value={resNotes}
                     onChange={(e) => setResNotes(e.target.value)}
                     placeholder={t.whatsapp.reservationForm.notesPlaceholder}
-                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-ink)]"
+                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5 text-[var(--color-ink)]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-[var(--color-emerald)] px-6 text-base font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-emerald-hover)]"
+                  className="btn btn-whatsapp w-full text-sm"
                 >
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   <span>{t.whatsapp.reservationForm.submitCta}</span>
@@ -507,7 +506,7 @@ export function WhatsAppBuilder({
                       aria-invalid={takeErrors.customerName ? 'true' : 'false'}
                       aria-describedby={takeErrors.customerName ? 'take-name-error' : undefined}
                       placeholder={t.whatsapp.takeawayForm.namePlaceholder}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 text-[var(--color-ink)]"
                     />
                     {takeErrors.customerName && (
                       <p
@@ -542,7 +541,7 @@ export function WhatsAppBuilder({
                       }}
                       aria-invalid={takeErrors.pickupTime ? 'true' : 'false'}
                       aria-describedby={takeErrors.pickupTime ? 'take-pickup-error' : undefined}
-                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[var(--color-ink)]"
+                      className="mt-1.5 min-h-[48px] w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 text-[var(--color-ink)]"
                     />
                     {takeErrors.pickupTime && (
                       <p
@@ -571,13 +570,13 @@ export function WhatsAppBuilder({
                     value={dietaryNotes}
                     onChange={(e) => setDietaryNotes(e.target.value)}
                     placeholder={t.whatsapp.takeawayForm.notesPlaceholder}
-                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-3.5 text-[var(--color-ink)]"
+                    className="mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5 text-[var(--color-ink)]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-[var(--color-emerald)] px-6 text-base font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-emerald-hover)]"
+                  className="btn btn-whatsapp w-full text-sm"
                 >
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   <span>{t.whatsapp.takeawayForm.submitCta}</span>

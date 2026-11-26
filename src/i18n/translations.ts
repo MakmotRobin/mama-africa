@@ -57,7 +57,6 @@ export const TRANSLATIONS: Record<
       resetFilters: string
     }
     whatsapp: {
-      eyebrow: string
       kicker: string
       title: string
       subtitle: string
@@ -221,7 +220,6 @@ export const TRANSLATIONS: Record<
       resetFilters: 'Mostra tutto il menu',
     },
     whatsapp: {
-      eyebrow: 'Prenotazione & Asporto Diretto',
       kicker: 'un tavolo per te',
       title: 'Invia in 1 Click su WhatsApp',
       subtitle:
@@ -391,7 +389,6 @@ export const TRANSLATIONS: Record<
       resetFilters: 'Show full menu',
     },
     whatsapp: {
-      eyebrow: 'Direct Booking & Takeaway',
       kicker: 'a table for you',
       title: '1-Click WhatsApp Builder',
       subtitle:

@@ -1,6 +1,8 @@
 import { OPENING_SCHEDULE, RESTAURANT_CONFIG } from '../config/restaurant'
 import type { CartItem, Language, ReservationInput, TakeawayInput, Weekday } from '../types'
+import { CULTURAL_EVENTS } from '../data/menu'
 import { parseLocalIsoDate, toLocalIsoDate } from './dates'
+import { isDuringSpecialEvent } from './events'
 import { isClosedOn, isWithinOpeningHours } from './openingHours'
 
 const MAX_TEXT_LENGTH = 240
@@ -28,15 +30,21 @@ function weekdayOf(date: Date): Weekday {
   return date.getDay() as Weekday
 }
 
+function hasSpecialEventOn(isoDate: string): boolean {
+  return CULTURAL_EVENTS.some((event) => event.startsAt?.slice(0, 10) === isoDate)
+}
+
 function reservationDateError(isoDate: string, now: Date): string | null {
   if (!isoDate.trim()) return 'dateRequired'
   if (isoDate < toLocalIsoDate(now)) return 'datePast'
+  if (hasSpecialEventOn(isoDate)) return null
   if (isClosedOn(OPENING_SCHEDULE, weekdayOf(parseLocalIsoDate(isoDate)))) return 'dayClosed'
   return null
 }
 
 function reservationTimeError(isoDate: string, time: string): string | null {
   if (!time.trim()) return 'timeRequired'
+  if (isDuringSpecialEvent(CULTURAL_EVENTS, isoDate, time)) return null
   const weekday = weekdayOf(parseLocalIsoDate(isoDate))
   if (!isWithinOpeningHours(OPENING_SCHEDULE, weekday, time)) return 'timeOutsideHours'
   return null

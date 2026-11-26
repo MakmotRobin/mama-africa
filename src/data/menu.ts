@@ -235,6 +235,7 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
     id: 'all-white-night',
     dayBadge: { it: '12 Dicembre 2026 · Evento Speciale', en: '12th December 2026 · Special Event' },
     time: '18:00 - 02:00',
+    startsAt: '2026-12-12T18:00',
     endsAt: '2026-12-13T02:00',
     title: {
       it: 'All White Night Party',

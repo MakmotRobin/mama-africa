@@ -44,6 +44,8 @@ export interface CulturalEvent {
   title: LocalizedText
   description: LocalizedText
   highlights: LocalizedText[]
+  /** Local start date-time ("YYYY-MM-DDTHH:MM") of a one-off event; absent for weekly events. */
+  startsAt?: string
   /** Local end date-time ("YYYY-MM-DDTHH:MM") of a one-off event; absent for weekly events. */
   endsAt?: string
   /** Photos shown when the event is featured. */

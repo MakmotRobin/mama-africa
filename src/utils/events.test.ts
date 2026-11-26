@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { CulturalEvent } from '../types'
-import { selectEventsToShow } from './events'
+import { isDuringSpecialEvent, selectEventsToShow } from './events'
 
 function buildEvent(id: string, endsAt?: string): CulturalEvent {
   const text = { it: id, en: id }
@@ -37,5 +37,34 @@ describe('selectEventsToShow', () => {
     expect(shown.featured).toBeUndefined()
     expect(shown.weekly).toHaveLength(2)
     expect(shown.bookable.map((event) => event.id)).not.toContain('special-night')
+  })
+})
+
+describe('isDuringSpecialEvent', () => {
+  const nightOut: CulturalEvent = {
+    ...buildEvent('white-night', '2026-12-13T02:00'),
+    startsAt: '2026-12-12T18:00',
+  }
+
+  it('is true from the start time on the event date', () => {
+    expect(isDuringSpecialEvent([nightOut], '2026-12-12', '18:00')).toBe(true)
+    expect(isDuringSpecialEvent([nightOut], '2026-12-12', '18:30')).toBe(true)
+  })
+
+  it('is false before the event starts', () => {
+    expect(isDuringSpecialEvent([nightOut], '2026-12-12', '17:59')).toBe(false)
+  })
+
+  it('treats small hours on the event date as the same night, up to the end', () => {
+    expect(isDuringSpecialEvent([nightOut], '2026-12-12', '01:30')).toBe(true)
+    expect(isDuringSpecialEvent([nightOut], '2026-12-12', '02:00')).toBe(false)
+  })
+
+  it('is false on other dates', () => {
+    expect(isDuringSpecialEvent([nightOut], '2026-12-19', '18:30')).toBe(false)
+  })
+
+  it('ignores weekly events that have no start time', () => {
+    expect(isDuringSpecialEvent([buildEvent('weekly')], '2026-12-12', '18:30')).toBe(false)
   })
 })

@@ -51,6 +51,24 @@ describe('reservation validation against the calendar and opening hours', () => 
     expect(result.errors.time).toBe('timeOutsideHours')
   })
 
+  it('accepts a booking during the All White Night even before regular dinner opens', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-12-12', time: '18:30' },
+      WEDNESDAY_EVENING,
+    )
+
+    expect(result.valid).toBe(true)
+  })
+
+  it('still rejects 18:30 on a Saturday without a special event', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-12-19', time: '18:30' },
+      WEDNESDAY_EVENING,
+    )
+
+    expect(result.errors.time).toBe('timeOutsideHours')
+  })
+
   it('accepts a late Friday booking that runs past midnight', () => {
     const result = validateReservation(
       { ...VALID_RESERVATION, date: '2026-11-27', time: '00:30' },

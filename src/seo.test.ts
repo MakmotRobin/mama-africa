@@ -60,4 +60,8 @@ describe('index.html search and sharing tags', () => {
       expect(specFor(day)).toMatchObject({ opens: window.open, closes: window.close })
     })
   })
+
+  it('loads no fonts from Google, so visitor IP addresses are not sent to Google', () => {
+    expect(html).not.toMatch(/fonts\.googleapis\.com|fonts\.gstatic\.com/)
+  })
 })

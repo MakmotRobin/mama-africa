@@ -34,7 +34,7 @@ The "Ankara Table" design is built from the restaurant's logo: cream pages, blac
 | All page text, Italian and English | `src/i18n/translations.ts` |
 | Search and sharing tags, Restaurant schema | `index.html` |
 
-The opening hours are still demo values and are marked "(Demo)" on the site until the owner confirms the real ones. They are left out of the Restaurant schema for the same reason.
+Opening hours, confirmed by the owner: Monday to Friday 09:00-23:00, Saturday 09:00-01:00, Sunday 11:00-23:00. If they change, update `OPENING_SCHEDULE` and the `openingHoursSpecification` in `index.html` together; a test checks that the schema matches.
 
 ## Development
 

@@ -13,8 +13,8 @@ import {
 
 /** Wednesday 25 November 2026, 18:00 local time. */
 const WEDNESDAY_EVENING = new Date(2026, 10, 25, 18, 0)
-/** Monday 30 November 2026, 18:00 local time: the restaurant is closed on Mondays. */
-const MONDAY_EVENING = new Date(2026, 10, 30, 18, 0)
+/** Sunday 29 November 2026, 09:00 local time: Sunday opens at 11:00. */
+const SUNDAY_MORNING = new Date(2026, 10, 29, 9, 0)
 
 const VALID_RESERVATION = {
   guestName: 'Giulia Rossi',
@@ -36,53 +36,77 @@ describe('reservation validation against the calendar and opening hours', () => 
     expect(result.errors.date).toBe('datePast')
   })
 
-  it('rejects a day the restaurant is closed', () => {
+  it('accepts a Monday booking: the restaurant opens every day', () => {
     const result = validateReservation({ ...VALID_RESERVATION, date: '2026-11-30' }, WEDNESDAY_EVENING)
-
-    expect(result.errors.date).toBe('dayClosed')
-  })
-
-  it('rejects a time between lunch and dinner service', () => {
-    const result = validateReservation(
-      { ...VALID_RESERVATION, date: '2026-11-26', time: '17:00' },
-      WEDNESDAY_EVENING,
-    )
-
-    expect(result.errors.time).toBe('timeOutsideHours')
-  })
-
-  it('accepts a booking during the All White Night even before regular dinner opens', () => {
-    const result = validateReservation(
-      { ...VALID_RESERVATION, date: '2026-12-12', time: '18:30' },
-      WEDNESDAY_EVENING,
-    )
 
     expect(result.valid).toBe(true)
   })
 
-  it('still rejects 18:30 on a Saturday without a special event', () => {
+  it('accepts a weekday booking from 09:00 and rejects one before opening', () => {
+    const at = (time: string) =>
+      validateReservation({ ...VALID_RESERVATION, date: '2026-11-26', time }, WEDNESDAY_EVENING)
+
+    expect(at('09:00').valid).toBe(true)
+    expect(at('08:30').errors.time).toBe('timeOutsideHours')
+  })
+
+  it('rejects a weekday booking from 23:00, when the restaurant closes', () => {
     const result = validateReservation(
-      { ...VALID_RESERVATION, date: '2026-12-19', time: '18:30' },
+      { ...VALID_RESERVATION, date: '2026-11-26', time: '23:00' },
       WEDNESDAY_EVENING,
     )
 
     expect(result.errors.time).toBe('timeOutsideHours')
   })
 
-  it('accepts a late Friday booking that runs past midnight', () => {
+  it('opens Sunday at 11:00, not 09:00', () => {
+    const at = (time: string) =>
+      validateReservation({ ...VALID_RESERVATION, date: '2026-11-29', time }, WEDNESDAY_EVENING)
+
+    expect(at('10:30').errors.time).toBe('timeOutsideHours')
+    expect(at('11:00').valid).toBe(true)
+  })
+
+  it('accepts a late Saturday booking that runs past midnight, until 01:00', () => {
+    const at = (time: string) =>
+      validateReservation({ ...VALID_RESERVATION, date: '2026-11-28', time }, WEDNESDAY_EVENING)
+
+    expect(at('00:30').valid).toBe(true)
+    expect(at('01:00').errors.time).toBe('timeOutsideHours')
+  })
+
+  it('does not run past midnight on Fridays', () => {
     const result = validateReservation(
       { ...VALID_RESERVATION, date: '2026-11-27', time: '00:30' },
       WEDNESDAY_EVENING,
     )
 
+    expect(result.errors.time).toBe('timeOutsideHours')
+  })
+
+  it('accepts a booking during the All White Night after regular Saturday closing', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-12-12', time: '01:30' },
+      WEDNESDAY_EVENING,
+    )
+
     expect(result.valid).toBe(true)
+  })
+
+  it('still rejects 01:30 on a Saturday without a special event', () => {
+    const result = validateReservation(
+      { ...VALID_RESERVATION, date: '2026-12-19', time: '01:30' },
+      WEDNESDAY_EVENING,
+    )
+
+    expect(result.errors.time).toBe('timeOutsideHours')
   })
 })
 
-/** Thursday 26 November 2026, 23:24: Thursday dinner runs until 23:30. */
-const THURSDAY_LATE = new Date(2026, 10, 26, 23, 24)
-/** Friday 27 November 2026, 23:50: Friday dinner runs past midnight until 01:00. */
-const FRIDAY_LATE = new Date(2026, 10, 27, 23, 50)
+/** Thursday 26 November 2026, 22:24: Thursday closes at 23:00. */
+const THURSDAY_LATE = new Date(2026, 10, 26, 22, 24)
+/** Saturday 28 November 2026, 23:50: Saturday runs past midnight until 01:00. */
+const SATURDAY_LATE = new Date(2026, 10, 28, 23, 50)
 
 describe('times that have already passed today', () => {
   const cart = [{ item: MENU_ITEMS[0], quantity: 1 }]
@@ -95,11 +119,11 @@ describe('times that have already passed today', () => {
   })
 
   it('accepts a pickup later today', () => {
-    expect(validateTakeaway({ ...order, pickupTime: '23:29' }, cart, THURSDAY_LATE).valid).toBe(true)
+    expect(validateTakeaway({ ...order, pickupTime: '22:50' }, cart, THURSDAY_LATE).valid).toBe(true)
   })
 
   it('accepts an after-midnight pickup during a service that runs past midnight', () => {
-    expect(validateTakeaway({ ...order, pickupTime: '00:30' }, cart, FRIDAY_LATE).valid).toBe(true)
+    expect(validateTakeaway({ ...order, pickupTime: '00:30' }, cart, SATURDAY_LATE).valid).toBe(true)
   })
 
   it('rejects a booking for a time earlier today', () => {
@@ -125,18 +149,18 @@ describe('takeaway validation against opening hours', () => {
   const cart = [{ item: MENU_ITEMS[0], quantity: 1 }]
   const order = { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' }
 
-  it('accepts a pickup during today’s dinner service', () => {
+  it('accepts a pickup during today’s opening hours', () => {
     expect(validateTakeaway(order, cart, WEDNESDAY_EVENING).valid).toBe(true)
   })
 
-  it('rejects a pickup outside today’s service windows', () => {
-    const result = validateTakeaway({ ...order, pickupTime: '17:00' }, cart, WEDNESDAY_EVENING)
+  it('rejects a pickup after today’s closing time', () => {
+    const result = validateTakeaway({ ...order, pickupTime: '23:30' }, cart, WEDNESDAY_EVENING)
 
     expect(result.errors.pickupTime).toBe('pickupOutsideHours')
   })
 
-  it('rejects any pickup on a closed day', () => {
-    const result = validateTakeaway(order, cart, MONDAY_EVENING)
+  it('rejects a Sunday pickup before 11:00', () => {
+    const result = validateTakeaway({ ...order, pickupTime: '10:30' }, cart, SUNDAY_MORNING)
 
     expect(result.errors.pickupTime).toBe('pickupOutsideHours')
   })

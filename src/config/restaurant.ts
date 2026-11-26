@@ -20,26 +20,22 @@ export const RESTAURANT_CONFIG = {
     'https://www.google.com/maps?q=Via+Pietro+Pompilio+Rodot%C3%A0+12,+87100+Cosenza+CS,+Italy&output=embed',
 } as const
 
-const WEEKDAY_LUNCH = { open: '12:00', close: '15:00' }
-const WEEKDAY_DINNER = { open: '19:00', close: '23:30' }
-const WEEKEND_LATE_DINNER = { open: '19:00', close: '01:00' }
+const WEEKDAY_HOURS = { open: '09:00', close: '23:00' }
 
 /**
- * Weekly service windows, keyed by Date.getDay() (0 = Sunday).
+ * Weekly opening hours, keyed by Date.getDay() (0 = Sunday), as confirmed by the owner on 2026-11-26.
  * Drives both the displayed hours and booking / pickup validation.
+ * A close earlier than open runs past midnight (Saturday closes at 01:00 on Sunday morning).
  */
 export const OPENING_SCHEDULE: WeeklySchedule = {
-  0: [
-    { open: '12:30', close: '15:30' },
-    { open: '19:00', close: '23:00' },
-  ],
-  1: [],
-  2: [WEEKDAY_LUNCH, WEEKDAY_DINNER],
-  3: [WEEKDAY_LUNCH, WEEKDAY_DINNER],
-  4: [WEEKDAY_LUNCH, WEEKDAY_DINNER],
-  5: [WEEKDAY_LUNCH, WEEKEND_LATE_DINNER],
-  6: [WEEKDAY_LUNCH, WEEKEND_LATE_DINNER],
+  0: [{ open: '11:00', close: '23:00' }],
+  1: [WEEKDAY_HOURS],
+  2: [WEEKDAY_HOURS],
+  3: [WEEKDAY_HOURS],
+  4: [WEEKDAY_HOURS],
+  5: [WEEKDAY_HOURS],
+  6: [{ open: '09:00', close: '01:00' }],
 }
 
-/** Order the hours are listed in: the week starts on Tuesday, after the Monday closure. */
-export const OPENING_HOURS_DISPLAY_ORDER: readonly Weekday[] = [2, 3, 4, 5, 6, 0, 1]
+/** Order the hours are listed in: Monday to Sunday. */
+export const OPENING_HOURS_DISPLAY_ORDER: readonly Weekday[] = [1, 2, 3, 4, 5, 6, 0]

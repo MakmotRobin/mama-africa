@@ -105,12 +105,12 @@ describe('Mama Africa App', () => {
     )
   })
 
-  it('shows an opening-hours error when the reservation time falls between services', () => {
+  it('shows an opening-hours error when the reservation time is before opening', () => {
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
     render(<App />)
 
     fireEvent.change(screen.getByLabelText(/Il tuo nome \*/i), { target: { value: 'Giulia' } })
-    fireEvent.change(screen.getByLabelText(/Orario \*/i), { target: { value: '17:00' } })
+    fireEvent.change(screen.getByLabelText(/Orario \*/i), { target: { value: '08:30' } })
     fireEvent.click(screen.getByRole('button', { name: /Prenota su WhatsApp/i }))
 
     expect(screen.getByText(/fuori dagli orari di apertura/i)).toBeInTheDocument()
@@ -248,6 +248,16 @@ describe('Mama Africa App', () => {
     expect(screen.getByRole('navigation', { name: 'Main' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Open menu' })).toBeInTheDocument()
     expect(document.title).toMatch(/Nigerian Food in Cosenza/)
+  })
+
+  it('shows the real opening hours without a demo label', () => {
+    render(<App />)
+
+    const location = document.getElementById('location')!
+    expect(location).toHaveTextContent('Lun - Ven09:00 - 23:00')
+    expect(location).toHaveTextContent('Sabato09:00 - 01:00')
+    expect(location).toHaveTextContent('Domenica11:00 - 23:00')
+    expect(screen.queryByText(/Demo/)).not.toBeInTheDocument()
   })
 
   it('advertises no weekly events that the restaurant does not run', () => {

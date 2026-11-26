@@ -262,7 +262,7 @@ export const TRANSLATIONS: Record<
       subtitle:
         'Facilmente raggiungibile a piedi da Corso Mazzini e in autobus dal campus UniCal di Rende.',
       addressTitle: 'Indirizzo',
-      hoursTitle: 'Orari di Apertura (Demo)',
+      hoursTitle: 'Orari di Apertura',
       closedLabel: 'Chiuso',
       openMapsCta: 'Apri su Google Maps',
       callCta: 'Chiamaci',
@@ -406,7 +406,7 @@ export const TRANSLATIONS: Record<
       subtitle:
         'Steps away from Corso Mazzini and easily reached by bus from the UniCal campus in Rende.',
       addressTitle: 'Address',
-      hoursTitle: 'Opening Hours (Demo)',
+      hoursTitle: 'Opening Hours',
       closedLabel: 'Closed',
       openMapsCta: 'Open in Google Maps',
       callCta: 'Call us',

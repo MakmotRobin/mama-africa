@@ -24,7 +24,6 @@
     <meta property="og:image:alt" content="Riso jollof con carne arrosto da Mama Africa" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Opening hours are left out until the owner confirms them; the site still shows demo hours. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -46,6 +45,16 @@
           "addressRegion": "CS",
           "addressCountry": "IT"
         },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "23:00"
+          },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "01:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "23:00" }
+        ],
         "sameAs": ["https://www.facebook.com/profile.php?id=61571605631762"]
       }
     </script>

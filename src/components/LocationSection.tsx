@@ -1,4 +1,3 @@
-import { ExternalLink, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { useState } from 'react'
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
@@ -62,7 +61,6 @@ export function LocationSection() {
                 rel="noopener noreferrer"
                 className="btn btn-primary w-full"
               >
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 <span>{t.location.openMapsCta}</span>
               </a>
               <div className="grid grid-cols-2 gap-3">
@@ -72,14 +70,12 @@ export function LocationSection() {
                   rel="noopener noreferrer"
                   className="btn btn-whatsapp w-full"
                 >
-                  <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>WhatsApp</span>
                 </a>
                 <a
                   href={PHONE_CALL_URL}
                   className="btn btn-outline w-full"
                 >
-                  <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>{t.location.callCta}</span>
                 </a>
               </div>
@@ -98,7 +94,6 @@ export function LocationSection() {
               <div className="flex h-[360px] flex-col bg-[var(--color-bg)] lg:h-full lg:min-h-[460px]">
                 <ZigzagDivider />
                 <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 text-center">
-                  <MapPin className="h-10 w-10 text-[var(--color-red)]" aria-hidden="true" />
                   <div>
                     <p className="font-display text-lg text-[var(--color-ink)]">
                       {RESTAURANT_CONFIG.addressLine}

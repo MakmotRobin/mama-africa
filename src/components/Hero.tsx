@@ -1,4 +1,4 @@
-import { MessageCircle, Pause, Play, UtensilsCrossed } from 'lucide-react'
+import { Pause, Play } from 'lucide-react'
 import { useEffect, useState, type FocusEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import type { LocalizedText } from '../types'
@@ -16,86 +16,80 @@ interface HeroSlide {
 
 const HERO_SLIDES: readonly HeroSlide[] = [
   {
-    src: '/images/hero-feast.jpg',
+    src: 'images/dish-jollof.jpg',
     alt: {
-      it: 'Tavola imbandita da Mama Africa con riso Jollof, Fataya e pesce alla griglia',
-      en: 'Mama Africa feast with Jollof rice, Fataya pies, and grilled fish',
-    },
-    caption: {
-      title: { it: 'La tavola di Mama', en: 'Mama’s table' },
-      line: { it: 'Jollof, fataya e pesce alla brace', en: 'Jollof, fataya and grilled fish' },
-    },
-  },
-  {
-    src: '/images/fb-cover.jpg',
-    alt: {
-      it: 'Interno accogliente di Mama Africa Restaurant & Bar a Cosenza',
-      en: 'Cozy lounge interior at Mama Africa Restaurant & Bar in Cosenza',
-    },
-    caption: {
-      title: { it: 'Il nostro locale', en: 'Our place' },
-      line: { it: 'A due passi da Corso Mazzini', en: 'Just off Corso Mazzini' },
-    },
-  },
-  {
-    src: '/images/dish-jollof.jpg',
-    alt: {
-      it: 'Riso Jollof tradizionale con platano dolce fritto',
-      en: 'Signature Jollof rice with caramelized sweet plantains',
+      it: 'Riso Jollof tradizionale con carne arrosto',
+      en: 'Signature Jollof rice with roasted meat',
     },
     caption: {
       title: { it: 'Party Jollof', en: 'Party Jollof' },
-      line: { it: 'Riso affumicato con platano dolce', en: 'Smoky rice with sweet plantain' },
+      line: { it: 'Riso affumicato con carne arrosto', en: 'Smoky rice with roasted meat' },
     },
   },
   {
-    src: '/images/dish-grill.jpg',
+    src: 'images/dish-white-rice-stew.jpg',
     alt: {
-      it: 'Tilapia alla brace con platano e lime',
-      en: 'Charcoal-grilled tilapia with plantains and lime',
+      it: 'Riso bianco con stufato, platano dolce e carne',
+      en: 'White rice with stew, sweet plantain, and meat',
     },
     caption: {
-      title: { it: 'Dalla brace', en: 'Off the grill' },
-      line: {
-        it: 'Tilapia alla brace con platano e lime',
-        en: 'Grilled tilapia with plantain and lime',
-      },
+      title: { it: 'Riso & Stufato', en: 'Rice & Stew' },
+      line: { it: 'Riso bianco, stufato, platano e carne', en: 'White rice, stew, plantain and meat' },
     },
   },
   {
-    src: '/images/dj-sky-face.jpg',
+    src: 'images/dish-fried-rice.jpg',
     alt: {
-      it: 'DJ Sky face alla consolle durante una serata da Mama Africa',
-      en: 'DJ Sky face on the decks during a party night at Mama Africa',
+      it: 'Fried rice nigeriano con verdure e carne arrosto',
+      en: 'Nigerian fried rice with vegetables and roasted meat',
     },
     caption: {
-      title: { it: 'DJ Sky face', en: 'DJ Sky face' },
-      line: { it: 'Afrobeats e Amapiano il venerdì', en: 'Afrobeats and Amapiano on Fridays' },
+      title: { it: 'Fried Rice', en: 'Fried Rice' },
+      line: { it: 'Verdure croccanti e carne arrosto', en: 'Crisp vegetables and roasted meat' },
     },
   },
   {
-    src: '/images/dorime-chief-priest.jpg',
+    src: 'images/dish-egusi-soup.jpg',
     alt: {
-      it: 'Dorime Chief Priest ospite speciale da Mama Africa',
-      en: 'Dorime Chief Priest special guest at Mama Africa',
+      it: 'Egusi Soup servita con fufu',
+      en: 'Egusi soup served with fufu',
     },
     caption: {
-      title: { it: 'Ospiti speciali', en: 'Special guests' },
-      line: {
-        it: 'Dorime Chief Priest da Mama Africa',
-        en: 'Dorime Chief Priest at Mama Africa',
-      },
+      title: { it: 'Egusi Soup', en: 'Egusi Soup' },
+      line: { it: 'Semi di melone, foglie verdi e fufu', en: 'Melon-seed soup with greens and fufu' },
     },
   },
   {
-    src: '/images/nightlife-crowd.jpg',
+    src: 'images/dish-okra.jpg',
     alt: {
-      it: 'Festa e musica in pista da Mama Africa Restaurant & Bar',
-      en: 'Dancefloor energy and drinks at Mama Africa Restaurant & Bar',
+      it: 'Okra Soup servita con fufu',
+      en: 'Okra soup served with fufu',
     },
     caption: {
-      title: { it: 'Venerdì in pista', en: 'Friday on the dancefloor' },
-      line: { it: 'Musica e drink fino a tardi', en: 'Music and drinks till late' },
+      title: { it: 'Okra Soup', en: 'Okra Soup' },
+      line: { it: 'Okra fresca con fufu fatto in casa', en: 'Fresh okra soup with homemade fufu' },
+    },
+  },
+  {
+    src: 'images/dish-nkwobi.jpg',
+    alt: {
+      it: 'Nkwobi tradizionale in salsa di olio di palma',
+      en: 'Traditional Nkwobi in spiced palm-oil sauce',
+    },
+    caption: {
+      title: { it: 'Nkwobi', en: 'Nkwobi' },
+      line: { it: 'Specialità Igbo in salsa speziata', en: 'Traditional Igbo spiced delicacy' },
+    },
+  },
+  {
+    src: 'images/dish-abacha-ugba.jpg',
+    alt: {
+      it: 'Abacha e Ugba con cipolla rossa e peperoncino',
+      en: 'Abacha and Ugba with red onions and peppers',
+    },
+    caption: {
+      title: { it: 'Abacha & Ugba', en: 'Abacha & Ugba' },
+      line: { it: 'Insalata africana fatta al momento', en: 'Fresh Nigerian African salad' },
     },
   },
 ]
@@ -153,11 +147,9 @@ export function Hero({ onOpenWhatsapp }: HeroProps) {
 
           <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
             <button type="button" onClick={onOpenWhatsapp} className="btn btn-primary">
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
               <span>{t.hero.primaryCta}</span>
             </button>
             <a href="#menu" className="btn btn-ghost">
-              <UtensilsCrossed className="h-4 w-4" aria-hidden="true" />
               <span>{t.hero.secondaryCta}</span>
             </a>
           </div>

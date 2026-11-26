@@ -1,4 +1,3 @@
-import { Check } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import type { DietaryBadge, MenuItem } from '../types'
@@ -60,10 +59,7 @@ function AddToOrderButton({ onAdd, fullWidth }: { onAdd: () => void; fullWidth: 
       className={`btn min-h-[44px] px-3 text-xs ${fullWidth ? 'w-full' : ''} ${stateClasses}`}
     >
       {justAdded ? (
-        <>
-          <Check className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{t.menu.addedFeedback}</span>
-        </>
+        <span>{t.menu.addedFeedback}</span>
       ) : (
         <span>{t.menu.addToOrder}</span>
       )}

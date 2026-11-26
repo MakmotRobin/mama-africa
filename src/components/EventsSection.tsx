@@ -8,21 +8,21 @@ interface EventsSectionProps {
 }
 
 const EVENTS_HEADER_PHOTO = {
-  src: '/images/nightlife-show.jpg',
+  src: 'images/nightlife-show.jpg',
   caption: { it: 'Performance & Luce', en: 'Live Show & Lights' },
 } as const
 
 const EVENT_GALLERY = [
   {
-    src: '/images/nightlife-led.jpg',
+    src: 'images/nightlife-led.jpg',
     caption: { it: 'Energia in Pista', en: 'Dancefloor Energy' },
   },
   {
-    src: '/images/nightlife-crowd.jpg',
+    src: 'images/nightlife-crowd.jpg',
     caption: { it: 'Festa da Mama Africa', en: 'Mama Africa Crowd' },
   },
   {
-    src: '/images/dorime-priest-pose.jpg',
+    src: 'images/dorime-priest-pose.jpg',
     caption: { it: 'Dorime Chief Priest in Scena', en: 'Dorime Chief Priest on Stage' },
   },
 ] as const

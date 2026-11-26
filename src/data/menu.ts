@@ -2,36 +2,6 @@ import type { CulturalEvent, MenuItem } from '../types'
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    id: 'fataya-pies',
-    category: 'starters',
-    name: {
-      it: 'Fataya (Meat Pies Africane)',
-      en: 'Fataya (African Meat Pies)',
-    },
-    description: {
-      it: 'Fagottini dorati e croccanti ripieni di manzo speziato o verdure, serviti con salsa al pomodoro e peperoncino fatta in casa.',
-      en: 'Golden crispy turnovers filled with spiced beef or savory vegetables, served with homemade tomato-chili dipping sauce.',
-    },
-    price: 7.5,
-    image: '/images/dish-fataya.jpg',
-    badges: ['freshToOrder', 'vegetarian'],
-    customizableVegan: true,
-  },
-  {
-    id: 'alloco-plantain',
-    category: 'starters',
-    name: {
-      it: 'Alloco & Salse Speziate',
-      en: 'Alloco & Spiced Dips',
-    },
-    description: {
-      it: 'Platano dolce fritto al momento fino a doratura, accompagnato da cipolla rossa marinata e salsa piccante allo zenzero.',
-      en: 'Freshly fried sweet ripe plantains served with marinated red onions and house ginger-pepper sauce.',
-    },
-    price: 6.0,
-    badges: ['vegan', 'vegetarian', 'freshToOrder'],
-  },
-  {
     id: 'jollof-rice',
     category: 'mains',
     name: {
@@ -39,11 +9,11 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Signature Jollof Rice',
     },
     description: {
-      it: 'Riso cotto a fuoco lento in salsa di pomodoro affumicato, peperoni e spezie dell’Africa Occidentale con platano dolce. Con pollo, manzo o 100% vegano.',
-      en: 'Long-grain rice simmered in smoky tomato, bell pepper, and West African spices with sweet plantains. Choice of chicken, beef, or 100% vegan.',
+      it: 'Riso cotto a fuoco lento in salsa di pomodoro affumicato, peperoni e spezie dell’Africa Occidentale con carne arrosto.',
+      en: 'Long-grain rice simmered in smoky tomato, bell pepper, and West African spices with roasted meat.',
     },
-    price: 13.0,
-    image: '/images/dish-jollof.jpg',
+    price: 10.0,
+    image: 'images/dish-jollof.jpg',
     badges: ['freshToOrder', 'vegan', 'vegetarian'],
     customizableVegan: true,
   },
@@ -55,114 +25,208 @@ export const MENU_ITEMS: MenuItem[] = [
       en: 'Okra Soup (Sauce Gombo)',
     },
     description: {
-      it: 'Zuppa vellutata di okra fresca, pomodoro ed erbe aromatiche, servita con fufu o riso bianco. Preparata al momento in versione classica o vegana.',
-      en: 'Rich, velvety fresh okra stew with aromatic herbs, served with fufu or steamed rice. Cooked to order in classic or vegan style.',
+      it: 'Zuppa vellutata di okra fresca, pomodoro ed erbe aromatiche, servita con fufu o riso bianco. Preparata al momento.',
+      en: 'Rich, velvety fresh okra stew with aromatic herbs, served with fufu or steamed rice. Cooked to order.',
     },
-    price: 14.0,
-    image: '/images/dish-okra.jpg',
+    price: 10.0,
+    image: 'images/dish-okra.jpg',
     badges: ['freshToOrder', 'vegan', 'vegetarian'],
     customizableVegan: true,
   },
   {
-    id: 'mafe-stew',
-    category: 'vegan',
-    name: {
-      it: 'Mafé alle Arachidi & Patate Dolci',
-      en: 'Mafé Peanut & Sweet Potato Stew',
-    },
-    description: {
-      it: 'Crema di arachidi tostate, patate dolci, spinaci e verdure di stagione con riso basmati profumato.',
-      en: 'Slow-simmered roasted peanut sauce with sweet potatoes, leafy greens, and seasonal vegetables over fragrant rice.',
-    },
-    price: 12.5,
-    badges: ['vegan', 'vegetarian', 'freshToOrder'],
-  },
-  {
-    id: 'tilapia-grill',
-    category: 'grill',
-    name: {
-      it: 'Tilapia alla Brace & Attiéké',
-      en: 'Charcoal-Grilled Tilapia & Attiéké',
-    },
-    description: {
-      it: 'Tilapia intera marinata con limone, aglio e spezie africane, grigliata al momento e servita con attiéké di manioca e platano.',
-      en: 'Whole tilapia marinated in citrus, garlic, and African spices, grilled to order with cassava attiéké and fried plantains.',
-    },
-    price: 16.5,
-    image: '/images/dish-grill.jpg',
-    badges: ['freshToOrder'],
-  },
-  {
-    id: 'bissap-cooler',
-    category: 'drinks',
-    name: {
-      it: 'Bissap (Infuso di Ibisco & Menta)',
-      en: 'Bissap (Hibiscus & Mint Cooler)',
-    },
-    description: {
-      it: 'Bevanda fresca ai fiori di karkadè, menta fresca e una nota di zenzero. Analcolica e naturalmente vegana.',
-      en: 'Chilled West African hibiscus flower infusion with fresh mint and a hint of ginger. Alcohol-free and vegan.',
-    },
-    price: 4.5,
-    badges: ['vegan', 'vegetarian', 'freshToOrder'],
-  },
-  {
-    id: 'ginger-pineapple',
-    category: 'drinks',
-    name: {
-      it: 'Gnamakoudji (Zenzero & Ananas)',
-      en: 'Gnamakoudji (Ginger Pineapple Elixir)',
-    },
-    description: {
-      it: 'Estratto fresco di zenzero piccante, ananas dolce e lime, preparato giornalmente al nostro bar.',
-      en: 'Fresh-pressed spicy ginger, sweet pineapple, and lime elixir crafted daily at our bar.',
-    },
-    price: 5.0,
-    badges: ['vegan', 'vegetarian', 'freshToOrder'],
-  },
-  {
-    id: 'afro-calabrian-cocktail',
-    category: 'drinks',
-    name: {
-      it: 'Afro-Calabrian Sunset Cocktail',
-      en: 'Afro-Calabrian Sunset Cocktail',
-    },
-    description: {
-      it: 'Cocktail signature del nostro bar con infuso di ibisco, bergamotto calabrese, rum scuro e lime fresco.',
-      en: 'Signature bar cocktail blending hibiscus infusion, Calabrian bergamot, dark rum, and fresh lime.',
-    },
-    price: 7.5,
-    badges: ['vegan', 'vegetarian', 'freshToOrder'],
-  },
-  {
-    id: 'nkwobi-isi-ewu',
+    id: 'white-rice-stew',
     category: 'mains',
     name: {
-      it: 'Nkwobi / Isi-Ewu Tradizionale',
-      en: 'Traditional Nkwobi / Isi-Ewu',
+      it: 'Riso Bianco, Stufato, Platano & Carne',
+      en: 'White Rice, Stew, Plantain & Meat',
     },
     description: {
-      it: 'Specialità nigeriana in salsa ricca di olio di palma, spezie calde e cipolla rossa fresca, preparata al momento.',
-      en: 'Authentic Nigerian delicacy simmered in rich spiced palm-oil sauce and topped with crisp red onions.',
+      it: 'Riso bianco servito con ricco stufato di pomodoro e peperoni, carne tenera, platano dolce fritto e uovo.',
+      en: 'Steamed white rice served with rich tomato-pepper stew, tender meat, sweet fried plantain, and boiled egg.',
     },
-    price: 15.0,
-    image: '/images/fb-dish-5.jpg',
+    price: 10.0,
+    image: 'images/dish-white-rice-stew.jpg',
     badges: ['freshToOrder'],
   },
   {
-    id: 'peppered-wings-kpomo',
-    category: 'starters',
+    id: 'fried-rice',
+    category: 'mains',
     name: {
-      it: 'Alette Speziate & Peppered Kpomo',
-      en: 'Glazed Spicy Wings & Peppered Kpomo',
+      it: 'Fried Rice Nigeriano',
+      en: 'Fried Rice',
     },
     description: {
-      it: 'Alette di pollo glassate al peperoncino dolce o tenero kpomo speziato in stile West Africa, ideali da condividere.',
-      en: 'West African chili-glazed chicken wings or tender peppered kpomo, cooked fresh for sharing.',
+      it: 'Riso saltato in stile nigeriano con verdure croccanti, mais dolce, piselli, spezie aromatiche e carne arrosto.',
+      en: 'Nigerian-style savory fried rice cooked with mixed vegetables, sweet corn, peas, aromatic spices, and roasted meat.',
     },
-    price: 9.0,
-    image: '/images/fb-dish-2.jpg',
+    price: 10.0,
+    image: 'images/dish-fried-rice.jpg',
     badges: ['freshToOrder'],
+  },
+  {
+    id: 'oha-soup',
+    category: 'mains',
+    name: {
+      it: 'Oha Soup',
+      en: 'Oha Soup',
+    },
+    description: {
+      it: 'Zuppa tradizionale nigeriana con foglie fresche di oha, carne e spezie aromatiche, servita con fufu o eba.',
+      en: 'Traditional Nigerian soup simmered with fresh oha leaves, tender meat, and rich spices, served with fufu or eba.',
+    },
+    price: 10.0,
+    image: 'images/dish-oha-soup.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'vegetable-soup',
+    category: 'mains',
+    name: {
+      it: 'Vegetable Soup (Edikang Ikong / Efo)',
+      en: 'Vegetable Soup',
+    },
+    description: {
+      it: 'Zuppa ricca di verdure verdi fresche, olio di palma e spezie tradizionali, servita con fufu o eba.',
+      en: 'Rich Nigerian leafy green vegetable soup simmered with traditional spices, served with fufu or eba.',
+    },
+    price: 10.0,
+    image: 'images/dish-vegetable-soup.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'bitter-leaf',
+    category: 'mains',
+    name: {
+      it: 'Bitter Leaf Soup (Ofe Onugbu)',
+      en: 'Bitter Leaf',
+    },
+    description: {
+      it: 'Zuppa tradizionale Igbo con foglie di bitter leaf lavate a mano, cocoyam e carne, servita con fufu o eba.',
+      en: 'Classic Igbo soup prepared with washed bitter leaves, cocoyam thickener, and tender meat, served with fufu or eba.',
+    },
+    price: 10.0,
+    image: 'images/dish-bitter-leaf.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'egusi-soup',
+    category: 'mains',
+    name: {
+      it: 'Egusi Soup',
+      en: 'Egusi Soup',
+    },
+    description: {
+      it: 'Zuppa cremosa di semi di melone macinati, foglie verdi, olio di palma e carne, servita con fufu o eba.',
+      en: 'Rich Nigerian melon-seed soup simmered with leafy greens, palm oil, and tender meat, served with fufu or eba.',
+    },
+    price: 10.0,
+    image: 'images/dish-egusi-soup.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'abacha-ugba',
+    category: 'mains',
+    name: {
+      it: 'Abacha & Ugba (Insalata Africana)',
+      en: 'Abacha and Ugba',
+    },
+    description: {
+      it: 'Insalata tradizionale Igbo di manioca essiccata e ugba fermentata con olio di palma, cipolla rossa, peperoncino e carne.',
+      en: 'Traditional Igbo African salad made with cassava flakes, fermented oil bean (ugba), palm oil dressing, red onions, and meat.',
+    },
+    price: 10.0,
+    image: 'images/dish-abacha-ugba.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'indomie-noodles',
+    category: 'mains',
+    name: {
+      it: 'Indomie Noodles Nigeriani',
+      en: 'Indomie Noodles',
+    },
+    description: {
+      it: 'Noodles saltati in stile nigeriano con uovo fritto, carne speziata, peperoncino fresco e lime.',
+      en: 'Nigerian-style stir-fried Indomie noodles topped with fried egg, spiced meat, fresh chili, and lime.',
+    },
+    price: 12.0,
+    image: 'images/dish-indomie.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'goat-meat',
+    category: 'grill',
+    name: {
+      it: 'Carne di Capra Speziata (Goat Meat)',
+      en: 'Goat Meat',
+    },
+    description: {
+      it: 'Tagli di capra marinati con spezie nigeriane e cotti fino a doratura, saporiti e teneri.',
+      en: 'Tender goat meat cuts seasoned with traditional Nigerian spices and roasted to a rich finish.',
+    },
+    price: 10.0,
+    image: 'images/dish-goat-meat.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'nkwobi',
+    category: 'grill',
+    name: {
+      it: 'Nkwobi',
+      en: 'Nkwobi',
+    },
+    description: {
+      it: 'Specialità tradizionale Igbo: stinco di manzo tenero in salsa speziata di olio di palma, utazi e spezie aromatiche.',
+      en: 'Traditional Igbo delicacy of tender cow foot simmered in spiced palm oil sauce with utazi leaves and aromatics.',
+    },
+    price: 15.0,
+    image: 'images/dish-nkwobi.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'isi-ewu',
+    category: 'grill',
+    name: {
+      it: 'Isi Ewu',
+      en: 'Isi Ewu',
+    },
+    description: {
+      it: 'Specialità tradizionale Igbo di testa di capra speziata in salsa densa di olio di palma, ehuru, utazi e anelli di cipolla.',
+      en: 'Traditional Igbo spiced goat head delicacy in rich palm oil sauce with calabash nutmeg, utazi leaves, and red onions.',
+    },
+    price: 10.0,
+    image: 'images/dish-isi-ewu.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'meat-pie',
+    category: 'starters',
+    name: {
+      it: 'Meat Pie Nigeriana',
+      en: 'Meat Pie',
+    },
+    description: {
+      it: 'Pasta frolla salata dorata ripiena di carne macinata speziata, patate e carote, cotta al forno al momento.',
+      en: 'Golden baked pastry turnover filled with spiced minced meat, potatoes, and carrots.',
+    },
+    price: 3.0,
+    image: 'images/dish-meat-pie.jpg',
+    badges: ['freshToOrder'],
+  },
+  {
+    id: 'egg-roll',
+    category: 'starters',
+    name: {
+      it: 'Egg Roll Nigeriano',
+      en: 'Egg Roll',
+    },
+    description: {
+      it: 'Soffice impasto dorato avvolto attorno a un uovo sodo intero, fritto al momento.',
+      en: 'Golden fried dough wrapped around a whole boiled egg, cooked fresh to order.',
+    },
+    price: 3.0,
+    image: 'images/dish-egg-roll.jpg',
+    badges: ['vegetarian', 'freshToOrder'],
   },
 ]
 
@@ -178,7 +242,7 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
     },
     photos: [
       {
-        src: '/images/dorime-chief-priest.jpg',
+        src: 'images/dorime-chief-priest.jpg',
         alt: {
           it: 'Dorime Chief Priest ospite da Mama Africa',
           en: 'Dorime Chief Priest at Mama Africa',
@@ -186,7 +250,7 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
         caption: { it: 'Dorime Chief Priest', en: 'Dorime Chief Priest' },
       },
       {
-        src: '/images/dj-sky-face.jpg',
+        src: 'images/dj-sky-face.jpg',
         alt: { it: 'DJ Sky face alla consolle', en: 'DJ Sky face mixing live' },
         caption: { it: 'DJ Sky face', en: 'DJ Sky face' },
       },

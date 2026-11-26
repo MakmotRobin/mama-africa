@@ -1,4 +1,4 @@
-import { Globe, Menu, ShoppingBag, X } from 'lucide-react'
+import { Menu, ShoppingBag, X } from 'lucide-react'
 import { useState } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import { StripeBand } from './brand/StripeBand'
@@ -25,7 +25,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 sm:py-3.5">
         <a href="#top" className="flex min-w-0 items-center gap-2.5 text-left sm:gap-3">
           <img
-            src="/images/logo.jpg"
+            src="images/logo.jpg"
             alt="Mama Africa Restaurant & Bar"
             width={44}
             height={44}
@@ -58,9 +58,8 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             type="button"
             onClick={toggleLang}
             aria-label={t.nav.languageToggleAria}
-            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] px-3 text-xs font-bold uppercase tracking-wider text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
+            className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-[var(--color-border-on-black)] bg-[var(--color-black-soft)] px-3 text-xs font-bold uppercase tracking-wider text-[var(--color-white)] transition-colors duration-150 hover:border-[var(--color-gold)]"
           >
-            <Globe className="h-3.5 w-3.5 text-[var(--color-gold)]" aria-hidden="true" />
             <span>{lang.toUpperCase()}</span>
           </button>
 

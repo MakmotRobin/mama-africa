@@ -1,4 +1,3 @@
-import { ShoppingBag } from 'lucide-react'
 import { useLanguage } from '../context/useLanguage'
 import { formatEuro } from '../utils/whatsapp'
 
@@ -21,7 +20,6 @@ export function MobileOrderBar({ itemCount, total, onViewOrder }: MobileOrderBar
         className="btn btn-accent mx-auto w-full max-w-xl justify-between px-4"
       >
         <span className="flex items-center gap-2">
-          <ShoppingBag className="h-4 w-4" aria-hidden="true" />
           <span>{t.orderBar.viewOrder}</span>
           <span className="rounded-sm bg-[var(--color-gold)] px-2 py-0.5 text-xs text-[var(--color-black)] tabular-nums">
             {itemCount}

@@ -23,22 +23,20 @@ describe('Mama Africa App', () => {
     render(<App />)
 
     const caption = screen.getByTestId('hero-caption')
-    expect(caption).toHaveTextContent('La tavola di Mama')
+    expect(caption).toHaveTextContent('Party Jollof')
 
     act(() => {
       vi.advanceTimersByTime(3000)
     })
-    expect(caption).toHaveTextContent('Il nostro locale')
+    expect(caption).toHaveTextContent('Riso & Stufato')
   })
 
-  it('aligns menu rows without a photo with rows that have one', () => {
+  it('renders the fixed photo slot on menu rows', () => {
     render(<App />)
 
     const withPhoto = screen.getByTestId('menu-row-jollof-rice')
-    const withoutPhoto = screen.getByTestId('menu-row-alloco-plantain')
     expect(withPhoto.querySelector('img')).not.toBeNull()
-    expect(withoutPhoto.querySelector('img')).toBeNull()
-    expect(withoutPhoto.querySelector('[data-slot="photo"]')).not.toBeNull()
+    expect(withPhoto.querySelector('[data-slot="photo"]')).not.toBeNull()
   })
 
   it('switches the hero caption language with the toggle', () => {
@@ -46,7 +44,7 @@ describe('Mama Africa App', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /Passa a Inglese/i }))
 
-    expect(screen.getByTestId('hero-caption')).toHaveTextContent('Mama’s table')
+    expect(screen.getByTestId('hero-caption')).toHaveTextContent('Smoky rice with roasted meat')
   })
 
   it('stops the hero slideshow when the pause button is pressed and resumes on play', () => {
@@ -98,7 +96,7 @@ describe('Mama Africa App', () => {
 
     const orderBar = screen.getByRole('button', { name: /Vedi ordine/i })
     expect(orderBar).toHaveTextContent('2')
-    expect(orderBar).toHaveTextContent('€20,50')
+    expect(orderBar).toHaveTextContent('€20,00')
 
     fireEvent.click(orderBar)
     expect(screen.getByRole('tab', { name: /Ordine d’Asporto/i })).toHaveAttribute(
@@ -146,18 +144,20 @@ describe('Mama Africa App', () => {
     const grillTab = screen.getByRole('button', { name: /Griglia & Pesce/i })
     fireEvent.click(grillTab)
 
-    expect(screen.getByRole('heading', { name: /Tilapia alla Brace/i })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /Bissap/i })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Carne di Capra Speziata/i })).toBeInTheDocument()
+    expect(
+      screen.queryByRole('heading', { name: /Riso Jollof Tradizionale/i }),
+    ).not.toBeInTheDocument()
 
     const veganTab = screen.getByRole('button', { name: /Vegano & Vegetariano/i })
     fireEvent.click(veganTab)
 
-    expect(screen.getByRole('heading', { name: /Mafé/i })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /Tilapia alla Brace/i })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Egg Roll Nigeriano/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Carne di Capra Speziata/i })).not.toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: /^Tutto$/i }))
     expect(
-      screen.getAllByRole('heading', { name: /Fataya/i }).length,
+      screen.getAllByRole('heading', { name: /Riso Jollof Tradizionale/i }).length,
     ).toBeGreaterThanOrEqual(1)
   })
 

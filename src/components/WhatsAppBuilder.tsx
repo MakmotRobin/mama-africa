@@ -1,10 +1,4 @@
-import {
-  AlertCircle,
-  MessageCircle,
-  Minus,
-  Plus,
-  Trash2,
-} from 'lucide-react'
+import { Minus, Plus, Trash2 } from 'lucide-react'
 import { useRef, useState, type FormEvent } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import { useEventsToShow } from '../context/useEventsToShow'
@@ -237,10 +231,9 @@ export function WhatsAppBuilder({
                   {resErrors.guestName && (
                     <p
                       id="res-name-error"
-                      className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-error)]"
+                      className="mt-1.5 text-sm font-semibold text-[var(--color-error)]"
                     >
-                      <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>{t.whatsapp.reservationForm.errors.nameRequired}</span>
+                      {t.whatsapp.reservationForm.errors.nameRequired}
                     </p>
                   )}
                 </div>
@@ -378,7 +371,6 @@ export function WhatsAppBuilder({
                   type="submit"
                   className="btn btn-whatsapp w-full text-sm"
                 >
-                  <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   <span>{t.whatsapp.reservationForm.submitCta}</span>
                 </button>
               </form>
@@ -474,9 +466,8 @@ export function WhatsAppBuilder({
                   )}
 
                   {takeErrors.cart && (
-                    <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-error)]">
-                      <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>{t.whatsapp.takeawayForm.errors.emptyCart}</span>
+                    <p className="mt-2 text-sm font-semibold text-[var(--color-error)]">
+                      {t.whatsapp.takeawayForm.errors.emptyCart}
                     </p>
                   )}
                 </div>
@@ -511,10 +502,9 @@ export function WhatsAppBuilder({
                     {takeErrors.customerName && (
                       <p
                         id="take-name-error"
-                        className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-error)]"
+                        className="mt-1.5 text-sm font-semibold text-[var(--color-error)]"
                       >
-                        <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        <span>{t.whatsapp.takeawayForm.errors.nameRequired}</span>
+                        {t.whatsapp.takeawayForm.errors.nameRequired}
                       </p>
                     )}
                   </div>
@@ -546,10 +536,9 @@ export function WhatsAppBuilder({
                     {takeErrors.pickupTime && (
                       <p
                         id="take-pickup-error"
-                        className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-error)]"
+                        className="mt-1.5 text-sm font-semibold text-[var(--color-error)]"
                       >
-                        <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        <span>{takeawayErrorText(takeErrors.pickupTime)}</span>
+                        {takeawayErrorText(takeErrors.pickupTime)}
                       </p>
                     )}
                   </div>
@@ -578,7 +567,6 @@ export function WhatsAppBuilder({
                   type="submit"
                   className="btn btn-whatsapp w-full text-sm"
                 >
-                  <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   <span>{t.whatsapp.takeawayForm.submitCta}</span>
                 </button>
               </form>

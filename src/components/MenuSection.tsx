@@ -10,8 +10,8 @@ interface MenuSectionProps {
   onAddToCart: (dish: MenuItem) => void
 }
 
-const CATEGORIES: MenuCategory[] = ['all', 'starters', 'mains', 'grill', 'vegan', 'drinks']
-const SIGNATURE_IDS = new Set(['fataya-pies', 'jollof-rice', 'okra-soup', 'tilapia-grill'])
+const CATEGORIES: MenuCategory[] = ['all', 'starters', 'mains', 'grill', 'vegan']
+const SIGNATURE_IDS = new Set(['jollof-rice', 'okra-soup', 'white-rice-stew', 'nkwobi'])
 
 export function MenuSection({ onAddToCart }: MenuSectionProps) {
   const { t } = useLanguage()

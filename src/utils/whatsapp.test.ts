@@ -142,8 +142,8 @@ describe('whatsapp utilities', () => {
       { item: MENU_ITEMS[2], quantity: 1 },
     ]
     const total = calculateCartTotal(cart)
-    expect(total).toBeCloseTo(28.0)
-    expect(formatEuro(total)).toBe('€28,00')
+    expect(total).toBeCloseTo(30.0)
+    expect(formatEuro(total)).toBe('€30,00')
 
     const takeawayCheck = validateTakeaway(
       { customerName: 'Marco', pickupTime: '20:00', dietaryNotes: '' },
@@ -158,8 +158,8 @@ describe('whatsapp utilities', () => {
       cart,
       'en',
     )
-    expect(msgEn).toContain('2x Fataya (African Meat Pies)')
-    expect(msgEn).toContain('Estimated total: €28,00')
+    expect(msgEn).toContain('2x Signature Jollof Rice')
+    expect(msgEn).toContain('Estimated total: €30,00')
     expect(msgEn).toContain('Vegan Jollof')
   })
 })

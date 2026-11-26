@@ -50,6 +50,14 @@ export interface CulturalEvent {
   photos?: EventPhoto[]
 }
 
+/** A night that already happened, shown as proof of the restaurant's events. */
+export interface PastEvent {
+  id: string
+  /** Local date "YYYY-MM-DD". */
+  date: string
+  title: LocalizedText
+}
+
 export interface EventPhoto {
   src: string
   alt: LocalizedText

@@ -1,4 +1,4 @@
-import type { CulturalEvent, MenuItem } from '../types'
+import type { CulturalEvent, MenuItem, PastEvent } from '../types'
 
 export const MENU_ITEMS: MenuItem[] = [
   {
@@ -234,7 +234,7 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
   {
     id: 'all-white-night',
     dayBadge: { it: '12 Dicembre 2026 · Evento Speciale', en: '12th December 2026 · Special Event' },
-    time: '22:00 - 02:00',
+    time: '18:00 - 02:00',
     endsAt: '2026-12-13T02:00',
     title: {
       it: 'All White Night Party',
@@ -260,60 +260,41 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
       en: 'Exclusive total white dress code night in the heart of Cosenza: non-stop music, high energy, and signature cocktails late into the night.',
     },
     highlights: [
-      { it: 'Hypeman: Christyle', en: 'Hypeman: Christyle' },
+      { it: 'Hypeman: Chris Style', en: 'Hypeman: Chris Style' },
       { it: 'DJ: Sky face', en: 'DJ: Sky face' },
       { it: 'Dorime Chief Priest', en: 'Dorime Chief Priest' },
     ],
   },
+]
+
+/** Past nights at Mama Africa, taken from the owner's Instagram (@celebritybarmann). Newest first. */
+export const PAST_EVENTS: PastEvent[] = [
   {
-    id: 'unical-aperitivo',
-    dayBadge: { it: 'Ogni Giovedì', en: 'Every Thursday' },
-    time: '19:30 - 22:30',
-    title: {
-      it: 'UniCal International Aperitivo',
-      en: 'UniCal International Aperitivo',
-    },
-    description: {
-      it: 'Serata dedicata a studenti internazionali, Erasmus e cosentini: meat pie ed egg roll da condividere con un drink o un cocktail della casa.',
-      en: 'A lively meet-up for UniCal international students and Cosenza locals: meat pies and egg rolls to share with a drink or a house cocktail.',
-    },
-    highlights: [
-      { it: 'Snack nigeriani da condividere', en: 'Nigerian small chops to share' },
-      { it: 'Selezione Afrobeats & Soul', en: 'Afrobeats & Soul playlist' },
-    ],
+    id: 'summer-night-2026',
+    date: '2026-06-20',
+    title: { it: 'Summer night con artista ospite', en: 'Summer night with a guest artist' },
   },
   {
-    id: 'afrobeats-friday',
-    dayBadge: { it: 'Ogni Venerdì', en: 'Every Friday' },
-    time: '21:30 - 01:00',
-    title: {
-      it: 'Venerdì Afrobeats & Highlife',
-      en: 'Afrobeats & Highlife Fridays',
-    },
-    description: {
-      it: 'Cucina calda fino a tardi, cocktail tropicali al bar e DJ set tra Afrobeats, Amapiano e Highlife classico.',
-      en: 'Late-night hot kitchen, tropical bar cocktails, and DJ sets blending Afrobeats, Amapiano, and classic Highlife.',
-    },
-    highlights: [
-      { it: 'Bar aperto fino alle 01:00', en: 'Bar open until 01:00' },
-      { it: 'Griglia & Jollof serviti al momento', en: 'Fresh grill & Jollof served to order' },
-    ],
+    id: 'valentines-2026',
+    date: '2026-02-14',
+    title: { it: 'Sabato di San Valentino', en: 'Valentine’s Saturday' },
   },
   {
-    id: 'griot-saturday',
-    dayBadge: { it: 'Ogni Sabato', en: 'Every Saturday' },
-    time: '21:00 - 00:30',
+    id: 'new-years-eve-2025',
+    date: '2025-12-31',
+    title: { it: 'Notte di Capodanno', en: 'New Year’s Eve' },
+  },
+  {
+    id: 'christmas-eve-2025',
+    date: '2025-12-24',
+    title: { it: 'Serata della Vigilia di Natale', en: 'Christmas Eve night' },
+  },
+  {
+    id: 'peter-okoye-2025',
+    date: '2025-08-29',
     title: {
-      it: 'Sabato Live Percussioni & Acustico',
-      en: 'Saturday Live Percussion & Acoustic',
+      it: 'Meet & greet con Peter Okoye (P-Square)',
+      en: 'Meet & greet with Peter Okoye (P-Square)',
     },
-    description: {
-      it: 'Djembe, chitarra acustica e racconti musicali dal vivo per una cena calda e conviviale a due passi da Corso Mazzini.',
-      en: 'Live djembe, acoustic guitar, and warm storytelling rhythms for a vibrant Saturday dinner just off Corso Mazzini.',
-    },
-    highlights: [
-      { it: 'Musica acustica dal vivo', en: 'Live acoustic & djembe session' },
-      { it: 'Consigliata prenotazione tavolo', en: 'Table booking recommended' },
-    ],
   },
 ]

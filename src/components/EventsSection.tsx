@@ -1,5 +1,7 @@
 import { useLanguage } from '../context/useLanguage'
 import { useEventsToShow } from '../context/useEventsToShow'
+import { PAST_EVENTS } from '../data/menu'
+import { formatLongDate } from '../utils/dates'
 import { ScriptKicker } from './brand/ScriptKicker'
 import { StripeBand } from './brand/StripeBand'
 
@@ -29,7 +31,7 @@ const EVENT_GALLERY = [
 
 export function EventsSection({ onReserveEvent }: EventsSectionProps) {
   const { lang, t } = useLanguage()
-  const { featured: featuredEvent, weekly: weeklyEvents } = useEventsToShow()
+  const { featured: featuredEvent } = useEventsToShow()
 
   return (
     <section id="events" className="bg-[var(--color-bg)]">
@@ -116,35 +118,29 @@ export function EventsSection({ onReserveEvent }: EventsSectionProps) {
       )}
 
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-16">
-        <div className="grid divide-y-2 divide-dotted divide-[var(--color-border)] md:grid-cols-3 md:divide-x-2 md:divide-y-0">
-          {weeklyEvents.map((ev) => (
-            <article key={ev.id} className="flex flex-col py-6 md:px-6 md:py-0 md:first:pl-0 md:last:pr-0">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-red)]">
-                  {ev.dayBadge[lang]}
+        <div>
+          <h3 id="past-nights-title" className="font-display text-2xl text-[var(--color-ink)]">
+            {t.events.pastTitle}
+          </h3>
+          <ul
+            aria-labelledby="past-nights-title"
+            className="mt-4 divide-y-2 divide-dotted divide-[var(--color-border)]"
+          >
+            {PAST_EVENTS.map((night) => (
+              <li
+                key={night.id}
+                className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:gap-6"
+              >
+                <span className="shrink-0 text-sm font-extrabold uppercase tracking-wider text-[var(--color-red)] tabular-nums sm:w-48">
+                  {formatLongDate(night.date, lang)}
                 </span>
-                <span className="text-xs font-bold text-[var(--color-muted)] tabular-nums">
-                  {ev.time}
+                <span className="font-display text-lg leading-snug text-[var(--color-ink)]">
+                  {night.title[lang]}
                 </span>
-              </div>
-
-              <h3 className="mt-3 font-display text-2xl leading-tight text-[var(--color-ink)]">
-                {ev.title[lang]}
-              </h3>
-
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted)]">
-                {ev.description[lang]}
-              </p>
-
-              <ul className="mt-4 space-y-1.5">
-                {ev.highlights.map((hl) => (
-                  <li key={hl[lang]} className="text-sm font-semibold text-[var(--color-emerald-ink)]">
-                    {hl[lang]}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-[var(--color-muted)]">{t.events.pastMore}</p>
         </div>
 
         <div className="mt-14">

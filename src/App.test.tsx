@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest'
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
@@ -198,6 +198,29 @@ describe('Mama Africa App', () => {
     openSpy.mockRestore()
   })
 
+  it('advertises no weekly events that the restaurant does not run', () => {
+    render(<App />)
+
+    expect(screen.queryByText(/UniCal International Aperitivo/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Afrobeats & Highlife/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Percussioni/i)).not.toBeInTheDocument()
+
+    const occasions = screen.getByLabelText(/Tavolo o serata/i).querySelectorAll('option')
+    expect([...occasions].map((option) => option.textContent)).toEqual([
+      'Cena standard',
+      'All White Night Party (12 Dicembre 2026 · Evento Speciale)',
+    ])
+  })
+
+  it('lists past nights from the restaurant’s own posts, newest first', () => {
+    render(<App />)
+
+    const pastNights = screen.getByRole('list', { name: /Serate passate/i })
+    const items = within(pastNights).getAllByRole('listitem')
+    expect(items[0]).toHaveTextContent('20 giugno 2026')
+    expect(pastNights).toHaveTextContent(/Meet & greet con Peter Okoye/i)
+  })
+
   it('displays All White Night Party on 12th December', () => {
     render(<App />)
 
@@ -205,7 +228,8 @@ describe('Mama Africa App', () => {
       screen.getByRole('heading', { name: /All White Night Party/i }),
     ).toBeInTheDocument()
     expect(screen.getAllByText(/12 Dicembre/i).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getByText(/Hypeman: Christyle/i)).toBeInTheDocument()
+    expect(screen.getByText(/Hypeman: Chris Style/i)).toBeInTheDocument()
+    expect(screen.getByText('18:00 - 02:00')).toBeInTheDocument()
     expect(screen.getByText(/DJ: Sky face/i)).toBeInTheDocument()
     expect(screen.getAllByText(/Dorime Chief Priest/i).length).toBeGreaterThanOrEqual(1)
 

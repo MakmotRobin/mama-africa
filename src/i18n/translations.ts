@@ -120,6 +120,8 @@ export const TRANSLATIONS: Record<
       reserveNightCta: string
       galleryTitle: string
       imageAlt: string
+      pastTitle: string
+      pastMore: string
     }
     location: {
       kicker: string
@@ -276,10 +278,13 @@ export const TRANSLATIONS: Record<
       kicker: 'la sera da mama',
       title: 'Serate Culturali & Musica dal Vivo',
       subtitle:
-        'Mama Africa è il punto d’incontro tra Cosenza e la comunità internazionale dell’UniCal: percussioni, Afrobeats, aperitivi e cucina calda fino a tardi.',
+        'Feste del sabato sera, ospiti speciali e grandi serate firmate Celebrity Barman, con musica africana e cucina calda fino a tardi.',
       sponsoredBy: 'Tutti gli eventi sono sponsorizzati da Celebrity Barman',
       reserveNightCta: 'Prenota per questa serata',
       galleryTitle: 'Atmosfera & Ospiti dal Vivo',
+      pastTitle: 'Serate passate',
+      pastMore:
+        'Altre serate: 16 e 23 agosto, 27 settembre, 18 e 28 ottobre, 15 e 29 novembre, 20 e 27 dicembre 2025.',
       imageAlt: 'Performance dal vivo con luci di scena durante una serata da Mama Africa a Cosenza',
     },
     location: {
@@ -441,10 +446,13 @@ export const TRANSLATIONS: Record<
       kicker: 'nights at mama’s',
       title: 'Cultural Events & Music Nights',
       subtitle:
-        'Where Cosenza meets the UniCal international community: live percussion, Afrobeats, tropical aperitivos, and late-night kitchen service.',
+        'Saturday parties, special guests and big nights hosted by Celebrity Barman, with African music and a hot kitchen till late.',
       sponsoredBy: 'All events are sponsored by Celebrity Barman',
       reserveNightCta: 'Reserve for this night',
       galleryTitle: 'Live Nights & Guest Moments',
+      pastTitle: 'Past nights',
+      pastMore:
+        'More nights: 16 and 23 August, 27 September, 18 and 28 October, 15 and 29 November, 20 and 27 December 2025.',
       imageAlt: 'Live performance under stage lights during a party night at Mama Africa in Cosenza',
     },
     location: {

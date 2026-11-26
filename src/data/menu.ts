@@ -274,11 +274,11 @@ export const CULTURAL_EVENTS: CulturalEvent[] = [
       en: 'UniCal International Aperitivo',
     },
     description: {
-      it: 'Serata dedicata a studenti internazionali, Erasmus e cosentini: tagliere di Fataya e Alloco con Bissap o cocktail della casa.',
-      en: 'A lively meet-up for UniCal international students and Cosenza locals: Fataya & Alloco sharing boards with Bissap or house cocktails.',
+      it: 'Serata dedicata a studenti internazionali, Erasmus e cosentini: meat pie ed egg roll da condividere con un drink o un cocktail della casa.',
+      en: 'A lively meet-up for UniCal international students and Cosenza locals: meat pies and egg rolls to share with a drink or a house cocktail.',
     },
     highlights: [
-      { it: 'Menu aperitivo con opzioni vegane', en: 'Aperitivo platter with vegan options' },
+      { it: 'Snack nigeriani da condividere', en: 'Nigerian small chops to share' },
       { it: 'Selezione Afrobeats & Soul', en: 'Afrobeats & Soul playlist' },
     ],
   },

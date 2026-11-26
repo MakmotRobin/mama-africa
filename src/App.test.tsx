@@ -141,7 +141,7 @@ describe('Mama Africa App', () => {
   it('filters menu items by category', () => {
     render(<App />)
 
-    const grillTab = screen.getByRole('button', { name: /Griglia & Pesce/i })
+    const grillTab = screen.getByRole('button', { name: /Carni & Specialità/i })
     fireEvent.click(grillTab)
 
     expect(screen.getByRole('heading', { name: /Carne di Capra Speziata/i })).toBeInTheDocument()

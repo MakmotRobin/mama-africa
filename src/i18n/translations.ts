@@ -38,7 +38,6 @@ export const TRANSLATIONS: Record<
         kitchenValue: string
         whatsappLabel: string
       }
-      imageAlt: string
     }
     menu: {
       kicker: string
@@ -165,7 +164,7 @@ export const TRANSLATIONS: Record<
       titleHighlight: 'fatta al momento',
       titleEnd: 'a Cosenza',
       subtitle:
-        'Dal party jollof alla tilapia alla brace, ogni piatto è cucinato al momento, come lo fa mama.',
+        'Dal party jollof all’egusi soup, ogni piatto è cucinato al momento, come lo fa mama.',
       primaryCta: 'Prenota o Ordina su WhatsApp',
       secondaryCta: 'Esplora il Menu',
       galleryLabel: 'Galleria foto',
@@ -186,8 +185,6 @@ export const TRANSLATIONS: Record<
         kitchenValue: 'Espresso al momento · Opzioni Vegane',
         whatsappLabel: 'WhatsApp Diretto',
       },
-      imageAlt:
-        'Tavola imbandita da Mama Africa con riso Jollof, Fataya croccanti, pesce alla griglia e zuppa di okra',
     },
     menu: {
       kicker: 'cosa bolle in pentola',
@@ -200,7 +197,7 @@ export const TRANSLATIONS: Record<
         all: 'Tutto',
         starters: 'Antipasti & Street Food',
         mains: 'Piatti Unici & Riso',
-        grill: 'Griglia & Pesce',
+        grill: 'Carni & Specialità',
         vegan: 'Vegano & Vegetariano',
         drinks: 'Bar & Bevande',
       },
@@ -332,7 +329,7 @@ export const TRANSLATIONS: Record<
       titleHighlight: 'made fresh',
       titleEnd: 'in Cosenza',
       subtitle:
-        'From party jollof to grilled tilapia, every plate is cooked to order, the way mama makes it.',
+        'From party jollof to egusi soup, every plate is cooked to order, the way mama makes it.',
       primaryCta: 'Book or Order on WhatsApp',
       secondaryCta: 'Explore Menu',
       galleryLabel: 'Photo gallery',
@@ -353,8 +350,6 @@ export const TRANSLATIONS: Record<
         kitchenValue: 'Fresh to Order · Vegan Options',
         whatsappLabel: 'Direct WhatsApp',
       },
-      imageAlt:
-        'Mama Africa feast spread featuring Jollof rice, crispy Fataya pies, grilled fish, and okra soup',
     },
     menu: {
       kicker: 'what’s cooking',
@@ -367,7 +362,7 @@ export const TRANSLATIONS: Record<
         all: 'All',
         starters: 'Starters & Street Food',
         mains: 'Mains & Rice',
-        grill: 'Grill & Fish',
+        grill: 'Meats & Specials',
         vegan: 'Vegan & Vegetarian',
         drinks: 'Bar & Drinks',
       },

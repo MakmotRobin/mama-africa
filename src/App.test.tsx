@@ -207,6 +207,16 @@ describe('Mama Africa App', () => {
     expect(screen.queryByRole('button', { name: 'Aggiungi all’ordine' })).not.toBeInTheDocument()
   })
 
+  it('closes the mobile menu with Escape', () => {
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+    expect(document.getElementById('mobile-nav')).toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(document.getElementById('mobile-nav')).not.toBeInTheDocument()
+  })
+
   it('advertises no weekly events that the restaurant does not run', () => {
     render(<App />)
 

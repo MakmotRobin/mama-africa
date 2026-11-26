@@ -1,5 +1,5 @@
 import { Menu, ShoppingBag, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/useLanguage'
 import { StripeBand } from './brand/StripeBand'
 
@@ -12,6 +12,18 @@ interface HeaderProps {
 export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderProps) {
   const { lang, toggleLang, t } = useLanguage()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!mobileOpen) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setMobileOpen(false)
+      menuToggleRef.current?.focus()
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [mobileOpen])
 
   const navLinks = [
     { href: '#menu', label: t.nav.menu },
@@ -85,6 +97,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
 
           <button
             type="button"
+            ref={menuToggleRef}
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"

@@ -6,6 +6,8 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
+    /* Alfa Slab One has one weight; never let the browser fake a bold. */
+    font-synthesis: none;
     color: var(--color-ink);
     background-color: var(--color-bg);
   }

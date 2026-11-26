@@ -1,6 +1,7 @@
 import { Globe, Menu, ShoppingBag, X } from 'lucide-react'
 import { useState } from 'react'
 import { useLanguage } from '../context/useLanguage'
+import { StripeBand } from './brand/StripeBand'
 
 interface HeaderProps {
   cartCount: number
@@ -20,7 +21,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
   ]
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-white)]">
+    <header className="sticky top-0 z-50 bg-[var(--color-black)] text-[var(--color-white)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 sm:py-3.5">
         <a href="#top" className="flex min-w-0 items-center gap-2.5 text-left sm:gap-3">
           <img
@@ -31,10 +32,10 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
             className="h-10 w-10 shrink-0 rounded-md border border-[var(--color-border-on-black)] object-cover sm:h-11 sm:w-11"
           />
           <span className="min-w-0">
-            <span className="block truncate font-[var(--font-display)] text-base font-bold leading-none tracking-tight text-[var(--color-white)] sm:text-lg">
+            <span className="block truncate font-[var(--font-display)] text-base leading-none text-[var(--color-gold)] sm:text-lg">
               Mama Africa
             </span>
-            <span className="mt-1 block truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-gold)] sm:text-[11px] sm:tracking-[0.16em]">
+            <span className="mt-1 block truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-surface)] sm:text-[11px] sm:tracking-[0.16em]">
               Restaurant &amp; Bar · Cosenza
             </span>
           </span>
@@ -78,7 +79,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           <button
             type="button"
             onClick={onOpenReservation}
-            className="hidden min-h-[44px] cursor-pointer items-center justify-center whitespace-nowrap rounded-md bg-[var(--color-red)] px-4 text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)] sm:inline-flex"
+            className="btn btn-accent hidden min-h-[44px] whitespace-nowrap px-4 text-xs tracking-[0.1em] sm:inline-flex"
           >
             {t.nav.reserveCta}
           </button>
@@ -133,6 +134,7 @@ export function Header({ cartCount, onOpenTakeaway, onOpenReservation }: HeaderP
           </ul>
         </nav>
       )}
+      <StripeBand />
     </header>
   )
 }

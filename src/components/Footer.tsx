@@ -1,6 +1,7 @@
 import { RESTAURANT_CONFIG } from '../config/restaurant'
 import { useLanguage } from '../context/useLanguage'
 import { useOpeningHoursRows } from '../context/useOpeningHoursRows'
+import { StripeBand } from './brand/StripeBand'
 import { PHONE_CALL_URL, WHATSAPP_CHAT_URL } from '../utils/whatsapp'
 
 export function Footer() {
@@ -8,7 +9,8 @@ export function Footer() {
   const openingHoursRows = useOpeningHoursRows()
 
   return (
-    <footer className="border-t border-[var(--color-border-on-black)] bg-[var(--color-black)] text-[var(--color-surface)]">
+    <footer className="bg-[var(--color-black)] text-[var(--color-surface)]">
+      <StripeBand />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
@@ -20,7 +22,7 @@ export function Footer() {
               height={52}
               className="h-13 w-13 rounded-md border border-[var(--color-border-on-black)] object-cover"
             />
-            <span className="font-[var(--font-display)] text-lg font-bold text-[var(--color-white)]">
+            <span className="font-[var(--font-display)] text-xl text-[var(--color-gold)]">
               {RESTAURANT_CONFIG.name}
             </span>
           </div>

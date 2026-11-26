@@ -18,16 +18,16 @@ export function MobileOrderBar({ itemCount, total, onViewOrder }: MobileOrderBar
       <button
         type="button"
         onClick={onViewOrder}
-        className="mx-auto flex min-h-[48px] w-full max-w-xl cursor-pointer items-center justify-between gap-3 rounded-md bg-[var(--color-red)] px-4 text-sm font-bold text-[var(--color-white)] transition-colors duration-150 hover:bg-[var(--color-red-hover)]"
+        className="btn btn-accent mx-auto w-full max-w-xl justify-between px-4"
       >
         <span className="flex items-center gap-2">
           <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-          <span className="uppercase tracking-[0.08em]">{t.orderBar.viewOrder}</span>
-          <span className="rounded-sm bg-[var(--color-black)] px-2 py-0.5 text-xs tabular-nums">
+          <span>{t.orderBar.viewOrder}</span>
+          <span className="rounded-sm bg-[var(--color-gold)] px-2 py-0.5 text-xs text-[var(--color-black)] tabular-nums">
             {itemCount}
           </span>
         </span>
-        <span className="tabular-nums">{formatEuro(total)}</span>
+        <span className="text-sm tabular-nums">{formatEuro(total)}</span>
       </button>
     </div>
   )
